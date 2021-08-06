@@ -39,7 +39,8 @@
                     <p class="msg pb-0 mb-0"></p>
                 </div>
 
-                <form class="form-tambah">
+                <form class="form-tambah" method="POST" action="<?= base_url('edited'); ?>">
+                    <input type="text" name="id" value="<?= $edited['user']['id']; ?>" hidden>
                     <p class="card-description">
                         Informasi Guru
                     </p>
@@ -215,6 +216,8 @@
     </div>
 </div>
 
+<!-- flashdata -->
+<?= $this->session->flashdata('msg'); ?>
 
 
 <script>
@@ -246,5 +249,9 @@
         } else {
             $('[name="walas_of"]').attr('disabled', false)
         }
+    }
+    let valWal = $('[name="walas"]').val()
+    if (valWal == 1) {
+        $('[name="walas_of"]').attr('disabled', false)
     }
 </script>

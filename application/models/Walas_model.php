@@ -8,6 +8,18 @@ class Walas_model extends CI_Model
         return $this->db->get_where('walas', ['user_id' => $user_id])->row_array();
     }
 
+    public function set_walas($walas_of, $user_id)
+    {
+        $this->db->set('kelas_id', $walas_of);
+        $this->db->where('user_id', $user_id);
+        $update = $this->db->update('walas');
+        if ($update) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
     public function insert_walas($arraryWalas)
     {
         $insert = $this->db->insert('walas', $arraryWalas);

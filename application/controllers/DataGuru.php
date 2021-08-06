@@ -65,6 +65,38 @@ class DataGuru extends CI_Controller
         $this->load->view('templates/_footer');
     }
 
+    public function editProfileSubmited()
+    {
+        $id = $this->input->post('id');
+        $nama = $this->input->post('nama');
+        $email = $this->input->post('email');
+        $username = $this->input->post('username');
+        $role_id = $this->input->post('role_id');
+        $is_pengajar = $this->input->post('is_pengajar');
+        $walas = $this->input->post('walas');
+        $walas_of = $this->input->post('walas_of');
+        $mapel = $this->input->post('mapel');
+
+        $arrData = [
+            'nama' => $nama,
+            'email' => $email,
+            'username' => $username,
+            'role_id' => $role_id,
+            'is_pengajar' => $is_pengajar,
+            'is_walas'  => $walas,
+        ];
+
+        // update users table
+        $this->Users_model->set_user_data($arrData, $id);
+        // update walas table
+        $this->walas_model->set_walas($walas_of, $id);
+        // update mapel table
+        $this->mapel_model->set_guru_mapel($id, $mapel);
+
+        $this->session->set_flashdata('msg', '<script>Swal.fire({ title: "Berhasil!", text: "Berhasil edit profile!", icon: "success", }); </script>');
+        redirect('edit/' . $username);
+    }
+
     public function tambahGuru()
     {
         $nama = $this->input->post('nama');
