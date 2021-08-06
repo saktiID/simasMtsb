@@ -180,19 +180,19 @@
                         <div class="form-group row">
                             <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password Lama</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" placeholder="Password lama">
+                                <input type="password" class="form-control" placeholder="Password lama" autocomplete="FALSE">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password Baru</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" placeholder="Password baru">
+                                <input type="password" class="form-control" placeholder="Password baru" autocomplete="FALSE">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Ulangi Password</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" placeholder="Konfirmasi password">
+                                <input type="password" class="form-control" placeholder="Konfirmasi password" autocomplete="FALSE">
                             </div>
                             <div class="col-sm-9">
                                 <input class="form-check-input check ml-1" type="checkbox" id="look">
