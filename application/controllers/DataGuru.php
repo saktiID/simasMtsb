@@ -68,6 +68,62 @@ class DataGuru extends CI_Controller
     public function editProfileSubmited()
     {
         $id = $this->input->post('id');
+        $username = $this->input->post('username');
+        $email = $this->input->post('email');
+        $currentUsername = $this->Users_model->get_by_id($id)['username'];
+        $currentEmail = $this->Users_model->get_by_id($id)['email'];
+
+        if ($username == $currentUsername) {
+            if ($email == $currentEmail) {
+                $this->_editProfileSubmitedPriv();
+            } else {
+                $this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[users.email]', [
+                    'required' => 'Harap isi email!',
+                    'is_unique' => 'Email sudah digunakan!',
+                ]);
+                $this->_validationForm($currentUsername);
+            }
+        } else {
+            $this->form_validation->set_rules('username', 'UserID', 'required|trim|min_length[5]|is_unique[users.username]', [
+                'required' => 'Harap isi username!',
+                'min_length' => 'Karakter terlalu sedikit!',
+                'is_unique' => 'Username sudah digunakan!',
+            ]);
+            $this->_validationForm($currentUsername);
+        }
+    }
+
+    private function _validationForm($currentUsername)
+    {
+        if ($this->form_validation->run() == false) {
+            $edited = $this->Users_model->get_user_auth($currentUsername);
+            $data = [
+                'title' => 'Edit Profile ' . '(' . $currentUsername . ')',
+                'user' => $this->Users_model->get_user_auth($this->session->userdata('username')),
+                'mapel' => $this->mapel_model->get_mapel(),
+                'kelas' => $this->kelas_model->get_kelas(),
+                'sub_kelas' => $this->kelas_model->get_sub_kelas(),
+                'role' => $this->role_model->get_role(),
+                'edited' => [
+                    'user' => $edited,
+                    'mapel' => $this->mapel_model->get_guru_mapel($edited['id']),
+                    'mapelArr' => explode(",", $this->mapel_model->get_guru_mapel($edited['id'])['kode_mapel']),
+                    'walas' => $this->walas_model->get_walas($edited['id']),
+                ],
+            ];
+            $this->load->view('templates/_header', $data);
+            $this->load->view('templates/_navbar');
+            $this->load->view('templates/_sidebar');
+            $this->load->view('pages/edit_profile');
+            $this->load->view('templates/_footer');
+        } else {
+            $this->_editProfileSubmitedPriv();
+        }
+    }
+
+    private function _editProfileSubmitedPriv()
+    {
+        $id = $this->input->post('id');
         $nama = $this->input->post('nama');
         $email = $this->input->post('email');
         $username = $this->input->post('username');
@@ -76,6 +132,7 @@ class DataGuru extends CI_Controller
         $walas = $this->input->post('walas');
         $walas_of = $this->input->post('walas_of');
         $mapel = $this->input->post('mapel');
+
 
         $arrData = [
             'nama' => $nama,
@@ -92,6 +149,16 @@ class DataGuru extends CI_Controller
         $this->walas_model->set_walas($walas_of, $id);
         // update mapel table
         $this->mapel_model->set_guru_mapel($id, $mapel);
+
+        // renew username session
+        if ($id == $this->session->userdata('user_id')) {
+            $setup = [
+                'username' => $username,
+                'role_id' => $this->session->userdata('role_id'),
+                'user_id' => $id
+            ];
+            $this->session->set_userdata($setup);
+        }
 
         $this->session->set_flashdata('msg', '<script>Swal.fire({ title: "Berhasil!", text: "Berhasil edit profile!", icon: "success", }); </script>');
         redirect('edit/' . $username);

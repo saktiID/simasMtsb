@@ -58,6 +58,7 @@
                                 <label class="col-sm-3 col-form-label">Email</label>
                                 <div class="col-sm-9">
                                     <input type="email" class="form-control" name="email" autocomplete="FALSE" value="<?= $edited['user']['email']; ?>" required>
+                                    <?= form_error('email', '<span class="text-danger text-small">', '</span>'); ?>
                                 </div>
                             </div>
                         </div>
@@ -75,6 +76,7 @@
                                 <label class="col-sm-3 col-form-label">Username</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="username" autocomplete="FALSE" value="<?= $edited['user']['username']; ?>" required>
+                                    <?= form_error('username', '<span class="text-danger text-small">', '</span>'); ?>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +145,7 @@
                     </div>
                     <div class="row">
                         <?php foreach ($mapel as $mpl) : ?>
-                            <div class="col-md-4">
+                            <div class="col-sm-4">
                                 <div class="form-check">
                                     <input class="form-check-input check ml-1" type="checkbox" value="<?= $mpl['nama_mapel']; ?>" id="<?= $mpl['kode']; ?>" <?php if (in_array($mpl['nama_mapel'], $edited['mapelArr'])) : ?>checked<?php endif; ?>>
                                     <label class="form-check-label" for="<?= $mpl['kode']; ?>">

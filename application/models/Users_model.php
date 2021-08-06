@@ -21,7 +21,7 @@ class Users_model extends CI_Model
 
     public function get_by_id($id)
     {
-        $this->db->select(['id', 'nama']);
+        $this->db->select(['id', 'nama', 'username', 'email']);
         return $this->db->get_where('users', ['id' => $id])->row_array();
     }
 
