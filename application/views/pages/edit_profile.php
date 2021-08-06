@@ -137,7 +137,7 @@
                             Mata Pelajaran
                         </p>
                         <div class="col-md-12">
-                            <input type="text" class="form-control mapelInput" value="<?= $edited['mapel']['kode_mapel']; ?>" name="mapel" hidden>
+                            <input type="text" class="form-control mapelInput" value="<?= $edited['mapel']['kode_mapel']; ?>" name="mapel">
                         </div>
                     </div>
                     <div class="row">
