@@ -1,0 +1,60 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Users_model extends CI_Model
+{
+
+    public function get_user_auth($username)
+    {
+        return $this->db->get_where('users', ['username' => $username])->row_array();
+    }
+
+    public function get_email($email)
+    {
+        return $this->db->get_where('users', ['email' => $email])->row_array();
+    }
+    public function get_id_by_email($email)
+    {
+        $this->db->select(['id']);
+        return $this->db->get_where('users', ['email' => $email])->row_array();
+    }
+
+    public function get_by_id($id)
+    {
+        $this->db->select(['id', 'nama']);
+        return $this->db->get_where('users', ['id' => $id])->row_array();
+    }
+
+    public function get_all_users()
+    {
+        $this->db->select(['id', 'username', 'email', 'nama', 'image', 'is_pengajar', 'is_walas']);
+        return $this->db->get('users')->result_array();
+    }
+
+    public function get_all_users_public()
+    {
+        $this->db->select(['id', 'nama', 'username']);
+        return $this->db->get('users')->result_array();
+    }
+
+    public function insert_new_user($arrayUser)
+    {
+        $insert = $this->db->insert('users', $arrayUser);
+        if ($insert) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function deleteUser($id)
+    {
+        $this->db->where('id', $id);
+        $del = $this->db->delete('users');
+        if ($del) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+}
