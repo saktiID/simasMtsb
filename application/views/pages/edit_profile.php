@@ -144,7 +144,7 @@
                         <?php foreach ($mapel as $mpl) : ?>
                             <div class="col-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input check ml-1" type="checkbox" value="<?= $mpl['nama_mapel']; ?>" id="<?= $mpl['kode']; ?>" <?php if (in_array($mpl['nama_mapel'], $edited['mapelArr'])) : ?>checked="TRUE" <?php endif; ?>>
+                                    <input class="form-check-input check ml-1" type="checkbox" value="<?= $mpl['nama_mapel']; ?>" id="<?= $mpl['kode']; ?>" <?php if (in_array($mpl['nama_mapel'], $edited['mapelArr'])) : ?>checked<?php endif; ?>>
                                     <label class="form-check-label" for="<?= $mpl['kode']; ?>">
                                         <?= $mpl['nama_mapel']; ?>
                                     </label>
