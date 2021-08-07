@@ -123,7 +123,7 @@
                                     <select class="form-control" name="role_id" required>
                                         <option value="">-- Pilih Role --</option>
                                         <?php foreach ($role as $r) : ?>
-                                            <option value="<?= $r['role_id']; ?>"><?= $r['role_name']; ?></option>
+                                            <option value="<?= $r['role_id']; ?>" <?php if ($r['role_id'] == 1 && $user['role_id'] != 1) : ?>disabled<?php endif; ?>><?= $r['role_name']; ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
