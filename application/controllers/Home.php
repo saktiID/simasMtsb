@@ -23,4 +23,19 @@ class Home extends CI_Controller
         $this->load->view('home');
         $this->load->view('templates/_footer');
     }
+
+    public function personal_setting()
+    {
+        $this->load->model('mapel_model');
+        $data = [
+            'title' => 'Personal Setting',
+            'user' => $this->Users_model->get_user_auth($this->session->userdata('username')),
+            'mapel' => $this->mapel_model->get_mapel(),
+        ];
+        $this->load->view('templates/_header', $data);
+        $this->load->view('templates/_navbar');
+        $this->load->view('templates/_sidebar');
+        $this->load->view('pages/personal_setting');
+        $this->load->view('templates/_footer');
+    }
 }

@@ -164,6 +164,46 @@ class DataGuru extends CI_Controller
         redirect('edit/' . $username);
     }
 
+    public function editPass()
+    {
+        $id = $this->input->post('id');
+        $username = $this->input->post('username');
+        $currentPass = $this->input->post('currentPass');
+        $newPass = $this->input->post('newPass');
+        $reNewPass = $this->input->post('reNewPass');
+        $currentPassOnDB = $this->Users_model->get_user_pass_by_id($id)['password'];
+
+        if (strlen($newPass) >= 5) {
+            if ($newPass === $reNewPass) {
+                if (password_verify($currentPass, $currentPassOnDB)) {
+                    $this->_editNewPass($newPass, $id, $username);
+                } else {
+                    // password input current dan db tidak sama
+                    $this->session->set_flashdata('msg', '<script>Swal.fire({ title: "Ups", text: "Tidak sesuai dengan password lama!", icon: "warning", }); </script>');
+                    redirect('edit/' . $username);
+                }
+            } else {
+                // password 1 dan 2 tidak sama
+                $this->session->set_flashdata('msg', '<script>Swal.fire({ title: "Ups", text: "Password tidak sama!", icon: "warning", }); </script>');
+                redirect('edit/' . $username);
+            }
+        } else {
+            // kurang dari 5 karakter
+            $this->session->set_flashdata('msg', '<script>Swal.fire({ title: "Ups", text: "Password terlalu sedikit!", icon: "warning", }); </script>');
+            redirect('edit/' . $username);
+        }
+    }
+
+    private function _editNewPass($newPass, $id, $username)
+    {
+        $newPass = password_hash($newPass, PASSWORD_DEFAULT);
+        $editPass = $this->Users_model->set_user_pass($newPass, $id);
+        if ($editPass) {
+            $this->session->set_flashdata('msg', '<script>Swal.fire({ title: "Berhasil!", text: "Berhasil ubah password!", icon: "success", }); </script>');
+            redirect('edit/' . $username);
+        }
+    }
+
     public function tambahGuru()
     {
         $nama = $this->input->post('nama');

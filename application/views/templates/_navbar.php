@@ -70,9 +70,9 @@
                         <span class="nav-profile-name"><?= $user['nama']; ?></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item">
-                            <i class="mdi mdi-settings text-primary"></i>
-                            Settings
+                        <a href="<?= base_url('personal_setting'); ?>" class="dropdown-item">
+                            <i class="mdi mdi-account-settings text-primary"></i>
+                            Personal
                         </a>
                         <span class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logoutModal">
                             <i class="mdi mdi-logout text-primary"></i>

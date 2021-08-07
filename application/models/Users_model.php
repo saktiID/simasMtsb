@@ -9,6 +9,12 @@ class Users_model extends CI_Model
         return $this->db->get_where('users', ['username' => $username])->row_array();
     }
 
+    public function get_user_pass_by_id($id)
+    {
+        $this->db->select(['password']);
+        return $this->db->get_where('users', ['id' => $id])->row_array();
+    }
+
     public function get_email($email)
     {
         return $this->db->get_where('users', ['email' => $email])->row_array();
@@ -55,6 +61,18 @@ class Users_model extends CI_Model
         $this->db->set('role_id', $data['role_id']);
         $this->db->set('is_pengajar', $data['is_pengajar']);
         $this->db->set('is_walas', $data['is_walas']);
+        $this->db->where('id', $user_id);
+        $update = $this->db->update('users');
+        if ($update) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function set_user_pass($pass, $user_id)
+    {
+        $this->db->set('password', $pass);
         $this->db->where('id', $user_id);
         $update = $this->db->update('users');
         if ($update) {
