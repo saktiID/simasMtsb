@@ -47,7 +47,7 @@ class Auth extends CI_Controller
                         'user_id'  => $user['id']
                     ];
                     $this->session->set_userdata($data);
-                    redirect('landing');
+                    redirect('home');
                 } else {
                     $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Password salah!</div>');
                     redirect('auth');
