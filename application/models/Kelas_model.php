@@ -17,6 +17,10 @@ class Kelas_model extends CI_Model
     public function get_main_kelas($id)
     {
         $temp = $this->db->get_where('kelas', ['id' => $id])->row_array();
-        return $temp['kelas'];
+        if (!empty($temp['kelas'])) {
+            return $temp['kelas'];
+        } else {
+            return FALSE;
+        }
     }
 }

@@ -82,6 +82,20 @@ class Users_model extends CI_Model
         }
     }
 
+    public function set_personal_data($data, $user_id)
+    {
+        $this->db->set('nama', $data['nama']);
+        $this->db->set('email', $data['email']);
+        $this->db->set('username', $data['username']);
+        $this->db->where('id', $user_id);
+        $update = $this->db->update('users');
+        if ($update) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
     public function deleteUser($id)
     {
         $this->db->where('id', $id);

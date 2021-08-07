@@ -39,8 +39,8 @@
                     <p class="msg pb-0 mb-0"></p>
                 </div>
 
-                <form class="form-tambah" method="POST" action="<?= base_url('edited'); ?>">
-                    <input type="text" name="id" value="" hidden>
+                <form class="form-tambah" method="POST" action="<?= base_url('edit_personal'); ?>">
+                    <input type="text" name="id" value="<?= $user['id']; ?>" hidden>
                     <p class="card-description">
                         Informasi Guru
                     </p>
@@ -49,7 +49,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Nama Lengkap</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="nama" value="" required>
+                                    <input type="text" class="form-control" name="nama" value="<?= $user['nama']; ?>" required>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Email</label>
                                 <div class="col-sm-9">
-                                    <input type="email" class="form-control" name="email" autocomplete="FALSE" value="" required>
+                                    <input type="email" class="form-control" name="email" autocomplete="FALSE" value="<?= $user['email']; ?>" required>
                                     <?= form_error('email', '<span class="text-danger text-small">', '</span>'); ?>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Username</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="username" autocomplete="FALSE" value="" required>
+                                    <input type="text" class="form-control" name="username" autocomplete="FALSE" value="<?= $user['username']; ?>" required>
                                     <?= form_error('username', '<span class="text-danger text-small">', '</span>'); ?>
                                 </div>
                             </div>
@@ -80,11 +80,23 @@
                         </div>
                     </div>
                     <div class="row">
-
-                    </div>
-
-                    <div class="row">
-
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Status</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" value="<?php if ($user['is_pengajar'] == 1) : ?>Pendidik <?php else : ?>Tenaga Pendidik <?php endif; ?>" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Walas</label>
+                                <div class="col-sm-9 d-flex">
+                                    <input type="text" class="form-control" value="<?php if ($user['is_walas'] == 1) : ?>Walas <?php else : ?>Bukan Walas <?php endif; ?>" readonly>
+                                    <input type="text" class="form-control" value="<?= $kelas; ?>" readonly>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -92,14 +104,14 @@
                             Mata Pelajaran
                         </p>
                         <div class="col-md-12">
-                            <input type="text" class="form-control mapelInput" value="" name="mapel" hidden>
+                            <input type="text" class="form-control mapelInput" value="<?= $mapelString; ?>" name="mapel" hidden>
                         </div>
                     </div>
                     <div class="row">
                         <?php foreach ($mapel as $mpl) : ?>
                             <div class="col-sm-4">
                                 <div class="form-check">
-                                    <input class="form-check-input check ml-1" type="checkbox" value="" id="<?= $mpl['kode']; ?>">
+                                    <input class="form-check-input check ml-1" type="checkbox" value="<?= $mpl['nama_mapel']; ?>" id="<?= $mpl['kode']; ?>" <?php if (in_array($mpl['nama_mapel'], $mapelCheck)) : ?>checked<?php endif; ?>>
                                     <label class="form-check-label" for="<?= $mpl['kode']; ?>">
                                         <?= $mpl['nama_mapel']; ?>
                                     </label>
@@ -117,6 +129,7 @@
         </div>
     </div>
 
+
     <!-- end content -->
 </div>
 
@@ -125,9 +138,7 @@
 <div class="modal fade" id="ubahPassModal" tabindex="-1" aria-labelledby="ubahPassModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form class="forms-sample" method="POST" action="<?= base_url('edit_pass'); ?>">
-                <input type="text" name="id" value="" hidden>
-                <input type="text" name="username" value="" hidden>
+            <form class="forms-sample" method="POST" action="<?= base_url('edit_personal_pass'); ?>">
                 <div class="modal-header">
                     <h5 class="modal-title" id="ubahPassModalLabel">Ubah kata sandi</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -159,7 +170,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-danger">Ubah kata sandi</button>
                 </div>
-
+                <input type="text" name="id" value="<?= $user['id']; ?>" hidden>
             </form>
 
         </div>
