@@ -186,6 +186,7 @@ class Home extends CI_Controller
         $newPass = password_hash($newPass, PASSWORD_DEFAULT);
         $editPass = $this->Users_model->set_user_pass($newPass, $id);
         if ($editPass) {
+            // set session
             $this->session->set_flashdata('msg', '<script>Swal.fire({ title: "Berhasil!", text: "Berhasil ubah password!", icon: "success", }); </script>');
             redirect('personal_setting');
         }
