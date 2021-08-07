@@ -33,6 +33,7 @@ class Users_model extends CI_Model
 
     public function get_all_users()
     {
+        $this->db->order_by('nama', 'ASC');
         $this->db->select(['id', 'username', 'email', 'nama', 'image', 'is_pengajar', 'is_walas']);
         return $this->db->get('users')->result_array();
     }
