@@ -1,5 +1,66 @@
 <div class="content-wrapper">
 
+    <style>
+        .loading {
+            display: flex;
+            z-index: 9999;
+            height: 100vh;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.57);
+            position: fixed;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .spinner {
+            border: 5px solid transparent;
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .spinner:before {
+            content: '';
+            box-sizing: border-box;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50px;
+            height: 50px;
+            margin-top: -15px;
+            margin-left: -30px;
+            border-radius: 50%;
+            border: 5px solid #575757;
+            border-top-color: #ffffff;
+            animation: spinner .9s linear infinite;
+        }
+
+        @-webkit-@keyframes spinner {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spinner {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .teks {
+            display: block;
+            color: #ffffff;
+            margin-top: 45px;
+        }
+    </style>
+
+    <div class="loading d-none">
+        <span class="spinner"></span>
+        <span class="teks">Sedang upload file...</span>
+    </div>
+
     <!-- welcome -->
     <div class="row">
         <div class="col-md-12 grid-margin">
@@ -43,15 +104,16 @@
                         <span class="mdi mdi-alert fs-4 pr-2"></span>
                         <h4 class="alert-heading mb-0">Peringatan!</h4>
                     </div>
-                    <p>Pastikan file yang di-upload sudah berformat <strong>PDF</strong> <br>
-                        Pastikan satu jenis buku ada dalam satu file, bukan file terpisah
+                    <p>Pastikan file yang di-upload sudah berformat <strong>PDF</strong>. <br>
+                        Pastikan satu jenis buku ada dalam satu file, bukan file terpisah. <br>
+                        Solusi kompres file PDF online agar lebih ringan dan cepat saat upload, klik link <a href="https://tools.pdf24.org/id/compress-pdf" target="_blank">PDF24</a>.
                     </p>
                     <hr>
                     <small class="mb-0">Semoga amal ibadah dan buku kerja Anda diterima, Amin!.</small>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
 
-                <form enctype="multipart/form-data" method="post" accept-charset="utf-8" action="<?= base_url('bukukerja/upload_buku'); ?>">
+                <form enctype="multipart/form-data" method="post" accept-charset="utf-8" action="<?= base_url('bukukerja/upload_buku'); ?>" class="bukerForm">
                     <div class="row">
                         <div class="col mb-3">
                             <select class="form-select inputan" aria-label="Default select example" name="tahun_ajar" required>
@@ -187,18 +249,7 @@
         }
     })
 
-    let inputan = document.querySelectorAll('.inputan')
-    $('.uploadBtn').on('click', () => {
-        for (let i = 0; i <= inputan.length; i++) {
-            if (inputan[i].value != '') {
-                if (i == 4) {
-                    upload()
-                }
-            }
-        }
+    $('.bukerForm').on('submit', () => {
+        $('.loading').removeClass('d-none')
     })
-
-    function upload() {
-        console.log('yokkkk')
-    }
 </script>
