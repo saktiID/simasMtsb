@@ -70,6 +70,12 @@
                         <span class="menu-title">Cek Buku Kerja</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('mapel'); ?>">
+                        <i class="mdi mdi-book-open menu-icon"></i>
+                        <span class="menu-title">Mata Pelajaran</span>
+                    </a>
+                </li>
             <?php endif; ?>
             <!-- end menu admin staff -->
 
