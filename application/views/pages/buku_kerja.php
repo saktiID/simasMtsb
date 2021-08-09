@@ -232,22 +232,22 @@
 <?= $this->session->flashdata('msg'); ?>
 
 <script>
-    // $('.delBtn').on('click', (e) => {
-    //     e.preventDefault()
-    //     Swal.fire({
-    //         title: 'Anda yakin?',
-    //         text: "Anda akan menghapus file!",
-    //         icon: 'warning',
-    //         showCancelButton: true,
-    //         confirmButtonColor: '#3085d6',
-    //         cancelButtonColor: '#d33',
-    //         confirmButtonText: 'Iya, hapus file!'
-    //     }).then((result) => {
-    //         if (result.value) {
-    //             window.location.replace($('.delBtn').attr('href'))
-    //         }
-    //     })
-    // })
+    $('.delBtn').on('click', (e) => {
+        e.preventDefault()
+        Swal.fire({
+            title: 'Anda yakin?',
+            text: "Anda akan menghapus file!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Iya, hapus file!'
+        }).then((result) => {
+            if (result.value) {
+                window.location.replace(e.target.href)
+            }
+        })
+    })
 
     $('.bukerForm').on('submit', () => {
         $('.loading').removeClass('d-none')

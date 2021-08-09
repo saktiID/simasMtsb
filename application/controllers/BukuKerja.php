@@ -138,7 +138,7 @@ class BukuKerja extends CI_Controller
                 redirect('bukukerja');
             }
         } else {
-            $this->session->set_flashdata('msg', '<script>Swal.fire({ title: "Gagal!", text: "Anda bukan pemilik file", icon: "warning", }); </script>');
+            $this->session->set_flashdata('msg', '<script>Swal.fire({ title: "Berhasil!", text: "Berhasil delete file", icon: "success", }); </script>');
             redirect('bukukerja');
         }
     }
