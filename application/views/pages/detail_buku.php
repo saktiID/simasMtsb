@@ -89,37 +89,37 @@
 <?= $this->session->flashdata('msg'); ?>
 
 <script>
-    $('.tolakBtn').on('click', (e) => {
-        e.preventDefault()
-        Swal.fire({
-            title: 'Tolak file?',
-            text: "Anda akan menolak file!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Iya, tolak file!'
-        }).then((result) => {
-            if (result.value) {
-                window.location.replace($('.tolakBtn').attr('href'))
-            }
-        })
-    })
+    // $('.tolakBtn').on('click', (e) => {
+    //     e.preventDefault()
+    //     Swal.fire({
+    //         title: 'Tolak file?',
+    //         text: "Anda akan menolak file!",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#3085d6',
+    //         cancelButtonColor: '#d33',
+    //         confirmButtonText: 'Iya, tolak file!'
+    //     }).then((result) => {
+    //         if (result.value) {
+    //             window.location.replace($(this).attr('href'))
+    //         }
+    //     })
+    // })
 
-    $('.setujuBtn').on('click', (e) => {
-        e.preventDefault()
-        Swal.fire({
-            title: 'Setujui file?',
-            text: "Anda akan menyetujui file!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Iya, setujui file!'
-        }).then((result) => {
-            if (result.value) {
-                window.location.replace($('.setujuBtn').attr('href'))
-            }
-        })
-    })
+    // $('.setujuBtn').on('click', (e) => {
+    //     e.preventDefault()
+    //     Swal.fire({
+    //         title: 'Setujui file?',
+    //         text: "Anda akan menyetujui file!",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#3085d6',
+    //         cancelButtonColor: '#d33',
+    //         confirmButtonText: 'Iya, setujui file!'
+    //     }).then((result) => {
+    //         if (result.value) {
+    //             window.location.replace($(this).attr('href'))
+    //         }
+    //     })
+    // })
 </script>
