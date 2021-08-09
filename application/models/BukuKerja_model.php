@@ -52,7 +52,7 @@ class BukuKerja_model extends CI_Model
 
     public function get_pemilik_buku($record_id)
     {
-        $this->db->select('user_id');
+        $this->db->select('record_buku_kerja.user_id');
         return $this->db->get_where('record_buku_kerja', ['id' => $record_id])->row_array();
     }
 
@@ -84,11 +84,6 @@ class BukuKerja_model extends CI_Model
     public function delete_record_buku($record_id)
     {
         $this->db->where('id', $record_id);
-        $delete = $this->db->delete('record_buku_kerja');
-        if ($delete) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
+        return $this->db->delete('record_buku_kerja');
     }
 }

@@ -212,7 +212,7 @@
                                     <td>
                                         <a href="<?= base_url('bukuKerja/preview/') . $self['userfile'] ?>" target="_blank" class="badge badge-primary">Lihat</a>
                                         <a href="<?= base_url('bukukerja/download/') . $self['userfile']; ?>" class="badge badge-success">Unduh</a>
-                                        <a href="#" data-url="<?= base_url('bukukerja/delete/') . $self['record_id'] . '/' . $self['userfile']; ?>" class="badge badge-danger delBtn">Hapus</a>
+                                        <a href="<?= base_url('bukukerja/delete/') . $self['record_id'] . '/' . $self['userfile']; ?>" class="badge badge-danger delBtn">Hapus</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -225,9 +225,6 @@
     </div>
     <!-- end content -->
 
-
-
-
 </div>
 <!-- content-wrapper ends -->
 
@@ -237,10 +234,19 @@
 <script>
     $('.delBtn').on('click', (e) => {
         e.preventDefault()
-        let x = confirm('Anda akan menghapus dokumen?')
-        if (x == true) {
-            window.location.replace($('.delBtn').data('url'))
-        }
+        Swal.fire({
+            title: 'Anda yakin?',
+            text: "Anda akan menghapus file!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Iya, hapus file!'
+        }).then((result) => {
+            if (result.value) {
+                window.location.replace($('.delBtn').attr('href'))
+            }
+        })
     })
 
     $('.bukerForm').on('submit', () => {

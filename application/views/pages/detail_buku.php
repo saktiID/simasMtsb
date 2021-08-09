@@ -67,8 +67,8 @@
                                     <td>
                                         <a href="<?= base_url('cekBuku/preview/') . $cek['userfile'] ?>" target="_blank" class="badge badge-primary">Lihat</a>
                                         <a href="<?= base_url('bukukerja/download/') . $cek['userfile']; ?>" class="badge badge-success">Unduh</a>
-                                        <a href="#" data-url="<?= base_url('cekbuku/setujui/') . $cek['record_id'] . '/' . $target['id']; ?>" class="badge badge-warning setujuBtn">Setujui</a>
-                                        <a href="#" data-url="<?= base_url('cekbuku/tolak/') . $cek['record_id'] . '/' . $target['id']; ?>" class="badge badge-danger tolakBtn">Tolak</a>
+                                        <a href="<?= base_url('cekbuku/setujui/') . $cek['record_id'] . '/' . $target['id']; ?>" class="badge badge-warning setujuBtn">Setujui</a>
+                                        <a href="<?= base_url('cekbuku/tolak/') . $cek['record_id'] . '/' . $target['id']; ?>" class="badge badge-danger tolakBtn">Tolak</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -91,16 +91,35 @@
 <script>
     $('.tolakBtn').on('click', (e) => {
         e.preventDefault()
-        let x = confirm('Anda akan menolak dokumen?')
-        if (x == true) {
-            window.location.replace($('.tolakBtn').data('url'))
-        }
+        Swal.fire({
+            title: 'Tolak file?',
+            text: "Anda akan menolak file!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Iya, tolak file!'
+        }).then((result) => {
+            if (result.value) {
+                window.location.replace($('.tolakBtn').attr('href'))
+            }
+        })
     })
+
     $('.setujuBtn').on('click', (e) => {
         e.preventDefault()
-        let x = confirm('Anda akan menyetujui dokumen?')
-        if (x == true) {
-            window.location.replace($('.setujuBtn').data('url'))
-        }
+        Swal.fire({
+            title: 'Setujui file?',
+            text: "Anda akan menyetujui file!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Iya, setujui file!'
+        }).then((result) => {
+            if (result.value) {
+                window.location.replace($('.setujuBtn').attr('href'))
+            }
+        })
     })
 </script>

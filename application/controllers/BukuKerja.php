@@ -123,26 +123,23 @@ class BukuKerja extends CI_Controller
 
     public function delete($record_id, $file)
     {
-        $id_pemilik = $this->bukuKerja_model->get_pemilik_buku($record_id)['user_id'];
+        $id_pemilik = $this->bukuKerja_model->get_pemilik_buku($record_id);
         $id_session = $this->session->userdata('user_id');
-        if (!is_permited($id_pemilik, $id_session)) {
-            $this->session->set_flashdata('msg', '<script>Swal.fire({ title: "Gagal!", text: "Bukan pemilik file", icon: "warning", }); </script>');
-            redirect('bukukerja');
-        } else {
+
+        if ($id_pemilik['user_id'] == $id_session) {
             $path = './upload/dokumen/bukukerja/' . str_replace('%20', '_', $file);
-            if (!unlink($path)) {
-                $this->session->set_flashdata('msg', '<script>Swal.fire({ title: "Gagal!", text: "Gagal delete file", icon: "warning", }); </script>');
+            if (unlink($path)) {
+                $this->bukuKerja_model->delete_record_buku($record_id);
+                $this->session->set_flashdata('msg', '<script>Swal.fire({ title: "Berhasil!", text: "Berhasil delete file", icon: "success", }); </script>');
                 redirect('bukukerja');
             } else {
-                // delete record database
-                if (!$this->bukuKerja_model->delete_record_buku($record_id)) {
-                    $this->session->set_flashdata('msg', '<script>Swal.fire({ title: "Gagal!", text: "Gagal delete file", icon: "warning", }); </script>');
-                    redirect('bukukerja');
-                } else {
-                    $this->session->set_flashdata('msg', '<script>Swal.fire({ title: "Berhasil!", text: "Berhasil delete file", icon: "success", }); </script>');
-                    redirect('bukukerja');
-                }
+                $this->bukuKerja_model->delete_record_buku($record_id);
+                $this->session->set_flashdata('msg', '<script>Swal.fire({ title: "Ups!", text: "File tidak ditemukan namun record berhasil dihapus", icon: "warning", }); </script>');
+                redirect('bukukerja');
             }
+        } else {
+            $this->session->set_flashdata('msg', '<script>Swal.fire({ title: "Gagal!", text: "Anda bukan pemilik file", icon: "warning", }); </script>');
+            redirect('bukukerja');
         }
     }
 }

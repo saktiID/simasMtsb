@@ -16,12 +16,3 @@ function is_authority()
         redirect('home');
     }
 }
-
-function is_permited($id_pemilik, $id_session)
-{
-    if ($id_pemilik == $id_session) {
-        return TRUE;
-    } else {
-        return FALSE;
-    }
-}
