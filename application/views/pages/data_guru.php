@@ -295,17 +295,21 @@
                     url: href,
                     dataType: 'json',
                     success: function(res) {
-                        console.log(res)
+                        Swal.fire({
+                            title: "Berhasil!",
+                            text: "Berhasil hapus data",
+                            icon: "success",
+                        })
+                        // e.target.parentElement.parentElement.parentNode.remove()
+                        setTimeout(() => {
+                            location.reload()
+                        }, 1000)
                     },
                     error: function(err) {
                         console.log(err.responseText)
                     }
                 })
-                Swal.fire(
-                    'Terhapus!',
-                    'Data berhasil dihapus.',
-                    'success'
-                );
+
             }
         })
     })
@@ -368,7 +372,10 @@
                                     text: "Berhasil tambah data",
                                     icon: "success",
                                 })
-                                tampilGuru()
+                                setTimeout(() => {
+                                    location.reload()
+                                }, 1000)
+                                // tampilGuru()
                             } else {
                                 $(window).scrollTop(0);
                                 setTimeout(() => {

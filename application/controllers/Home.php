@@ -33,7 +33,10 @@ class Home extends CI_Controller
         $user = $this->Users_model->get_user_auth($this->session->userdata('username'));
         $walas = $this->walas_model->get_walas($user['id']);
         $kelas = $this->kelas_model->get_main_kelas($walas['kelas_id']);
+        $main_kelas = $this->kelas_model->get_kelas();
+        $sub_kelas = $this->kelas_model->get_sub_kelas();
         $mapelCheck = $this->mapel_model->get_guru_mapel($user['id']);
+        $all_mapel = $this->mapel_model->get_mapel();
 
         if (!$kelas) {
             $kelas = '- 0 -';
@@ -46,6 +49,8 @@ class Home extends CI_Controller
             'kelas' => $kelas,
             'mapelCheck' => explode(",", $mapelCheck['kode_mapel']),
             'mapelString' => $mapelCheck['kode_mapel'],
+            'sub_kelas' => $sub_kelas,
+            'main_kelas' => $main_kelas,
         ];
         $this->load->view('templates/_header', $data);
         $this->load->view('templates/_navbar');

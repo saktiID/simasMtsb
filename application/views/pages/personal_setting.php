@@ -130,6 +130,84 @@
     </div>
 
 
+
+    <div class="col-lg grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-3">
+                    <h4 class="card-title">Jadwal Guru</h4>
+                </div>
+
+                <div class=" alert alert-warning text-center msgBox" style="display: none;">
+                    <p class="msg pb-0 mb-0"></p>
+                </div>
+
+                <div class="btn btn-primary save">SIMPAN</div>
+
+                <div class="table-responsive table-editable">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <td>Jam ke-</td>
+                                <td>Waktu</td>
+                                <td>Senin</td>
+                                <td>Selasa</td>
+                                <td>Rabu</td>
+                                <td>Kamis</td>
+                                <td>Jum'at</td>
+                            </tr>
+                        </thead>
+                        <tbody class="jadwal">
+                            <tr class="bg-secondary">
+                                <td>0</td>
+                                <td contenteditable>07.30-08.10</td>
+                                <td colspan="5" class="text-center">PEMBIASAAN PAGI</td>
+                            </tr>
+
+                            <tr>
+                                <td><?= '1'; ?></td>
+                                <td>
+                                    07.30-08.10
+                                </td>
+                                <td>
+                                    <select>
+                                        <option></option>
+                                        <?php foreach ($main_kelas as $kls) : ?>
+                                            <optgroup label="<?= $kls['kelas']; ?>">
+                                                <?php foreach ($sub_kelas as $sub) : ?>
+                                                    <?php if ($sub['child'] == $kls['id']) : ?>
+                                                        <option><?= $sub['kelas']; ?></option>
+                                                    <?php endif; ?>
+                                                <?php endforeach; ?>
+                                            </optgroup>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <select>
+                                        <option></option>
+                                        <?php foreach ($mapelCheck as $m) : ?>
+                                            <option><?= $m; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </td>
+
+
+                            </tr>
+                            <tr class=" bg-secondary"">
+                                <td>3</td>
+                                <td contenteditable>09.30-09.50</td>
+                                <td colspan=" 5" class="text-center">BREAKTIME</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <!-- end content -->
 </div>
 
@@ -182,6 +260,9 @@
 
 
 <script>
+    // table value
+    let jadwal = $('.jadwal').html()
+
     // converting array to string
     let val = []
     let allChecked = $('.check:checked')
