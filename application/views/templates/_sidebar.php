@@ -30,6 +30,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('jadwal_saya'); ?>">
+                        <i class="mdi mdi-av-timer menu-icon"></i>
+                        <span class="menu-title">Jadwal Saya</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="mdi mdi-timetable menu-icon"></i>
                         <span class="menu-title">Jurnal</span>
@@ -87,6 +93,12 @@
                     <a class="nav-link" href="<?= base_url('bukukerja'); ?>">
                         <i class="mdi mdi-book-multiple menu-icon"></i>
                         <span class="menu-title">Buku Kerja</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('jadwal_saya'); ?>">
+                        <i class="mdi mdi-av-timer menu-icon"></i>
+                        <span class="menu-title">Jadwal Saya</span>
                     </a>
                 </li>
                 <li class="nav-item">

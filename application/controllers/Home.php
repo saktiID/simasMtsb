@@ -8,6 +8,10 @@ class Home extends CI_Controller
         parent::__construct();
         is_logged_in();
         $this->load->model('Users_model');
+        $this->load->model('mapel_model');
+        $this->load->model('kelas_model');
+        $this->load->model('walas_model');
+        $this->load->model('jadwal_model');
     }
 
     public function index()
@@ -26,9 +30,6 @@ class Home extends CI_Controller
 
     public function personal_setting()
     {
-        $this->load->model('mapel_model');
-        $this->load->model('kelas_model');
-        $this->load->model('walas_model');
 
         $user = $this->Users_model->get_user_auth($this->session->userdata('username'));
         $walas = $this->walas_model->get_walas($user['id']);
@@ -36,7 +37,8 @@ class Home extends CI_Controller
         $main_kelas = $this->kelas_model->get_kelas();
         $sub_kelas = $this->kelas_model->get_sub_kelas();
         $mapelCheck = $this->mapel_model->get_guru_mapel($user['id']);
-        $all_mapel = $this->mapel_model->get_mapel();
+        $jadwal_jam = $this->jadwal_model->get_jadwal_jam();
+        $jadwal_guru = $this->jadwal_model->get_jadwal_guru($user['id']);
 
         if (!$kelas) {
             $kelas = '- 0 -';
@@ -51,11 +53,40 @@ class Home extends CI_Controller
             'mapelString' => $mapelCheck['kode_mapel'],
             'sub_kelas' => $sub_kelas,
             'main_kelas' => $main_kelas,
+            'jadwal_jam' => $jadwal_jam,
+            'jadwal_guru' => $jadwal_guru,
         ];
         $this->load->view('templates/_header', $data);
         $this->load->view('templates/_navbar');
         $this->load->view('templates/_sidebar');
         $this->load->view('pages/personal_setting');
+        $this->load->view('templates/_footer');
+    }
+
+    public function jadwal_saya()
+    {
+
+        $user = $this->Users_model->get_user_auth($this->session->userdata('username'));
+        $mapelCheck = $this->mapel_model->get_guru_mapel($user['id']);
+        $jadwal_jam = $this->jadwal_model->get_jadwal_jam($user['id']);
+        $jadwal_guru = $this->jadwal_model->get_jadwal_guru($user['id']);
+        $main_kelas = $this->kelas_model->get_kelas();
+        $sub_kelas = $this->kelas_model->get_sub_kelas();
+
+        $data = [
+            'title' => 'Jadwal Saya',
+            'user' => $user,
+            'mapel' => $this->mapel_model->get_mapel(),
+            'sub_kelas' => $sub_kelas,
+            'mapelCheck' => explode(",", $mapelCheck['kode_mapel']),
+            'main_kelas' => $main_kelas,
+            'jadwal_jam' => $jadwal_jam,
+            'jadwal_guru' => $jadwal_guru,
+        ];
+        $this->load->view('templates/_header', $data);
+        $this->load->view('templates/_navbar');
+        $this->load->view('templates/_sidebar');
+        $this->load->view('pages/jadwal_saya');
         $this->load->view('templates/_footer');
     }
 

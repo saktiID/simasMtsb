@@ -70,3 +70,4 @@ $route['edit_pass'] = 'dataGuru/editPass/';
 $route['personal_setting'] = 'home/personal_setting/';
 $route['edit_personal'] = 'home/edit_personal/';
 $route['edit_personal_pass'] = 'home/edit_personal_pass';
+$route['jadwal_saya'] = 'home/jadwal_saya';
