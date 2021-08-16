@@ -37,8 +37,6 @@ class Home extends CI_Controller
         $main_kelas = $this->kelas_model->get_kelas();
         $sub_kelas = $this->kelas_model->get_sub_kelas();
         $mapelCheck = $this->mapel_model->get_guru_mapel($user['id']);
-        $jadwal_jam = $this->jadwal_model->get_jadwal_jam();
-        $jadwal_guru = $this->jadwal_model->get_jadwal_guru($user['id']);
 
         if (!$kelas) {
             $kelas = '- 0 -';
@@ -53,8 +51,6 @@ class Home extends CI_Controller
             'mapelString' => $mapelCheck['kode_mapel'],
             'sub_kelas' => $sub_kelas,
             'main_kelas' => $main_kelas,
-            'jadwal_jam' => $jadwal_jam,
-            'jadwal_guru' => $jadwal_guru,
         ];
         $this->load->view('templates/_header', $data);
         $this->load->view('templates/_navbar');
@@ -69,7 +65,6 @@ class Home extends CI_Controller
         $user = $this->Users_model->get_user_auth($this->session->userdata('username'));
         $mapelCheck = $this->mapel_model->get_guru_mapel($user['id']);
         $jadwal_jam = $this->jadwal_model->get_jadwal_jam($user['id']);
-        $jadwal_guru = $this->jadwal_model->get_jadwal_guru($user['id']);
         $main_kelas = $this->kelas_model->get_kelas();
         $sub_kelas = $this->kelas_model->get_sub_kelas();
 
@@ -81,7 +76,6 @@ class Home extends CI_Controller
             'mapelCheck' => explode(",", $mapelCheck['kode_mapel']),
             'main_kelas' => $main_kelas,
             'jadwal_jam' => $jadwal_jam,
-            'jadwal_guru' => $jadwal_guru,
         ];
         $this->load->view('templates/_header', $data);
         $this->load->view('templates/_navbar');
@@ -90,9 +84,97 @@ class Home extends CI_Controller
         $this->load->view('templates/_footer');
     }
 
+    public function simpan_jadwal_saya()
+    {
+        $user = $this->session->userdata();
+        $jadwal = $this->jadwal_model->get_table_jadwal_jam();
+
+        // jumat
+        $jumat = explode(',', $this->input->post('jumat_all'));
+        for ($x = 0; $x < count($jumat); $x++) {
+            $temp[] = explode('_', $jumat[$x]);
+            $tempJumat[] = $temp[$x][0] . ',' . $temp[$x][1];
+        }
+
+        for ($x = 0; $x < count($jumat); $x++) {
+            $temp[] = explode('_', $jumat[$x]);
+            $idjam[] = $temp[$x][2];
+        }
+
+        for ($x = 0; $x < count($jadwal); $x++) {
+            $this->jadwal_model->set_jadwal_jumat($user['user_id'], $tempJumat[$x], $idjam[$x]);
+        }
+
+        // senin
+        $senin = explode(',', $this->input->post('senin_all'));
+        for ($x = 0; $x < count($senin); $x++) {
+            $temp1[] = explode('_', $senin[$x]);
+            $tempSenin[] = $temp1[$x][0] . ',' . $temp1[$x][1];
+        }
+
+        for ($x = 0; $x < count($senin); $x++) {
+            $temp1[] = explode('_', $senin[$x]);
+            $idjam[] = $temp[$x][2];
+        }
+
+        for ($x = 0; $x < count($jadwal); $x++) {
+            $this->jadwal_model->set_jadwal_senin($user['user_id'], $tempSenin[$x], $idjam[$x]);
+        }
+
+        // selasa
+        $selasa = explode(',', $this->input->post('selasa_all'));
+        for ($x = 0; $x < count($selasa); $x++) {
+            $temp2[] = explode('_', $selasa[$x]);
+            $tempSelasa[] = $temp2[$x][0] . ',' . $temp2[$x][1];
+        }
+
+        for ($x = 0; $x < count($selasa); $x++) {
+            $temp2[] = explode('_', $selasa[$x]);
+            $idjam[] = $temp[$x][2];
+        }
+
+        for ($x = 0; $x < count($jadwal); $x++) {
+            $this->jadwal_model->set_jadwal_selasa($user['user_id'], $tempSelasa[$x], $idjam[$x]);
+        }
+
+        // rabu
+        $rabu = explode(',', $this->input->post('rabu_all'));
+        for ($x = 0; $x < count($rabu); $x++) {
+            $temp3[] = explode('_', $rabu[$x]);
+            $tempRabu[] = $temp3[$x][0] . ',' . $temp3[$x][1];
+        }
+
+        for ($x = 0; $x < count($rabu); $x++) {
+            $temp3[] = explode('_', $rabu[$x]);
+            $idjam[] = $temp[$x][2];
+        }
+
+        for ($x = 0; $x < count($jadwal); $x++) {
+            $this->jadwal_model->set_jadwal_rabu($user['user_id'], $tempRabu[$x], $idjam[$x]);
+        }
+
+        // kamis
+        $kamis = explode(',', $this->input->post('kamis_all'));
+        for ($x = 0; $x < count($kamis); $x++) {
+            $temp4[] = explode('_', $kamis[$x]);
+            $tempKamis[] = $temp4[$x][0] . ',' . $temp4[$x][1];
+        }
+
+        for ($x = 0; $x < count($kamis); $x++) {
+            $temp4[] = explode('_', $kamis[$x]);
+            $idjam[] = $temp[$x][2];
+        }
+
+        for ($x = 0; $x < count($jadwal); $x++) {
+            $this->jadwal_model->set_jadwal_kamis($user['user_id'], $tempKamis[$x], $idjam[$x]);
+        }
+
+
+        echo json_encode('success');
+    }
+
     public function edit_personal()
     {
-        $this->load->model('mapel_model');
 
         $id = $this->input->post('id');
         $email = $this->input->post('email');

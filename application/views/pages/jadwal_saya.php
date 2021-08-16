@@ -64,7 +64,7 @@
 
                                             <!-- senin -->
                                             <td>
-                                                <select name="senin_kelas_<?= $jdwl_jm['jam_ke']; ?>" class="senin_kelas">
+                                                <select name="senin_kelas_<?= $jdwl_jm['jam_ke']; ?>" class="senin_kelas" data-jam-id="<?= $jdwl_jm['id']; ?>">
                                                     <option></option>
                                                     <?php foreach ($main_kelas as $kls) : ?>
                                                         <optgroup label="<?= $kls['kelas']; ?>">
@@ -93,7 +93,7 @@
 
                                             <!-- selasa -->
                                             <td>
-                                                <select name="selasa_kelas_<?= $jdwl_jm['jam_ke']; ?>" class="selasa_kelas">
+                                                <select name="selasa_kelas_<?= $jdwl_jm['jam_ke']; ?>" class="selasa_kelas" data-jam-id="<?= $jdwl_jm['id']; ?>">
                                                     <option></option>
                                                     <?php foreach ($main_kelas as $kls) : ?>
                                                         <optgroup label="<?= $kls['kelas']; ?>">
@@ -122,7 +122,7 @@
 
                                             <!-- rabu -->
                                             <td>
-                                                <select name="rabu_kelas_<?= $jdwl_jm['jam_ke']; ?>" class="rabu_kelas">
+                                                <select name="rabu_kelas_<?= $jdwl_jm['jam_ke']; ?>" class="rabu_kelas" data-jam-id="<?= $jdwl_jm['id']; ?>">
                                                     <option></option>
                                                     <?php foreach ($main_kelas as $kls) : ?>
                                                         <optgroup label="<?= $kls['kelas']; ?>">
@@ -151,7 +151,7 @@
 
                                             <!-- kamis -->
                                             <td>
-                                                <select name="kamis_kelas_<?= $jdwl_jm['jam_ke']; ?>" class="kamis_kelas">
+                                                <select name="kamis_kelas_<?= $jdwl_jm['jam_ke']; ?>" class="kamis_kelas" data-jam-id="<?= $jdwl_jm['id']; ?>">
                                                     <option></option>
                                                     <?php foreach ($main_kelas as $kls) : ?>
                                                         <optgroup label="<?= $kls['kelas']; ?>">
@@ -180,7 +180,7 @@
 
                                             <!-- jumat -->
                                             <td>
-                                                <select name="jumat_kelas_<?= $jdwl_jm['jam_ke']; ?>" class="jumat_kelas">
+                                                <select name="jumat_kelas_<?= $jdwl_jm['jam_ke']; ?>" class="jumat_kelas" data-jam-id="<?= $jdwl_jm['id']; ?>">
                                                     <option></option>
                                                     <?php foreach ($main_kelas as $kls) : ?>
                                                         <optgroup label="<?= $kls['kelas']; ?>">
@@ -226,7 +226,6 @@
     <!-- end content -->
 </div>
 
-
 <script>
     $('#jadwalForm').on('submit', (e) => {
         e.preventDefault()
@@ -242,56 +241,59 @@
         let jumat_mapel = $('select.jumat_mapel')
 
         // array senin
-        let senin_kelas_all = []
+        let senin_all = []
         for (let i = 0; i < senin_kelas.length; i++) {
-            senin_kelas_all.push(senin_kelas[i].value)
-        }
-        let senin_mapel_all = []
-        for (let i = 0; i < senin_mapel.length; i++) {
-            senin_mapel_all.push(senin_mapel[i].value)
+            senin_all.push(senin_kelas[i].value + '_' + senin_mapel[i].value + '_' + senin_kelas[i].getAttribute('data-jam-id'))
         }
 
         // array selasa
-        let selasa_kelas_all = []
+        let selasa_all = []
         for (let i = 0; i < selasa_kelas.length; i++) {
-            selasa_kelas_all.push(selasa_kelas[i].value)
-        }
-        let selasa_mapel_all = []
-        for (let i = 0; i < selasa_mapel.length; i++) {
-            selasa_mapel_all.push(selasa_mapel[i].value)
+            selasa_all.push(selasa_kelas[i].value + '_' + selasa_mapel[i].value + '_' + selasa_kelas[i].getAttribute('data-jam-id'))
         }
 
         // array rabu
-        let rabu_kelas_all = []
+        let rabu_all = []
         for (let i = 0; i < rabu_kelas.length; i++) {
-            rabu_kelas_all.push(rabu_kelas[i].value)
-        }
-        let rabu_mapel_all = []
-        for (let i = 0; i < rabu_mapel.length; i++) {
-            rabu_mapel_all.push(rabu_mapel[i].value)
+            rabu_all.push(rabu_kelas[i].value + '_' + rabu_mapel[i].value + '_' + rabu_kelas[i].getAttribute('data-jam-id'))
         }
 
         // array kamis
-        let kamis_kelas_all = []
+        let kamis_all = []
         for (let i = 0; i < kamis_kelas.length; i++) {
-            kamis_kelas_all.push(kamis_kelas[i].value)
-        }
-        let kamis_mapel_all = []
-        for (let i = 0; i < kamis_mapel.length; i++) {
-            kamis_mapel_all.push(kamis_mapel[i].value)
+            kamis_all.push(kamis_kelas[i].value + '_' + kamis_mapel[i].value + '_' + kamis_kelas[i].getAttribute('data-jam-id'))
         }
 
         // array jumat
-        let jumat_kelas_all = []
+        let jumat_all = []
         for (let i = 0; i < jumat_kelas.length; i++) {
-            jumat_kelas_all.push(jumat_kelas[i].value)
-        }
-        let jumat_mapel_all = []
-        for (let i = 0; i < jumat_mapel.length; i++) {
-            jumat_mapel_all.push(jumat_mapel[i].value)
+            jumat_all.push(jumat_kelas[i].value + '_' + jumat_mapel[i].value + '_' + jumat_kelas[i].getAttribute('data-jam-id'))
         }
 
-
-        console.log(selasa_mapel_all)
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: '<?= base_url('simpan_jadwal'); ?>',
+            data: 'senin_all=' + senin_all + '&selasa_all=' + selasa_all + '&rabu_all=' + rabu_all + '&kamis_all=' + kamis_all + '&jumat_all=' + jumat_all,
+            success: function(res) {
+                console.log(res)
+                if (res == 'success') {
+                    Swal.fire({
+                        title: "Hurray!",
+                        text: "Berhasil simpan jadwal",
+                        icon: "success",
+                    })
+                }
+            },
+            error: function(err) {
+                console.log(err.responseText)
+                Swal.fire({
+                    title: "Ups!",
+                    text: "Gagal simpan jadwal",
+                    icon: "error",
+                    footer: '<small>Pergi ke halaman lain lalu coba kembali ke halaman ini</samll>',
+                })
+            }
+        })
     })
 </script>

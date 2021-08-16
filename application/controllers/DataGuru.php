@@ -271,6 +271,15 @@ class DataGuru extends CI_Controller
                             ];
                             if ($this->mapel_model->insert_guru_mapel($arrayMapel)) {
                                 if ($this->walas_model->insert_walas($arrayWalas)) {
+                                    $this->load->model('jadwal_model');
+                                    $countJadwal = $this->jadwal_model->get_count_jadwal();
+                                    for ($i = 1; $i <= $countJadwal; $i++) {
+                                        $arrayJadwal = [
+                                            'user_id' => $id['id'],
+                                            'jam_id'  => $i
+                                        ];
+                                        $this->jadwal_model->insert_new_jadwal_guru($arrayJadwal);
+                                    }
                                     $msg['psn'] = 'Success';
                                 } else {
                                     $this->Users_model->deleteUser($id['id']);
@@ -297,12 +306,15 @@ class DataGuru extends CI_Controller
 
     public function deleteGuru($id)
     {
+        $this->load->model('jadwal_model');
         $msg = '';
         // delete user
         if ($this->Users_model->deleteUser($id)) {
             if ($this->mapel_model->deleteGuruMapel($id)) {
                 if ($this->walas_model->deleteGuruWalas($id)) {
-                    $msg = 'Success';
+                    if ($this->jadwal_model->delete_jadwal_guru($id)) {
+                        $msg = 'Success';
+                    }
                 } else {
                     $msg = 'Gagal delete user';
                 }
