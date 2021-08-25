@@ -45,7 +45,10 @@
                             <?php foreach ($cek_buku as $cek) : ?>
                                 <tr>
                                     <td><?= $no; ?> <?php $no++ ?></td>
-                                    <td><?= $cek['nama']; ?></td>
+                                    <td class="d-flex align-items-center">
+                                        <span><img src="<?= base_url('assets/images/faces/') . $cek['image']; ?>" alt="profile"></span>
+                                        <p class="pl-3 m-0"><?= $cek['nama']; ?></p>
+                                    </td>
                                     <td>
 
                                         <?php $explode = explode(',', $cek['kode_mapel']) ?>

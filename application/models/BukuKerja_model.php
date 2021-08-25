@@ -44,7 +44,7 @@ class BukuKerja_model extends CI_Model
     public function get_record_buku()
     {
         $this->db->order_by('users.nama', 'ASC');
-        $this->db->select('guru_mapel.*, users.nama, users.id');
+        $this->db->select('guru_mapel.*, users.nama, users.id, users.image');
         $this->db->where('username !=', 'kepala');
         $this->db->from('users');
         $this->db->join('guru_mapel', 'users.id = guru_mapel.user_id');
