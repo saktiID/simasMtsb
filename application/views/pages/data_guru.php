@@ -244,10 +244,13 @@
                                 <tr>
                                     <td><?= $i++; ?></td>
                                     <td class="d-flex justify-content-between">
-                                        <p><?= $g['nama']; ?></p>
+                                        <div class="d-flex align-items-center">
+                                            <span><img src="<?= base_url('assets/images/faces/') . $g['image']; ?>" alt="profile"></span>
+                                            <p class="pl-3 m-0"><?= $g['nama']; ?></p>
+                                        </div>
                                         <span>
-                                            <a href="<?= base_url('edit/') . $g['username']; ?>" class="badge badge-primary">Edit</a>
-                                            <a href="<?= base_url('delete/') . $g['id']; ?>" class="badge badge-danger delBtn">Hapus</a>
+                                            <a href="<?= base_url('edit/') . $g['username']; ?>" class="btn btn-primary py-2">Edit</a>
+                                            <a href="<?= base_url('delete/') . $g['id']; ?>" class="btn btn-danger py-2 delBtn">Hapus</a>
                                         </span>
                                     </td>
                                 </tr>

@@ -73,7 +73,7 @@
                                             }
 
                                             ?>
-                                            <label class="badge <?= $class; ?>"><?= $mapel; ?></label>
+                                            <label style="cursor: pointer;" class="badge rounded-pill <?= $class; ?>"><?= $mapel; ?></label>
                                         <?php endforeach ?>
 
                                     </td>
