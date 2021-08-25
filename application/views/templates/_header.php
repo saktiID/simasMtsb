@@ -28,6 +28,7 @@
     <!-- swal -->
     <script src="<?= base_url('assets/sweetalert/') ?>dist/sweetalert2.all.min.js"></script>
 
+
 </head>
 
 <body>

@@ -183,6 +183,7 @@
                     <table class="table table-hover" id="table">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Mapel</th>
                                 <th>Kelas</th>
                                 <th>Tahun Ajaran</th>
@@ -194,8 +195,10 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $no = 1; ?>
                             <?php foreach ($buku_self as $self) : ?>
                                 <tr>
+                                    <td><?= $no ?> <?php $no++ ?></td>
                                     <td><?= $self['nama_mapel']; ?></td>
                                     <td><?= $self['kelas']; ?></td>
                                     <td><?= $self['tahun_ajar']; ?></td>

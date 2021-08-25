@@ -34,14 +34,17 @@
                     <table class="table table-hover" id="table">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Nama</th>
                                 <th>Mapel</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $no = 1; ?>
                             <?php foreach ($cek_buku as $cek) : ?>
                                 <tr>
+                                    <td><?= $no; ?> <?php $no++ ?></td>
                                     <td><?= $cek['nama']; ?></td>
                                     <td>
 

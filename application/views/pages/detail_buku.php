@@ -39,6 +39,7 @@
                     <table class="table table-hover" id="table">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Mapel</th>
                                 <th>Kelas</th>
                                 <th>Tahun Ajaran</th>
@@ -50,8 +51,10 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $no = 1; ?>
                             <?php foreach ($cek_buku as $cek) : ?>
                                 <tr>
+                                    <td><?= $no; ?> <?php $no++; ?></td>
                                     <td><?= $cek['nama_mapel']; ?></td>
                                     <td><?= $cek['kelas']; ?></td>
                                     <td><?= $cek['tahun_ajar']; ?></td>
