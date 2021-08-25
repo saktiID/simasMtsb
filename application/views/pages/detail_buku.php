@@ -40,6 +40,7 @@
                         <thead>
                             <tr>
                                 <th>Mapel</th>
+                                <th>Kelas</th>
                                 <th>Tahun Ajaran</th>
                                 <th>Semester</th>
                                 <th>Buku Kerja</th>
@@ -52,6 +53,7 @@
                             <?php foreach ($cek_buku as $cek) : ?>
                                 <tr>
                                     <td><?= $cek['nama_mapel']; ?></td>
+                                    <td><?= $cek['kelas']; ?></td>
                                     <td><?= $cek['tahun_ajar']; ?></td>
                                     <td>
                                         <?php if ($cek['smt'] == 1) : ?>
