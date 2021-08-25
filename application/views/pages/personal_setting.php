@@ -109,9 +109,9 @@
                         <div class="d-flex justify-content-center">
                             <div class="d-flex flex-column slide-up">
                                 <div class="box">
-                                    <div>
+                                    <label for="formFile">
                                         <img src="<?= base_url('assets/images/faces/') . $user['image']; ?>" class="img-thumbnail" alt="profile" style="width: 170px;">
-                                    </div>
+                                    </label>
                                     <label for="formFile" class="over-lay pt-3" aria-hidden="true">
                                         <i class="mdi mdi-camera"></i>
                                         Pilih gambar
