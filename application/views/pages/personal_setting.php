@@ -62,6 +62,8 @@
             background-color: #bbb;
             text-align: center;
             position: relative;
+            border-radius: 50%;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         }
 
         .over-lay {
@@ -69,18 +71,17 @@
             height: 100%;
             position: absolute;
             left: 0;
-            top: 0;
+            top: 85px;
             right: 0;
             bottom: 0;
         }
 
         .slide-up .over-lay {
             background-color: #4eed53;
-            line-height: 200px;
             transform: translateY(100%);
-            -webkit-transition: transform 0.5s ease-out;
-            -o-transition: transform 0.5s ease-out;
-            transition: transform 0.5s ease-out;
+            -webkit-transition: transform .4s ease-out;
+            -o-transition: transform .4s ease-out;
+            transition: transform .4s ease-out;
         }
 
         .slide-up .box:hover .over-lay {
@@ -111,7 +112,8 @@
                                     <div>
                                         <img src="<?= base_url('assets/images/faces/') . $user['image']; ?>" class="img-thumbnail" alt="profile" style="width: 170px;">
                                     </div>
-                                    <label for="formFile" class="over-lay" aria-hidden="true">
+                                    <label for="formFile" class="over-lay pt-3" aria-hidden="true">
+                                        <i class="mdi mdi-camera"></i>
                                         Pilih gambar
                                         <input type="file" id="formFile" hidden>
                                     </label>
