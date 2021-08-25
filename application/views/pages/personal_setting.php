@@ -25,6 +25,69 @@
         </div>
     </div>
 
+    <style>
+        .jumbotron {
+            /* background: url(<?= base_url('assets/images/banner.jpg'); ?>); */
+            background: url(https://images.unsplash.com/photo-1434725039720-aaad6dd32dfe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8&w=1000&q=80);
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+
+        }
+
+        .overlay {
+            background: #00F260;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #0575E6, #00F260);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #0575E6, #00F260);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            opacity: 0.7;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            right: 0;
+            left: 0;
+        }
+
+        .box {
+            display: block;
+            width: 170px;
+            height: 170px;
+            overflow: hidden;
+            background-color: #bbb;
+            text-align: center;
+            position: relative;
+        }
+
+        .over-lay {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .slide-up .over-lay {
+            background-color: #4eed53;
+            line-height: 200px;
+            transform: translateY(100%);
+            -webkit-transition: transform 0.5s ease-out;
+            -o-transition: transform 0.5s ease-out;
+            transition: transform 0.5s ease-out;
+        }
+
+        .slide-up .box:hover .over-lay {
+            transform: translateY(0);
+            cursor: pointer;
+        }
+    </style>
 
     <!-- content -->
     <div class="col-lg grid-margin stretch-card">
@@ -38,6 +101,27 @@
                 <div class=" alert alert-warning text-center msgBox" style="display: none;">
                     <p class="msg pb-0 mb-0"></p>
                 </div>
+
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="overlay"></div>
+                    <div class="container" style="z-index: 2;">
+                        <div class="d-flex justify-content-center">
+                            <div class="d-flex flex-column slide-up">
+                                <div class="box">
+                                    <div>
+                                        <img src="<?= base_url('assets/images/faces/') . $user['image']; ?>" class="img-thumbnail" alt="profile" style="width: 170px;">
+                                    </div>
+                                    <label for="formFile" class="over-lay" aria-hidden="true">
+                                        Pilih gambar
+                                        <input type="file" id="formFile" hidden>
+                                    </label>
+                                </div>
+                                <div class="d-block btn btn-warning mb-0 mt-3" style="width: 170px;">Ganti foto</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
                 <form class="form-tambah" method="POST" action="<?= base_url('edit_personal'); ?>">
                     <input type="text" name="id" value="<?= $user['id']; ?>" hidden>
