@@ -36,32 +36,43 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table class="table table-hover" id="table">
+                    <table class="table table-hover table-bordered">
                         <thead>
                             <tr>
-                                <th width="5%">No</th>
+                                <th width="9%">No. Urut</th>
+                                <th width="9%">Kode</th>
+                                <th width="9%">ID</th>
                                 <th>Mata Pelajaran</th>
-                                <td>Kode Mapel</td>
-                                <td>Urutan</td>
-
                             </tr>
                         </thead>
-                        <tbody>
+
+                        <style>
+                            .ui-state-highlight {
+                                height: 1.5em;
+                                line-height: 1.2em;
+                                border: 1px solid #bcbcbc;
+                                background: #efffd5;
+                            }
+                        </style>
+                        <tbody id="sortable">
                             <?php $i =  1; ?>
                             <?php foreach ($mapel as $mpl) : ?>
-                                <tr>
+                                <tr style="cursor: move;">
                                     <td><?= $i++; ?></td>
-                                    <td class="d-flex justify-content-between">
-                                        <p><?= $mpl['nama_mapel']; ?></p>
-
-                                    </td>
                                     <td><?= $mpl['kode']; ?></td>
-                                    <td><?= $mpl['urut']; ?></td>
+                                    <td><?= $mpl['id']; ?></td>
+                                    <td>
+                                        <span class="d-flex align-items-center">
+                                            <i class="mdi mdi-swap-vertical text-secondary"></i>
+                                            <p class="mb-0 pl-3"><?= $mpl['nama_mapel']; ?></p>
+                                        </span>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
+
             </div>
         </div>
     </div>
@@ -72,3 +83,12 @@
 
 <!-- flashdata -->
 <?= $this->session->flashdata('msg'); ?>
+
+<script>
+    $(document).ready(function() {
+        $('#sortable').sortable({
+            placeholder: "ui-state-highlight"
+        })
+        $('#sortable').disableSelection()
+    })
+</script>
