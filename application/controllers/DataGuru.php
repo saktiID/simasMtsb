@@ -50,6 +50,7 @@ class DataGuru extends CI_Controller
             'kelas' => $this->kelas_model->get_kelas(),
             'sub_kelas' => $this->kelas_model->get_sub_kelas(),
             'role' => $this->role_model->get_role(),
+            'guru' => $this->Users_model->get_all_users(),
             'edited' => [
                 'user' => $edited,
                 'mapel' => $this->mapel_model->get_guru_mapel($edited['id']),

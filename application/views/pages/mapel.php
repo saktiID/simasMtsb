@@ -33,7 +33,29 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between mb-3">
                     <h4 class="card-title">Mata Pelajaran</h4>
+                    <span class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#tambahMapelModal">
+                        <p class="mb-0">Tambah mapel</p>
+                    </span>
                 </div>
+
+                <div class="modal fade" id="tambahMapelModal" tabindex="-1" aria-labelledby="tambahMapelModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="tambahMapelModalLabel">Tambah Mapel</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                ...
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                <button type="button" class="btn btn-primary">Tambah Mapel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">
@@ -98,7 +120,8 @@
             success: function(res) {
                 let trMapel = ''
                 for (let i = 0; i < Object.keys(res).length; i++) {
-                    trMapel += '<tr  style="cursor: move;" data-id=' + res[i].id + ' data-urut=' + res[i].urut + '>' +
+                    trMapel += '<tr title="Seret dan jatuhkan untuk mengurutkan mapel"' +
+                        'style="cursor: move;" data-id=' + res[i].id + ' data-urut=' + res[i].urut + '>' +
                         '<td>' + res[i].urut + '</td>' +
                         '<td>' + res[i].kode + '</td>' +
                         '<td>' +

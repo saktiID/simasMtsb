@@ -33,6 +33,14 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between mb-3">
                     <h4 class="card-title">Edit Profile</h4>
+                    <label for="target">
+                        <select name="target" id="target" onchange="slideTarget()">
+                            <option disabled selected>Pilih yang diedit :</option>
+                            <?php foreach ($guru as $g) : ?>
+                                <option value="<?= base_url('edit/') . $g['username']; ?>"><?= $g['nama']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
                 </div>
 
                 <div class=" alert alert-warning text-center msgBox" style="display: none;">
@@ -252,5 +260,10 @@
     let valWal = $('[name="walas"]').val()
     if (valWal == 1) {
         $('[name="walas_of"]').attr('disabled', false)
+    }
+
+    function slideTarget() {
+        let linkTarget = $('[name="target"]').val()
+        location.replace(linkTarget)
     }
 </script>

@@ -81,11 +81,11 @@
                                     <td class="text-danger"><?= $cek['isi_buku_kerja']; ?></td>
                                     <td><span class="badge rounded-pill <?= $cek['class']; ?>"><?= $cek['status']; ?></span></td>
 
-                                    <td>
-                                        <a href="<?= base_url('cekBuku/preview/') . $cek['userfile'] ?>" target="_blank" class="badge badge-primary">Lihat</a>
-                                        <a href="<?= base_url('bukukerja/download/') . $cek['userfile']; ?>" class="badge badge-success">Unduh</a>
-                                        <a href="<?= base_url('cekbuku/setujui/') . $cek['record_id'] . '/' . $target['id']; ?>" class="badge badge-warning setujuBtn">Setujui</a>
-                                        <a href="<?= base_url('cekbuku/tolak/') . $cek['record_id'] . '/' . $target['id']; ?>" class="badge badge-danger tolakBtn">Tolak</a>
+                                    <td class="btn-group" role="group">
+                                        <a href="<?= base_url('cekBuku/preview/') . $cek['userfile'] ?>" target="_blank" class="badge badge-primary rounded-start" title="Lihat dokumen"><i class="mdi mdi-magnify fs-6"></i></a>
+                                        <a href="<?= base_url('bukukerja/download/') . $cek['userfile']; ?>" class="badge badge-success" title="Unduh dokumen"><i class="mdi mdi-cloud-download fs-6"></i></a>
+                                        <a href="<?= base_url('cekbuku/setujui/') . $cek['record_id'] . '/' . $target['id']; ?>" class="badge badge-warning setujuBtn" title="Setujui dokumen"><i class="mdi mdi-playlist-check fs-6"></i></a>
+                                        <a href="<?= base_url('cekbuku/tolak/') . $cek['record_id'] . '/' . $target['id']; ?>" class="badge badge-danger tolakBtn rounded-end" title="Tolak dokumen"><i class="mdi mdi-playlist-remove fs-6"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

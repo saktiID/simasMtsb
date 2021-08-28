@@ -212,10 +212,10 @@
                                     <td>Buku kerja <?= $self['buku_kerja']; ?></td>
                                     <td class="text-danger"><?= $self['isi_buku_kerja']; ?></td>
                                     <td><span class="badge <?= $self['class']; ?> rounded-pill"><?= $self['status']; ?></span></td>
-                                    <td>
-                                        <a href="<?= base_url('bukuKerja/preview/') . $self['userfile'] ?>" target="_blank" class="badge badge-primary">Lihat</a>
-                                        <a href="<?= base_url('bukukerja/download/') . $self['userfile']; ?>" class="badge badge-success">Unduh</a>
-                                        <a href="<?= base_url('bukukerja/delete/') . $self['record_id'] . '/' . $self['userfile']; ?>" class="badge badge-danger delBtn">Hapus</a>
+                                    <td class="btn-group" role="group">
+                                        <a href="<?= base_url('bukuKerja/preview/') . $self['userfile'] ?>" target="_blank" class="badge badge-primary rounded-start" title="Lihat dokumen"><i class="mdi mdi-magnify fs-6"></i></a>
+                                        <a href="<?= base_url('bukukerja/download/') . $self['userfile']; ?>" class="badge badge-success" title="Unduh dokumen"><i class="mdi mdi-cloud-download fs-6"></i></a>
+                                        <a href="<?= base_url('bukukerja/delete/') . $self['record_id'] . '/' . $self['userfile']; ?>" class="badge badge-danger delBtn rounded-end" title="Hapus dokumen"><i class="mdi mdi-delete-forever fs-6"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

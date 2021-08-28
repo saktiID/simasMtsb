@@ -80,7 +80,7 @@
                                         <?php endforeach ?>
 
                                     </td>
-                                    <td><a href="<?= base_url('cekbuku/detail/') . $cek['id']; ?>" class="btn btn-primary p-2">Lihat buku</a></td>
+                                    <td><a href="<?= base_url('cekbuku/detail/') . $cek['id']; ?>" class="btn btn-primary p-2" title="Lihat dokumen"><i class="mdi mdi-magnify fs-6"></i></a></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

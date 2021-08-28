@@ -248,9 +248,9 @@
                                             <span><img src="<?= base_url('assets/images/faces/') . $g['image']; ?>" alt="profile"></span>
                                             <p class="pl-3 m-0"><?= $g['nama']; ?></p>
                                         </div>
-                                        <span>
-                                            <a href="<?= base_url('edit/') . $g['username']; ?>" class="btn btn-primary py-2">Edit</a>
-                                            <a href="<?= base_url('delete/') . $g['id']; ?>" class="btn btn-danger py-2 delBtn">Hapus</a>
+                                        <span class="btn-group" role="group">
+                                            <a href="<?= base_url('edit/') . $g['username']; ?>" class="badge badge-primary fs-6 rounded-start p-2" title="Edit data guru"><i class="mdi mdi-settings"></i></a>
+                                            <a href="<?= base_url('delete/') . $g['id']; ?>" class="badge badge-danger fs-6 delBtn rounded-end p-2" title="Hapus data guru"><i class="mdi mdi-delete"></i></a>
                                         </span>
                                     </td>
                                 </tr>
