@@ -18,7 +18,7 @@
                 <div class="d-flex align-items-end flex-wrap">
                     <div class="d-flex">
                         <i class="mdi mdi-home text-muted hover-cursor"></i>
-                        <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Cek Buku Kerja&nbsp;/&nbsp;</p>
+                        <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;<a href="<?= base_url('cekbuku'); ?>">Cek Buku Kerja</a>&nbsp;/&nbsp;</p>
                         <p class="text-muted mb-0 hover-cursor">Detail&nbsp;/&nbsp;</p>
                     </div>
                 </div>
@@ -33,7 +33,19 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Detail buku kerja</h4>
-                <p>Oleh : <strong><?= $target['nama']; ?></strong></p>
+                <div class="d-flex justify-content-between">
+                    <p>Oleh : <strong><?= $target['nama']; ?></strong></p>
+                    <label for="target">
+                        <select name="target" id="target" onchange="slideTarget()">
+                            <option disabled selected>Pilih pembuat dokumen :</option>
+                            <?php foreach ($targetAll as $all) : ?>
+                                <option value="<?= base_url('cekbuku/detail/') . $all['id']; ?>">
+                                    <?= $all['nama']; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
+                </div>
 
                 <div class="table-responsive">
                     <table class="table table-hover" id="table">
@@ -128,4 +140,9 @@
             }
         })
     })
+
+    function slideTarget() {
+        let linkTarget = $('[name="target"]').val()
+        location.replace(linkTarget)
+    }
 </script>

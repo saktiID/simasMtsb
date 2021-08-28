@@ -42,6 +42,7 @@ class CekBuku extends CI_Controller
                 'title' => 'Cek Buku Kerja',
                 'user' => $this->Users_model->get_user_auth($this->session->userdata('username')),
                 'cek_buku' => $this->bukuKerja_model->get_buku_self($id),
+                'targetAll' => $this->bukuKerja_model->get_record_buku(),
                 'target' => $this->Users_model->get_by_id($id),
                 'origin' => $this->bukuKerja_model->get_buku_self($id),
             ];

@@ -29,4 +29,20 @@ class Mapel extends CI_Controller
         $this->load->view('pages/mapel');
         $this->load->view('templates/_footer');
     }
+
+    public function tampil_mapel()
+    {
+        $mapel = $this->mapel_model->get_mapel();
+        echo json_encode($mapel);
+    }
+
+    public function simpan_posisi()
+    {
+        $urutan = $this->input->post('urutan');
+        foreach ($urutan as $urut) {
+            $id = $urut[0];
+            $newUrut = $urut[1];
+            $this->mapel_model->set_urut_mapel($id, $newUrut);
+        }
+    }
 }

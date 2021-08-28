@@ -41,7 +41,6 @@
                             <tr>
                                 <th width="9%">No. Urut</th>
                                 <th width="9%">Kode</th>
-                                <th width="9%">ID</th>
                                 <th>Mata Pelajaran</th>
                             </tr>
                         </thead>
@@ -55,20 +54,6 @@
                             }
                         </style>
                         <tbody id="sortable">
-                            <?php $i =  1; ?>
-                            <?php foreach ($mapel as $mpl) : ?>
-                                <tr style="cursor: move;">
-                                    <td><?= $i++; ?></td>
-                                    <td><?= $mpl['kode']; ?></td>
-                                    <td><?= $mpl['id']; ?></td>
-                                    <td>
-                                        <span class="d-flex align-items-center">
-                                            <i class="mdi mdi-swap-vertical text-secondary"></i>
-                                            <p class="mb-0 pl-3"><?= $mpl['nama_mapel']; ?></p>
-                                        </span>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -87,8 +72,69 @@
 <script>
     $(document).ready(function() {
         $('#sortable').sortable({
-            placeholder: "ui-state-highlight"
+            placeholder: "ui-state-highlight",
+            update: function() {
+                $(this).children().each(function(index) {
+                    $(this).attr('data-urut', (index + 1)).addClass('updated')
+                })
+                simpanPosisi()
+                tampilMapel()
+                Swal.fire({
+                    title: "Hurray!",
+                    text: "Berhasil mengurutkan mapel",
+                    icon: "success",
+                })
+            }
         })
         $('#sortable').disableSelection()
+        tampilMapel()
     })
+
+    function tampilMapel() {
+        $.ajax({
+            url: '<?= base_url('mapel/tampil_mapel'); ?>',
+            method: 'POST',
+            dataType: 'json',
+            success: function(res) {
+                let trMapel = ''
+                for (let i = 0; i < Object.keys(res).length; i++) {
+                    trMapel += '<tr  style="cursor: move;" data-id=' + res[i].id + ' data-urut=' + res[i].urut + '>' +
+                        '<td>' + res[i].urut + '</td>' +
+                        '<td>' + res[i].kode + '</td>' +
+                        '<td>' +
+                        '<span class="d-flex align-items-center">' +
+                        '<i class="mdi mdi-swap-vertical text-secondary"></i>' +
+                        '<p class="mb-0 pl-3">' + res[i].nama_mapel + '</p>' +
+                        '</span>' +
+                        '</td>' +
+                        '</tr>'
+                }
+                $('#sortable').html(trMapel)
+            },
+            error: function(err) {
+                console.log(err.responseText)
+            }
+        })
+    }
+
+    function simpanPosisi() {
+        let urut = []
+        $('.updated').each(function() {
+            urut.push([$(this).attr('data-id'), $(this).attr('data-urut')])
+        })
+
+        $.ajax({
+            url: '<?= base_url('mapel/simpan_posisi'); ?>',
+            method: 'POST',
+            dataType: 'text',
+            data: {
+                urutan: urut,
+            },
+            success: function(res) {
+                if (res != '') {
+                    console.log(res)
+                }
+            }
+        })
+    }
 </script>

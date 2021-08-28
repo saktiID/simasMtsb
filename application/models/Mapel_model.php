@@ -33,6 +33,13 @@ class Mapel_model extends CI_Model
         }
     }
 
+    public function set_urut_mapel($id, $newUrut)
+    {
+        $this->db->set('urut', $newUrut);
+        $this->db->where('id', $id);
+        $this->db->update('mapel');
+    }
+
     public function insert_guru_mapel($array)
     {
         $insert = $this->db->insert('guru_mapel', $array);
