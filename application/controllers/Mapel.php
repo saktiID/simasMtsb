@@ -36,6 +36,60 @@ class Mapel extends CI_Controller
         echo json_encode($mapel);
     }
 
+    public function get_kode_unik()
+    {
+        $generate_kode = rand(100, 999);
+        $result = $this->db->get_where('mapel', ['kode' => $generate_kode])->row_array();
+        if ($result) {
+            $generate_kode = rand(100, 999);
+            return $generate_kode;
+        } else {
+            return $generate_kode;
+        }
+    }
+
+    public function insert_mapel()
+    {
+        $namaMapel = $this->input->post('namaMapel');
+        $lenghtMapel = count($this->mapel_model->get_mapel());
+
+        $array = [
+            'kode' => $this->get_kode_unik(),
+            'nama_mapel' => $namaMapel,
+            'urut' => $lenghtMapel + 1,
+        ];
+
+        $query = $this->mapel_model->insert_mapel($array);
+        if ($query) {
+            echo TRUE;
+        } else {
+            echo FALSE;
+        }
+    }
+
+    public function hapus_mapel()
+    {
+        $mapelId = $this->input->post('id');
+        $namaMapel = $this->mapel_model->get_nama_mapel_by_id($mapelId);
+        $pengampuId = $this->mapel_model->get_pengampu_mapel($namaMapel);
+        $pengampu = [];
+        foreach ($pengampuId as $pId) {
+            $pengampu[] = $this->Users_model->get_by_id($pId['user_id'])['nama'];
+        }
+        if (count($pengampu) > 0) {
+            echo json_encode($pengampu);
+        } else {
+            echo $mapelId;
+        }
+    }
+
+    public function hapus_mapel_attemp()
+    {
+        $idMapel = $this->input->post('id');
+        $query = $this->mapel_model->delete_mapel($idMapel);
+        echo $query;
+    }
+
     public function simpan_posisi()
     {
         $urutan = $this->input->post('urutan');

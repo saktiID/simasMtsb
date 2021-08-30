@@ -34,7 +34,7 @@
                 <div class="d-flex justify-content-between mb-3">
                     <h4 class="card-title">Mata Pelajaran</h4>
                     <span class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#tambahMapelModal">
-                        <p class="mb-0">Tambah mapel</p>
+                        <p class="mb-0 btnTmbhMapel">Tambah mapel</p>
                     </span>
                 </div>
 
@@ -46,11 +46,57 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                ...
+                                <div class="forms-sample">
+                                    <div class="form-group row">
+                                        <label for="namaMapel" class="col-sm-3 col-form-label">Nama Mapel</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="namaMapel" name="namaMapel">
+                                            <small class="text-danger" style="display: none;">Nama mapel harus diisi!</small>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                <button type="button" class="btn btn-primary">Tambah Mapel</button>
+                                <button type="button" class="btn btn-secondary closeModal" data-bs-dismiss="modal">Tutup</button>
+                                <button type="button" class="btn btn-primary tmbhMapel">Tambah Mapel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="hapusMapelModal" tabindex="-1" aria-labelledby="hapusMapelModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="hapusMapelModalLabel">Menghapus Mapel</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Anda akan menghapus mapel?
+                                <p class="fw-bold mapelHapus"></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary closeModal" data-bs-dismiss="modal">Tutup</button>
+                                <button type="button" class="btn btn-danger btnHapus" data-link="">Hapus Mapel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="showPengampuModal" tabindex="-1" aria-labelledby="showPengampuModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="showPengampuModalLabel">Menghapus Mapel</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Mapel ini sedang digunakan oleh:
+                                <ol class="list-pengampu"></ol>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary closeModal" data-bs-dismiss="modal">Tutup</button>
+                                <button type="button" class="btn btn-danger tetapHapus" data-id="">Tetap Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -100,12 +146,12 @@
                     $(this).attr('data-urut', (index + 1)).addClass('updated')
                 })
                 simpanPosisi()
-                tampilMapel()
                 Swal.fire({
                     title: "Hurray!",
                     text: "Berhasil mengurutkan mapel",
                     icon: "success",
                 })
+                tampilMapel()
             }
         })
         $('#sortable').disableSelection()
@@ -126,8 +172,13 @@
                         '<td>' + res[i].kode + '</td>' +
                         '<td>' +
                         '<span class="d-flex align-items-center">' +
+                        '<span class="w-100 d-flex align-items-center">' +
                         '<i class="mdi mdi-swap-vertical text-secondary"></i>' +
-                        '<p class="mb-0 pl-3">' + res[i].nama_mapel + '</p>' +
+                        '<p class="mb-0 pl-3 id' + res[i].id + '">' + res[i].nama_mapel + '</p>' +
+                        '</span>' +
+                        '<span class="flex-shrink-1 btn btn-danger btn-sm p-2" onclick="hapusMapel(' + res[i].id + ')" title="Hapus mapel"' +
+                        'data-bs-toggle="modal" data-bs-target="#hapusMapelModal">' +
+                        '<i class="mdi mdi-delete fs-6"></i></span>' +
                         '</span>' +
                         '</td>' +
                         '</tr>'
@@ -160,4 +211,106 @@
             }
         })
     }
+
+    function hapusMapel(id) {
+        let mapel = $('.id' + id + '')[0].innerHTML
+        $('p.mapelHapus').html('- ' + mapel)
+        $('.btnHapus').attr('data-link', id)
+    }
+
+    function hapus_mapel(res) {
+        $.ajax({
+            url: '<?= base_url('mapel/hapus_mapel_attemp'); ?>',
+            method: 'POST',
+            dataType: 'text',
+            data: {
+                id: res,
+            },
+            success: function(response) {
+                tampilMapel()
+                $('.closeModal').click()
+                Swal.fire({
+                    title: "Hurray!",
+                    text: "Berhasil menghapus mapel",
+                    icon: "success",
+                })
+            },
+            error: function(err) {
+                console.log(err.responseText)
+            }
+
+        })
+    }
+
+    $('.btnHapus').click(function() {
+        let id = $('.btnHapus').attr('data-link')
+        $.ajax({
+            url: '<?= base_url('mapel/hapus_mapel'); ?>',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                id: id,
+            },
+            success: function(res) {
+                if (res == id) {
+                    hapus_mapel(res)
+                } else {
+                    $('.closeModal').click()
+                    let li = ''
+                    for (let i = 0; i < Object.keys(res).length; i++) {
+                        li += '<li>' +
+                            res[i] +
+                            '</li>'
+                    }
+                    $('ol.list-pengampu').html(li)
+                    $('#showPengampuModal').modal('show')
+                    $('.tetapHapus').attr('data-id', id);
+                }
+            },
+            error: function(err) {
+                console.log(err.responseText)
+            }
+        })
+    })
+
+    $('.tetapHapus').click(function() {
+        let res = $('.tetapHapus').attr('data-id')
+        $('.closeModal').click()
+        hapus_mapel(res)
+    })
+
+    $('.tmbhMapel').click(function() {
+        let namaMapel = $('[name="namaMapel"]').val()
+        if (namaMapel === '') {
+            $('small.text-danger').css('display', 'block')
+            setTimeout(() => {
+                $('small.text-danger').css('display', 'none')
+            }, 3000)
+        } else {
+            $.ajax({
+                url: '<?= base_url('mapel/insert_mapel'); ?>',
+                method: 'POST',
+                dataType: 'text',
+                data: {
+                    namaMapel: namaMapel,
+                },
+                success: function(res) {
+                    if (res) {
+                        $('[name="namaMapel"]').val('')
+                        $('.closeModal').click()
+
+                        Swal.fire({
+                            title: "Hurray!",
+                            text: "Berhasil menambahkan mapel",
+                            icon: "success",
+                        })
+                        tampilMapel()
+                    }
+                },
+                error: function(err) {
+                    console.log(err.responseText)
+                }
+            })
+        }
+    })
 </script>
