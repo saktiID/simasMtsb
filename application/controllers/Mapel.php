@@ -51,11 +51,21 @@ class Mapel extends CI_Controller
     public function insert_mapel()
     {
         $namaMapel = $this->input->post('namaMapel');
+        $penada = [];
+        $sanitize = str_split($namaMapel);
+        for ($i = 0; $i < count($sanitize); $i++) {
+            if ($sanitize[$i] === "'" || $sanitize[$i] === "`" || $sanitize[$i] === "-" || $sanitize[$i] === '"' || $sanitize[$i] === "_") {
+                continue;
+            } else {
+                $penada[] = $sanitize[$i];
+            }
+        }
+        $namaMapel = implode("", $penada);
         $lenghtMapel = count($this->mapel_model->get_mapel());
 
         $array = [
             'kode' => $this->get_kode_unik(),
-            'nama_mapel' => $namaMapel,
+            'nama_mapel' => strtoupper($namaMapel),
             'urut' => $lenghtMapel + 1,
         ];
 
