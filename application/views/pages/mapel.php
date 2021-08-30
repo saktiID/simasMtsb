@@ -50,7 +50,7 @@
                                     <div class="form-group row">
                                         <label for="namaMapel" class="col-sm-3 col-form-label">Nama Mapel</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="namaMapel" name="namaMapel">
+                                            <input type="text" class="form-control" id="namaMapel" name="namaMapel" autofocus>
                                             <small class="text-danger" style="display: none;">Nama mapel harus diisi!</small>
                                         </div>
                                     </div>
@@ -298,7 +298,6 @@
                     if (res) {
                         $('[name="namaMapel"]').val('')
                         $('.closeModal').click()
-
                         Swal.fire({
                             title: "Hurray!",
                             text: "Berhasil menambahkan mapel",
