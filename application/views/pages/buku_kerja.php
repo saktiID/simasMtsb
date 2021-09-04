@@ -247,7 +247,11 @@
             confirmButtonText: 'Iya, hapus file!'
         }).then((result) => {
             if (result.value) {
-                window.location.replace(e.target.href)
+                if (e.target.hasAttribute('href')) {
+                    window.location.replace(e.target.href)
+                } else {
+                    window.location.replace(e.target.parentElement.href)
+                }
             }
         })
     })
