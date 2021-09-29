@@ -29,16 +29,17 @@
                         <span class="menu-title">Buku Kerja</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('jadwal_saya'); ?>">
-                        <i class="mdi mdi-av-timer menu-icon"></i>
-                        <span class="menu-title">Jadwal Saya</span>
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="mdi mdi-timetable menu-icon"></i>
                         <span class="menu-title">Jurnal</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('jadwal_saya'); ?>">
+                        <i class="mdi mdi-av-timer menu-icon"></i>
+                        <span class="menu-title">Jadwal Saya</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -64,12 +65,7 @@
                         <span class="menu-title">Data Guru</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="mdi mdi-calendar-multiple menu-icon"></i>
-                        <span class="menu-title">Jadwal Guru</span>
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="<?= base_url('cekbuku'); ?>">
                         <i class="mdi mdi-checkbox-multiple-marked menu-icon"></i>
@@ -80,6 +76,12 @@
                     <a class="nav-link" href="<?= base_url('mapel'); ?>">
                         <i class="mdi mdi-book-open menu-icon"></i>
                         <span class="menu-title">Mata Pelajaran</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('set_jadwal'); ?>">
+                        <i class="mdi mdi-calendar-multiple menu-icon"></i>
+                        <span class="menu-title">Jadwal Guru</span>
                     </a>
                 </li>
             <?php endif; ?>
