@@ -37,7 +37,7 @@
                 <div class="card-body dashboard-tabs p-0">
                     <ul class="nav nav-tabs px-4" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="set_jadwal_tab" data-toggle="tab" href="#setjadwal" role="tab" aria-controls="set_jadwal" aria-selected="true">Pengaturan Jadwal</a>
+                            <a class="nav-link active" id="set_jadwal_tab" data-toggle="tab" href="#setjadwal" role="tab" aria-controls="set_jadwal" aria-selected="true">Pengaturan Dadwal</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="jadwal_guru_tab" data-toggle="tab" href="#jadwalguru" role="tab" aria-controls="jadwal_guru" aria-selected="false">Jadwal Jam Guru</a>
