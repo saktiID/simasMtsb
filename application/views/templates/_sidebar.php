@@ -84,6 +84,12 @@
                         <span class="menu-title">Jadwal Guru</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url(''); ?>">
+                        <i class="mdi mdi-book-open-page-variant menu-icon"></i>
+                        <span class="menu-title">Buku Induk Siswa</span>
+                    </a>
+                </li>
             <?php endif; ?>
             <!-- end menu admin staff -->
 
