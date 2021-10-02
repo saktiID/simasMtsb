@@ -48,23 +48,13 @@
 
                 <table class="table table-striped table-hover">
                     <tbody>
-                        <tr>
-                            <td>
-                                <i class="mdi mdi-arrow-right mr-3"></i> Buku induk tahun ...
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <i class="mdi mdi-arrow-right mr-3"></i> Buku induk tahun ...
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <i class="mdi mdi-arrow-right mr-3"></i> Buku induk tahun ...
-                            </td>
-                        </tr>
-
-
+                        <?php foreach ($buku_induk as $bk_induk) : ?>
+                            <tr>
+                                <td data-bs-toggle="modal" data-bs-target="#bukuindukModel" style="cursor: pointer;" data-link="<?= $bk_induk['tahun_ajaran']; ?>" class="data-induk">
+                                    <i class="mdi mdi-arrow-right mr-3"></i> Buku induk tahun <?= $bk_induk['tahun_ajaran']; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
 
@@ -76,5 +66,48 @@
     <!-- end content -->
 
 
+
+    <!-- modalbox -->
+    <div class="modal fade" id="bukuindukModel" tabindex="-1" aria-labelledby="bukuindukModelLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bukuindukModelLabel">Buku Induk Tahun Ajaran </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>No. Induk</th>
+                                    <th>Nama</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end modalbox -->
 </div>
 <!-- content-wrapper ends -->
+
+
+<script>
+    $('.data-induk').on('click', (e) => {
+        let link = e.target.dataset.link
+        $('#bukuindukModelLabel').html('Buku Induk Tahun Ajaran ' + link)
+    })
+</script>
