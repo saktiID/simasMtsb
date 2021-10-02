@@ -85,7 +85,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url(''); ?>">
+                    <a class="nav-link" href="<?= base_url('buku_induk_siswa'); ?>">
                         <i class="mdi mdi-book-open-page-variant menu-icon"></i>
                         <span class="menu-title">Buku Induk Siswa</span>
                     </a>

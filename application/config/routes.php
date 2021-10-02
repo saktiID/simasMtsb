@@ -73,3 +73,4 @@ $route['edit_personal_pass'] = 'home/edit_personal_pass';
 $route['jadwal_saya'] = 'home/jadwal_saya';
 $route['simpan_jadwal'] = 'home/simpan_jadwal_saya';
 $route['set_jadwal'] = 'jadwal';
+$route['buku_induk_siswa'] = 'BukuIndukSiswa';
