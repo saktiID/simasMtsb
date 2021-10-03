@@ -16,7 +16,6 @@ class BukuIndukSiswa extends CI_Controller
         $data = [
             'title' => 'Buku Induk Siswa',
             'user' => $this->Users_model->get_user_auth($this->session->userdata('username')),
-            'buku_induk' => $this->bukuIndukSiswa_model->get_buku_induk_tahun(),
         ];
 
         $this->load->view('templates/_header', $data);
@@ -24,5 +23,50 @@ class BukuIndukSiswa extends CI_Controller
         $this->load->view('templates/_sidebar');
         $this->load->view('pages/buku_induk_siswa', $data);
         $this->load->view('templates/_footer');
+    }
+
+    /**
+     * method controller untuk menampilkan dafatar buku induk
+     */
+    public function tampil_buku_induk()
+    {
+        $bk_induk = $this->bukuIndukSiswa_model->get_buku_induk_tahun();
+        echo json_encode($bk_induk);
+    }
+
+    /**
+     * method controller untuk menambah buku induk baru
+     */
+    public function tambah_buku_induk()
+    {
+        $array = [
+            'tahun_ajaran' => $this->input->post('tahun_ajaran'),
+        ];
+        $query = $this->bukuIndukSiswa_model->insert_buku_induk($array);
+        if ($query) {
+            echo json_encode($array);
+        }
+    }
+
+    /**
+     * method controller untuk menghapus buku induk
+     */
+    public function hapus_buku_induk()
+    {
+        $id = $this->input->post('id');
+        $query = $this->bukuIndukSiswa_model->delete_buku_induk($id);
+        if ($query) {
+            echo json_encode($id);
+        }
+    }
+
+    /**
+     * method controller untuk menampilkan siswa sesuai tahun ajaran
+     */
+    public function tampil_siswa_by_tahun()
+    {
+        $th_ajaran = $this->input->post('th_ajaran');
+        $query = $this->bukuIndukSiswa_model->get_siswa_by_tahun($th_ajaran);
+        echo json_encode($query);
     }
 }

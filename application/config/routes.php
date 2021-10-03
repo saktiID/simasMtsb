@@ -74,3 +74,7 @@ $route['jadwal_saya'] = 'home/jadwal_saya';
 $route['simpan_jadwal'] = 'home/simpan_jadwal_saya';
 $route['set_jadwal'] = 'jadwal';
 $route['buku_induk_siswa'] = 'BukuIndukSiswa';
+$route['buku_induk_siswa/tampil_buku_induk'] = 'BukuIndukSiswa/tampil_buku_induk';
+$route['buku_induk_siswa/tambah_buku_induk'] = 'BukuIndukSiswa/tambah_buku_induk';
+$route['buku_induk_siswa/hapus_buku_induk'] = 'BukuIndukSiswa/hapus_buku_induk';
+$route['buku_induk_siswa/tampil_siswa_by_tahun'] = 'BukuIndukSiswa/tampil_siswa_by_tahun';
