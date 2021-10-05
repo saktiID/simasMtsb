@@ -10,6 +10,7 @@ class BukuIndukSiswa extends CI_Controller
         is_authority();
         $this->load->model('Users_model');
         $this->load->model('bukuIndukSiswa_model');
+        $this->load->helper('download');
     }
 
     public function index()
@@ -76,5 +77,11 @@ class BukuIndukSiswa extends CI_Controller
         $pdf_viewer = 'https://smallpdf.com/id/edit-pdf#open=';
         $base = base_url('upload/dokumen/bukuinduk/');
         redirect($pdf_viewer . $base . $file);
+    }
+
+    public function download($file)
+    {
+        $path = './upload/dokumen/bukuinduk/' .  $file . 'pdf';
+        force_download($path, NULL);
     }
 }

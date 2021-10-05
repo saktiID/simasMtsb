@@ -78,9 +78,9 @@
                         <table class="table table-hover" id="table-siswa">
                             <thead>
                                 <tr>
-                                    <th>No</th>
+                                    <th>NO</th>
                                     <th>NISN</th>
-                                    <th>Nama</th>
+                                    <th>NAMA</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -248,7 +248,7 @@
     function tampilSiswa(res, link) {
 
         let trSiswa = ''
-        let baseURL = '<?= base_url("buku_induk_siswa/lihat_data/") ?>'
+        let baseURL = '<?= base_url("buku_induk_siswa/") ?>'
         for (let i = 0; i < Object.keys(res).length; i++) {
             trSiswa += '<tr>'
             trSiswa += '<td>'
@@ -262,8 +262,8 @@
             trSiswa += '</td>'
             trSiswa += '<td class="text-center">'
             trSiswa += '<div class="btn-group" role="group">'
-            trSiswa += '<a href="' + baseURL + res[i].link_file + '" target="_blank" class="badge badge-primary rounded-start" title="Lihat data"><i class="mdi mdi-file-find fs-6"></i></a>'
-            trSiswa += '<a href="" class="badge badge-secondary" title="Unduh data"><i class="mdi mdi-cloud-download fs-6"></i></a>'
+            trSiswa += '<a href="' + baseURL + 'lihat_data/' + res[i].link_file + '" target="_blank" class="badge badge-primary rounded-start" title="Lihat data"><i class="mdi mdi-file-find fs-6"></i></a>'
+            trSiswa += '<a href="' + baseURL + 'download/' + res[i].link_file + '" class="badge badge-secondary" title="Unduh data"><i class="mdi mdi-cloud-download fs-6"></i></a>'
             trSiswa += '<span class="badge badge-warning" title="Edit data"><i class="mdi mdi-table-edit fs-6"></i></span>'
             trSiswa += '<span class="badge badge-danger rounded-end" title="Hapus data"><i class="mdi mdi-delete-forever fs-6"></i></span>'
             trSiswa += '</div>'

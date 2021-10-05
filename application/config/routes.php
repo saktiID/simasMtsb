@@ -79,3 +79,4 @@ $route['buku_induk_siswa/tambah_buku_induk'] = 'BukuIndukSiswa/tambah_buku_induk
 $route['buku_induk_siswa/hapus_buku_induk'] = 'BukuIndukSiswa/hapus_buku_induk';
 $route['buku_induk_siswa/tampil_siswa_by_tahun'] = 'BukuIndukSiswa/tampil_siswa_by_tahun';
 $route['buku_induk_siswa/lihat_data/(:any)'] = 'BukuIndukSiswa/lihat_data/$1';
+$route['buku_induk_siswa/download/(:any)'] = 'BukuIndukSiswa/download/$1';
