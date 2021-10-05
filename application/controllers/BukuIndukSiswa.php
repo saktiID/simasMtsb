@@ -7,6 +7,7 @@ class BukuIndukSiswa extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        is_authority();
         $this->load->model('Users_model');
         $this->load->model('bukuIndukSiswa_model');
     }
@@ -68,5 +69,12 @@ class BukuIndukSiswa extends CI_Controller
         $th_ajaran = $this->input->post('th_ajaran');
         $query = $this->bukuIndukSiswa_model->get_siswa_by_tahun($th_ajaran);
         echo json_encode($query);
+    }
+
+    public function lihat_data($file)
+    {
+        $pdf_viewer = 'https://smallpdf.com/id/edit-pdf#open=';
+        $base = base_url('upload/dokumen/bukuinduk/');
+        redirect($pdf_viewer . $base . $file);
     }
 }
