@@ -11,7 +11,6 @@ class BukuKerja extends CI_Controller
         $this->load->model('bukuKerja_model');
         $this->load->model('mapel_model');
         $this->load->model('kelas_model');
-        $this->load->helper('download');
     }
 
     public function index()

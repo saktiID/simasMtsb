@@ -1,24 +1,24 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => '33d37ec5a7b5a71817b526d515a2737f3738be79',
     'name' => 'codeigniter/framework',
   ),
   'versions' => 
   array (
     'codeigniter/framework' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '33d37ec5a7b5a71817b526d515a2737f3738be79',
     ),
     'doctrine/instantiator' => 
     array (
@@ -74,6 +74,15 @@
       ),
       'reference' => 'fc0fe8f4d0b527254a2dc45f0c265567c881d07e',
     ),
+    'mpdf/mpdf' => 
+    array (
+      'pretty_version' => 'v8.0.13',
+      'version' => '8.0.13.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '42f145615cfe830fd432474da1d2e1f927efe402',
+    ),
     'myclabs/deep-copy' => 
     array (
       'pretty_version' => '1.10.2',
@@ -96,14 +105,41 @@
       ),
       'reference' => 'b942d263c641ddb5190929ff840c68f78713e937',
     ),
-    'phpdocumentor/reflection-docblock' => 
+    'paragonie/random_compat' => 
     array (
-      'pretty_version' => '2.0.5',
-      'version' => '2.0.5.0',
+      'pretty_version' => 'v9.99.100',
+      'version' => '9.99.100.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'e6a969a640b00d8daa3c66518b0405fb41ae0c4b',
+      'reference' => '996434e5492cb4c3edcb9168db6fbb1359ef965a',
+    ),
+    'phpdocumentor/reflection-common' => 
+    array (
+      'pretty_version' => '2.2.0',
+      'version' => '2.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1d01c49d4ed62f25aa84a747ad35d5a16924662b',
+    ),
+    'phpdocumentor/reflection-docblock' => 
+    array (
+      'pretty_version' => '5.2.2',
+      'version' => '5.2.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '069a785b2141f5bcf49f3e353548dc1cce6df556',
+    ),
+    'phpdocumentor/type-resolver' => 
+    array (
+      'pretty_version' => '1.5.1',
+      'version' => '1.5.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'a12f7e301eb7258bb68acd89d4aefa05c2906cae',
     ),
     'phpoffice/phpspreadsheet' => 
     array (
@@ -116,21 +152,21 @@
     ),
     'phpspec/prophecy' => 
     array (
-      'pretty_version' => 'v1.5.0',
-      'version' => '1.5.0.0',
+      'pretty_version' => 'v1.10.3',
+      'version' => '1.10.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => '4745ded9307786b730d7a60df5cb5a6c43cf95f7',
+      'reference' => '451c3cd1418cf640de218914901e51b064abb093',
     ),
     'phpunit/php-code-coverage' => 
     array (
-      'pretty_version' => '3.2.0',
-      'version' => '3.2.0.0',
+      'pretty_version' => '4.0.8',
+      'version' => '4.0.8.0',
       'aliases' => 
       array (
       ),
-      'reference' => '85f5db2d0a0da79ad6a256eb54148ba383059ad9',
+      'reference' => 'ef7b2f56815df854e66ceaee8ebe9393ae36a40d',
     ),
     'phpunit/php-file-iterator' => 
     array (
@@ -152,39 +188,39 @@
     ),
     'phpunit/php-timer' => 
     array (
-      'pretty_version' => '5.0.3',
-      'version' => '5.0.3.0',
+      'pretty_version' => '1.0.9',
+      'version' => '1.0.9.0',
       'aliases' => 
       array (
       ),
-      'reference' => '5a63ce20ed1b5bf577850e2c4e87f4aa902afbd2',
+      'reference' => '3dcf38ca72b158baf0bc245e9184d3fdffa9c46f',
     ),
     'phpunit/php-token-stream' => 
     array (
-      'pretty_version' => '1.4.12',
-      'version' => '1.4.12.0',
+      'pretty_version' => '2.0.2',
+      'version' => '2.0.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '1ce90ba27c42e4e44e6d8458241466380b51fa16',
+      'reference' => '791198a2c6254db10131eecfe8c06670700904db',
     ),
     'phpunit/phpunit' => 
     array (
-      'pretty_version' => '5.2.7',
-      'version' => '5.2.7.0',
+      'pretty_version' => '5.7.27',
+      'version' => '5.7.27.0',
       'aliases' => 
       array (
       ),
-      'reference' => '073701643835376cb2f15dc005ea8933f8d4edbd',
+      'reference' => 'b7803aeca3ccb99ad0a506fa80b64cd6a56bbc0c',
     ),
     'phpunit/phpunit-mock-objects' => 
     array (
-      'pretty_version' => '3.1.3',
-      'version' => '3.1.3.0',
+      'pretty_version' => '3.4.4',
+      'version' => '3.4.4.0',
       'aliases' => 
       array (
       ),
-      'reference' => '151c96874bff6fe61a25039df60e776613a61489',
+      'reference' => 'a23b761686d50a560cc56233b9ecf49597cc9118',
     ),
     'psr/http-client' => 
     array (
@@ -212,6 +248,15 @@
       array (
       ),
       'reference' => 'f6561bf28d520154e4b0ec72be95418abe6d9363',
+    ),
+    'psr/log' => 
+    array (
+      'pretty_version' => '1.1.4',
+      'version' => '1.1.4.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'd49695b909c3b7628b6289db5479a1c204601f11',
     ),
     'psr/simple-cache' => 
     array (
@@ -242,30 +287,30 @@
     ),
     'sebastian/diff' => 
     array (
-      'pretty_version' => '1.4.1',
-      'version' => '1.4.1.0',
+      'pretty_version' => '1.4.3',
+      'version' => '1.4.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => '13edfd8706462032c2f52b4b862974dd46b71c9e',
+      'reference' => '7f066a26a962dbe58ddea9f72a4e82874a3975a4',
     ),
     'sebastian/environment' => 
     array (
-      'pretty_version' => '1.3.7',
-      'version' => '1.3.7.0',
+      'pretty_version' => '2.0.0',
+      'version' => '2.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '4e8f0da10ac5802913afc151413bc8c53b6c2716',
+      'reference' => '5795ffe5dc5b02460c3e34222fee8cbe245d8fac',
     ),
     'sebastian/exporter' => 
     array (
-      'pretty_version' => '1.2.2',
-      'version' => '1.2.2.0',
+      'pretty_version' => '2.0.0',
+      'version' => '2.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '42c4c2eec485ee3e159ec9884f95b431287edde4',
+      'reference' => 'ce474bdd1a34744d7ac5d6aad3a46d48d9bac4c4',
     ),
     'sebastian/global-state' => 
     array (
@@ -276,14 +321,23 @@
       ),
       'reference' => 'bc37d50fea7d017d3d340f230811c9f1d7280af4',
     ),
-    'sebastian/recursion-context' => 
+    'sebastian/object-enumerator' => 
     array (
-      'pretty_version' => '1.0.5',
-      'version' => '1.0.5.0',
+      'pretty_version' => '2.0.1',
+      'version' => '2.0.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'b19cc3298482a335a95f3016d2f8a6950f0fbcd7',
+      'reference' => '1311872ac850040a79c3c058bea3e22d0f09cbb7',
+    ),
+    'sebastian/recursion-context' => 
+    array (
+      'pretty_version' => '2.0.0',
+      'version' => '2.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '2c3ba150cbec723aa057506e73a8d33bdb286c9a',
     ),
     'sebastian/resource-operations' => 
     array (
@@ -302,6 +356,15 @@
       array (
       ),
       'reference' => '99732be0ddb3361e16ad77b68ba41efc8e979019',
+    ),
+    'setasign/fpdi' => 
+    array (
+      'pretty_version' => 'v2.3.6',
+      'version' => '2.3.6.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '6231e315f73e4f62d72b73f3d6d78ff0eed93c31',
     ),
     'symfony/polyfill-ctype' => 
     array (
@@ -323,12 +386,21 @@
     ),
     'symfony/yaml' => 
     array (
-      'pretty_version' => 'v3.4.47',
-      'version' => '3.4.47.0',
+      'pretty_version' => 'v4.4.29',
+      'version' => '4.4.29.0',
       'aliases' => 
       array (
       ),
-      'reference' => '88289caa3c166321883f67fe5130188ebbb47094',
+      'reference' => '3abcc4db06d4e776825eaa3ed8ad924d5bc7432a',
+    ),
+    'webmozart/assert' => 
+    array (
+      'pretty_version' => '1.10.0',
+      'version' => '1.10.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '6964c76c7804814a842473e0c8fd15bab0f18e25',
     ),
   ),
 );

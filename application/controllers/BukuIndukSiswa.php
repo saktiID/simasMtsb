@@ -10,7 +10,6 @@ class BukuIndukSiswa extends CI_Controller
         is_authority();
         $this->load->model('Users_model');
         $this->load->model('bukuIndukSiswa_model');
-        $this->load->helper('download');
     }
 
     public function index()
@@ -74,17 +73,26 @@ class BukuIndukSiswa extends CI_Controller
 
     public function lihat_data($file)
     {
-        $pdf_viewer = 'https://smallpdf.com/id/edit-pdf#open=';
-        $base = base_url('upload/dokumen/bukuinduk/');
-        redirect($pdf_viewer . $base . $file);
+        // $pdf_viewer = 'https://smallpdf.com/id/edit-pdf#open=';
+        // $base = base_url('upload/dokumen/bukuinduk/');
+        // redirect($pdf_viewer . $base . $file);
+
+
+        $mpdf = new \Mpdf\Mpdf();
+        $path = file_get_contents('/upload/dokumen/bukuinduk/' . $file);
+        $mpdf->SetSourceFile($path);
+        $mpdf->Output();
     }
 
     public function download($file)
     {
-        $path = './upload/dokumen/bukuinduk/' .  $file;
-        force_download($path, NULL);
-        // echo $path;
-        $base = base_url('upload/dokumen/bukuinduk/');
-        redirect($base . $file);
+        $path = file_get_contents(base_url() . '/upload/dokumen/bukuinduk/') . $file;
+        if (force_download($path, NULL)) {
+            $base = base_url('upload/dokumen/bukuinduk/');
+            redirect($base . $file);
+        } else {
+            $base = base_url('upload/dokumen/bukuinduk/');
+            redirect($base . $file);
+        }
     }
 }

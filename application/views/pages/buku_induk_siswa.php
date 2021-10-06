@@ -262,7 +262,7 @@
             trSiswa += '</td>'
             trSiswa += '<td class="text-center">'
             trSiswa += '<div class="btn-group" role="group">'
-            trSiswa += '<a href="' + baseURL + 'lihat_data/' + res[i].link_file + '" target="_blank" class="badge badge-primary rounded-start" title="Lihat data"><i class="mdi mdi-file-find fs-6"></i></a>'
+            trSiswa += '<a href="' + baseURL + 'lihat_data/' + res[i].link_file + '.pdf" target="_blank" class="badge badge-primary rounded-start" title="Lihat data"><i class="mdi mdi-file-find fs-6"></i></a>'
             trSiswa += '<a href="' + baseURL + 'download/' + res[i].link_file + '.pdf" class="badge badge-secondary" title="Unduh data"><i class="mdi mdi-cloud-download fs-6"></i></a>'
             trSiswa += '<span class="badge badge-warning" title="Edit data"><i class="mdi mdi-table-edit fs-6"></i></span>'
             trSiswa += '<span class="badge badge-danger rounded-end" title="Hapus data"><i class="mdi mdi-delete-forever fs-6"></i></span>'
