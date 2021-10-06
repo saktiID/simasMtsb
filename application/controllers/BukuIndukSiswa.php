@@ -81,7 +81,10 @@ class BukuIndukSiswa extends CI_Controller
 
     public function download($file)
     {
-        $path = './upload/dokumen/bukuinduk/' .  $file . 'pdf';
+        $path = './upload/dokumen/bukuinduk/' .  $file;
         force_download($path, NULL);
+        // echo $path;
+        $base = base_url('upload/dokumen/bukuinduk/');
+        redirect($base . $file);
     }
 }
