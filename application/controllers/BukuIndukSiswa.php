@@ -79,7 +79,7 @@ class BukuIndukSiswa extends CI_Controller
 
 
         $mpdf = new \Mpdf\Mpdf();
-        $path = file_get_contents('/upload/dokumen/bukuinduk/' . $file);
+        $path = '/upload/dokumen/bukuinduk/' . $file;
         $mpdf->SetSourceFile($path);
         $mpdf->Output();
     }
