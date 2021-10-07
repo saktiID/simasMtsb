@@ -57,7 +57,7 @@
 
     <!-- modalbox -->
     <div class="modal fade" id="bukuIndukModal" tabindex="-1" aria-labelledby="bukuIndukModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="bukuIndukModalLabel">Buku Induk Tahun Ajaran </h5>
@@ -65,11 +65,52 @@
                 </div>
                 <div class="modal-body">
 
-                    <div class="card mb-5">
+                    <div class="card mb-4">
                         <div class="card-body">
-                            <div class="d-flex justify-content-between mb-3">
-                                <h4 class="card-title">Tambah Data Induk Siswa</h4>
+                            <h4 class="card-title">Tambah Data Induk Siswa</h4>
+
+                            <input type="text" name="tahun_ajaran" id="th_ajar" hidden>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">NISN</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="nisn">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Nama</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="nama_siswa">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">File Induk</label>
+                                        <div class="col-sm-9">
+                                            <input type="file" class="form-control" name="file_induk">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <button type="submit" class="btn btn-success btn-upload-allrecord">
+                                                <svg style="width:20px;height:20px" viewBox="0 0 24 24">
+                                                    <path fill="currentColor" d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"></path>
+                                                </svg>
+                                                <span>Upload</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -119,17 +160,76 @@
         klikTambahBukuInduk()
     })
 
+    $('.btn-upload-allrecord').on('click', () => {
+
+        // prepare data
+        let nisn = $('[name="nisn"]').val()
+        let nama_siswa = $('[name="nama_siswa"]').val()
+        let tahun_ajaran = $('[name="tahun_ajaran"]').val()
+        let file_induk = $('[name="file_induk"]').val()
+
+        // validator
+        if (nisn == '' || nama_siswa == '') {
+            Swal.fire({
+                position: 'center',
+                icon: 'warning',
+                title: 'Oops..',
+                text: 'Ada kolom yang belum terisi',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        } else {
+            // interface uploading
+            $('.btn-upload-allrecord span').text('Sedang mengaupload')
+
+            $.ajax({
+                url: '<?= base_url('buku_induk_siswa/upload_data_siswa') ?>',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    nisn: nisn,
+                    nama_siswa: nama_siswa,
+                    tahun_ajaran: tahun_ajaran,
+                },
+                success: function(res) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Berhasil upload data siswa',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    $('[name="nisn"]').val('')
+                    $('[name="nama_siswa"]').val('')
+                    $('[name="file_induk"]').val('')
+                    $('.btn-upload-allrecord span').text('Upload')
+                    $('#table-siswa').DataTable().destroy()
+                    tampilSiswa(res, tahun_ajaran)
+                },
+                error: function(err) {
+                    console.log(err.responseText)
+                }
+
+            })
+        }
+
+    })
+
 
 
     function destroyModal() {
         $('#bukuIndukModal').on('hidden.bs.modal', () => {
             $('#table-siswa').DataTable().destroy()
+            $('[name="nisn"]').val('')
+            $('[name="nama_siswa"]').val('')
+            $('[name="file_induk"]').val('')
         })
     }
 
     function klikDataInduk() {
         $('.data-induk').on('click', (e) => {
-            $('#bukuIndukModalLabel').html('Buku Induk Tahun Ajaran ' + e.target.dataset.link)
+            $('#bukuIndukModalLabel').html('Buku Induk Lulusan Tahun Ajaran ' + e.target.dataset.link)
+            $('#th_ajar').val(e.target.dataset.link)
             // interface proses cara aneh
             let trSiswa = ''
             $('.trSiswa').html(trSiswa)
@@ -237,7 +337,8 @@
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Berhasil menambah buku induk',
+                title: 'Hurray',
+                text: 'Berhasil menambah buku induk',
                 showConfirmButton: false,
                 timer: 1500
             })
@@ -294,7 +395,7 @@
                     trBuku += '<tr>'
                     trBuku += '<td class="data-induk" data-bs-toggle="modal" data-bs-target="#bukuIndukModal" style="cursor: pointer;"'
                     trBuku += 'data-link="' + res[i].tahun_ajaran + '" data-id="' + res[i].id + '">'
-                    trBuku += '<i class="mdi mdi-arrow-right mr-3"></i> Buku induk tahun ajaran ' + res[i].tahun_ajaran
+                    trBuku += '<i class="mdi mdi-arrow-right mr-3"></i> Buku induk lulusan tahun ajaran ' + res[i].tahun_ajaran
                     trBuku += '</td>'
                     trBuku += '<td class="d-flex justify-content-end">'
                     trBuku += '<span class="btn btn-danger btn-sm hps-buku" title="Hapus data induk">'

@@ -71,19 +71,24 @@ class BukuIndukSiswa extends CI_Controller
         echo json_encode($query);
     }
 
+    /**
+     * method controller untuk lihat file pdf
+     */
     public function lihat_data($file)
     {
         // $pdf_viewer = 'https://smallpdf.com/id/edit-pdf#open=';
         // $base = base_url('upload/dokumen/bukuinduk/');
         // redirect($pdf_viewer . $base . $file);
-
-
         $mpdf = new \Mpdf\Mpdf();
-        $path = '/upload/dokumen/bukuinduk/' . $file;
+        $path = __DIR__ . '/../../../upload/dokumen/bukuinduk/' . $file;
         $mpdf->SetSourceFile($path);
         $mpdf->Output();
     }
 
+
+    /**
+     * method controller untuk download file pdf
+     */
     public function download($file)
     {
         $path = file_get_contents(base_url() . '/upload/dokumen/bukuinduk/') . $file;
@@ -93,6 +98,27 @@ class BukuIndukSiswa extends CI_Controller
         } else {
             $base = base_url('upload/dokumen/bukuinduk/');
             redirect($base . $file);
+        }
+    }
+
+    /**
+     * method controller untuk upload all record data induk siswa
+     */
+    public function upload_data_siswa()
+    {
+        // prepare data
+        $arr = [
+            'nisn' =>  $this->input->post('nisn'),
+            'nama_siswa' => $this->input->post('nama_siswa'),
+            'tahun_ajaran' => $this->input->post('tahun_ajaran'),
+        ];
+
+        // query insert data dengan model
+        $insert = $this->bukuIndukSiswa_model->insert_data_siswa($arr);
+        if ($insert) {
+            // query reload ajax data siswa
+            $siswa = $this->bukuIndukSiswa_model->get_siswa_by_tahun($arr['tahun_ajaran']);
+            echo json_encode($siswa);
         }
     }
 }
