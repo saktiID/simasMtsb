@@ -49,11 +49,15 @@ class BukuIndukSiswa_model extends CI_Model
      */
     public function insert_data_siswa($arr)
     {
-        $insert = $this->db->insert('buku_siswa', $arr);
-        if ($insert) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
+        return $this->db->insert('buku_siswa', $arr);
+    }
+
+    /**
+     * method model untuk menghapus data siswa
+     */
+    public function delete_siswa_by_id($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('buku_siswa');
     }
 }

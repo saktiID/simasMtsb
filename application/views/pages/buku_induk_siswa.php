@@ -205,6 +205,7 @@
                     $('.btn-upload-allrecord span').text('Upload')
                     $('#table-siswa').DataTable().destroy()
                     tampilSiswa(res, tahun_ajaran)
+                    klikHapusSiswa()
                 },
                 error: function(err) {
                     console.log(err.responseText)
@@ -223,6 +224,59 @@
             $('[name="nisn"]').val('')
             $('[name="nama_siswa"]').val('')
             $('[name="file_induk"]').val('')
+        })
+    }
+
+    function klikHapusSiswa() {
+        $('.hapus-siswa').on('click', (e) => {
+            e.preventDefault()
+            let id = ''
+            let th_ajaran = ''
+            if (e.target.tagName == 'I') {
+                id = e.target.parentElement.dataset.id
+                link = e.target.parentElement.dataset.link
+            } else {
+                id = e.target.dataset.id
+                link = e.target.dataset.link
+            }
+
+            Swal.fire({
+                title: "Hapus Siswa!",
+                text: 'Apakah Anda akan menghapus data siswa?',
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Batalkan',
+                confirmButtonText: 'Ya, hapus siswa!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: '<?= base_url('buku_induk_siswa/hapus_siswa') ?>',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: {
+                            id: id,
+                            link: link
+                        },
+                        success: function(res) {
+                            if (res !== false) {
+                                $('#table-siswa').DataTable().destroy()
+                                Swal.fire(
+                                    'Terhapus!',
+                                    'Data siswa berhasil dihapus',
+                                    'success'
+                                )
+                                tampilSiswa(res, link)
+                            }
+                        },
+                        error: function(err) {
+                            console.log(err.responseText)
+                        }
+                    })
+                }
+            })
+
         })
     }
 
@@ -250,6 +304,7 @@
                 success: function(res) {
                     $('#table-siswa').DataTable().destroy()
                     tampilSiswa(res, e.target.dataset.link)
+                    klikHapusSiswa()
                     destroyModal()
                 },
                 error: function(err) {
@@ -273,7 +328,7 @@
             }
             Swal.fire({
                 title: "Hapus Buku!",
-                text: 'Apakah Anda akan menghapus buku induk tahun ajaran ' + th_ajaran + '?',
+                text: 'Apakah Anda akan menghapus buku induk lulusan tahun ajaran ' + th_ajaran + '?',
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -292,7 +347,7 @@
                         success: function(res) {
                             Swal.fire(
                                 'Terhapus!',
-                                'Buku induk tahun ajaran ' + th_ajaran + ' telah terhapus.',
+                                'Buku induk lulusan tahun ajaran ' + th_ajaran + ' telah terhapus.',
                                 'success'
                             )
                             tampilBukuInduk()
@@ -366,7 +421,7 @@
             trSiswa += '<a href="' + baseURL + 'lihat_data/' + res[i].link_file + '.pdf" target="_blank" class="badge badge-primary rounded-start" title="Lihat data"><i class="mdi mdi-file-find fs-6"></i></a>'
             trSiswa += '<a href="' + baseURL + 'download/' + res[i].link_file + '.pdf" target="_blank" class="badge badge-secondary" title="Unduh data"><i class="mdi mdi-cloud-download fs-6"></i></a>'
             trSiswa += '<span class="badge badge-warning" title="Edit data"><i class="mdi mdi-table-edit fs-6"></i></span>'
-            trSiswa += '<span class="badge badge-danger rounded-end" title="Hapus data"><i class="mdi mdi-delete-forever fs-6"></i></span>'
+            trSiswa += '<a href="" class="badge badge-danger rounded-end hapus-siswa" data-id="' + res[i].id + '" data-link="' + res[i].tahun_ajaran + '" title="Hapus data"><i class="mdi mdi-delete-forever fs-6"></i></a>'
             trSiswa += '</div>'
             trSiswa += '</td>'
             trSiswa += '</tr>'

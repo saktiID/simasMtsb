@@ -121,4 +121,20 @@ class BukuIndukSiswa extends CI_Controller
             echo json_encode($siswa);
         }
     }
+
+    /**
+     * method controller untuk menghapus data siswa
+     */
+    public function hapus_siswa()
+    {
+        $id = $this->input->post('id');
+        $link = $this->input->post('link');
+        $del = $this->bukuIndukSiswa_model->delete_siswa_by_id($id);
+        if ($del) {
+            $siswa = $this->bukuIndukSiswa_model->get_siswa_by_tahun($link);
+            echo json_encode($siswa);
+        } else {
+            echo false;
+        }
+    }
 }
