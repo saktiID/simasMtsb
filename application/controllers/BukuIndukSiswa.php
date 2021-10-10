@@ -72,33 +72,12 @@ class BukuIndukSiswa extends CI_Controller
     }
 
     /**
-     * method controller untuk lihat file pdf
-     */
-    public function lihat_data($file)
-    {
-        // $pdf_viewer = 'https://smallpdf.com/id/edit-pdf#open=';
-        // $base = base_url('upload/dokumen/bukuinduk/');
-        // redirect($pdf_viewer . $base . $file);
-        $mpdf = new \Mpdf\Mpdf();
-        $path = __DIR__ . '/../../../upload/dokumen/bukuinduk/' . $file;
-        $mpdf->SetSourceFile($path);
-        $mpdf->Output();
-    }
-
-
-    /**
      * method controller untuk download file pdf
      */
     public function download($file)
     {
-        $path = file_get_contents(base_url() . '/upload/dokumen/bukuinduk/') . $file;
-        if (force_download($path, NULL)) {
-            $base = base_url('upload/dokumen/bukuinduk/');
-            redirect($base . $file);
-        } else {
-            $base = base_url('upload/dokumen/bukuinduk/');
-            redirect($base . $file);
-        }
+        $base = base_url('upload/dokumen/bukuinduk/');
+        redirect($base . $file);
     }
 
     /**
@@ -123,6 +102,20 @@ class BukuIndukSiswa extends CI_Controller
     }
 
     /**
+     * method controller untuk upload file
+     */
+    public function upload_file()
+    {
+        if (isset($_FILES['file']['name'])) {
+            $config['upload_path'] = '.upload/dokumen/bukuinduk/';
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('file')) {
+                echo $this->upload->display_errors();
+            }
+        }
+    }
+
+    /**
      * method controller untuk menghapus data siswa
      */
     public function hapus_siswa()
@@ -136,5 +129,20 @@ class BukuIndukSiswa extends CI_Controller
         } else {
             echo false;
         }
+    }
+
+    /**
+     * method controller untuk update data table siswa
+     */
+    public function ubah_data_siswa()
+    {
+        $arr = [
+            'nisn' => strval($this->input->post('nisn')),
+            'nama_siswa' => $this->input->post('nama_siswa'),
+            'id' => $this->input->post('id'),
+        ];
+
+        $update = $this->bukuIndukSiswa_model->set_siswa_by_id($arr);
+        echo json_encode($update);
     }
 }

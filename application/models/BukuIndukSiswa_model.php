@@ -60,4 +60,15 @@ class BukuIndukSiswa_model extends CI_Model
         $this->db->where('id', $id);
         return $this->db->delete('buku_siswa');
     }
+
+    /**
+     * method model update data siswa by id
+     */
+    public function set_siswa_by_id($arr)
+    {
+        $this->db->set('nisn', $arr['nisn']);
+        $this->db->set('nama_siswa', $arr['nama_siswa']);
+        $this->db->where('id', $arr['id']);
+        return $this->db->update('buku_siswa');
+    }
 }

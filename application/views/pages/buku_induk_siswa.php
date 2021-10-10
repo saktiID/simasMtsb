@@ -46,8 +46,6 @@
 
                 </div>
 
-
-
             </div>
         </div>
     </div>
@@ -68,7 +66,6 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h4 class="card-title">Tambah Data Induk Siswa</h4>
-
                             <input type="text" name="tahun_ajaran" id="th_ajar" hidden>
                             <div class="row">
                                 <div class="col-md-6">
@@ -88,29 +85,30 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">File Induk</label>
-                                        <div class="col-sm-9">
-                                            <input type="file" class="form-control" name="file_induk">
+                            <form method="POST" id="form-upload" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">File Induk</label>
+                                            <div class="col-sm-9">
+                                                <input type="file" class="form-control" name="file_induk" accept=".pdf">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <button type="submit" class="btn btn-success btn-upload-allrecord">
+                                                    <svg style="width:20px;height:20px" viewBox="0 0 24 24">
+                                                        <path fill="currentColor" d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"></path>
+                                                    </svg>
+                                                    <span>Upload</span>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <div class="col-sm-12">
-                                            <button type="submit" class="btn btn-success btn-upload-allrecord">
-                                                <svg style="width:20px;height:20px" viewBox="0 0 24 24">
-                                                    <path fill="currentColor" d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"></path>
-                                                </svg>
-                                                <span>Upload</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                            </form>
                         </div>
                     </div>
 
@@ -158,65 +156,84 @@
 
         // prepare tambah data buku induk
         klikTambahBukuInduk()
+
+        // prepare upload record
+        klikUpload()
     })
 
-    $('.btn-upload-allrecord').on('click', () => {
+    function klikUpload() {
 
-        // prepare data
-        let nisn = $('[name="nisn"]').val()
-        let nama_siswa = $('[name="nama_siswa"]').val()
-        let tahun_ajaran = $('[name="tahun_ajaran"]').val()
-        let file_induk = $('[name="file_induk"]').val()
+        // file uploader
+        $('#form-upload').on('submit', (e) => {
+            e.preventDefault()
+        })
 
-        // validator
-        if (nisn == '' || nama_siswa == '') {
-            Swal.fire({
-                position: 'center',
-                icon: 'warning',
-                title: 'Oops..',
-                text: 'Ada kolom yang belum terisi',
-                showConfirmButton: false,
-                timer: 1500
-            })
-        } else {
-            // interface uploading
-            $('.btn-upload-allrecord span').text('Sedang mengaupload')
+        $('.btn-upload-allrecord').on('click', () => {
 
-            $.ajax({
-                url: '<?= base_url('buku_induk_siswa/upload_data_siswa') ?>',
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    nisn: nisn,
-                    nama_siswa: nama_siswa,
-                    tahun_ajaran: tahun_ajaran,
-                },
-                success: function(res) {
+            // prepare data
+            let nisn = $('[name="nisn"]').val()
+            let nama_siswa = $('[name="nama_siswa"]').val()
+            let tahun_ajaran = $('[name="tahun_ajaran"]').val()
+            let file_induk = $('[name="file_induk"]').val()
+
+            // validator
+            if (nisn == '' || nama_siswa == '') {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'warning',
+                    title: 'Oops..',
+                    text: 'Ada kolom yang belum terisi',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            } else {
+                if ($.isNumeric(nisn)) {
+
+                    // interface uploading
+                    $('.btn-upload-allrecord span').text('Sedang mengaupload')
+
+                    $.ajax({
+                        url: '<?= base_url('buku_induk_siswa/upload_data_siswa') ?>',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            nisn: nisn,
+                            nama_siswa: nama_siswa,
+                            tahun_ajaran: tahun_ajaran,
+                        },
+                        success: function(res) {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Berhasil upload data siswa',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            $('[name="nisn"]').val('')
+                            $('[name="nama_siswa"]').val('')
+                            $('[name="file_induk"]').val('')
+                            $('.btn-upload-allrecord span').text('Upload')
+                            $('#table-siswa').DataTable().destroy()
+                            tampilSiswa(res, tahun_ajaran)
+                            klikHapusSiswa()
+                        },
+                        error: function(err) {
+                            console.log(err.responseText)
+                        }
+                    })
+                } else {
                     Swal.fire({
                         position: 'center',
-                        icon: 'success',
-                        title: 'Berhasil upload data siswa',
+                        icon: 'warning',
+                        title: 'Oops..',
+                        text: 'NISN harus berupa angka!',
                         showConfirmButton: false,
                         timer: 1500
                     })
-                    $('[name="nisn"]').val('')
-                    $('[name="nama_siswa"]').val('')
-                    $('[name="file_induk"]').val('')
-                    $('.btn-upload-allrecord span').text('Upload')
-                    $('#table-siswa').DataTable().destroy()
-                    tampilSiswa(res, tahun_ajaran)
-                    klikHapusSiswa()
-                },
-                error: function(err) {
-                    console.log(err.responseText)
                 }
-
-            })
-        }
-
-    })
-
-
+            }
+        })
+    }
 
     function destroyModal() {
         $('#bukuIndukModal').on('hidden.bs.modal', () => {
@@ -231,7 +248,7 @@
         $('.hapus-siswa').on('click', (e) => {
             e.preventDefault()
             let id = ''
-            let th_ajaran = ''
+            let link = ''
             if (e.target.tagName == 'I') {
                 id = e.target.parentElement.dataset.id
                 link = e.target.parentElement.dataset.link
@@ -404,23 +421,21 @@
     function tampilSiswa(res, link) {
 
         let trSiswa = ''
-        let baseURL = '<?= base_url("buku_induk_siswa/") ?>'
         for (let i = 0; i < Object.keys(res).length; i++) {
-            trSiswa += '<tr>'
+            trSiswa += '<tr class="tr-' + res[i].id + '">'
             trSiswa += '<td>'
             trSiswa += i + 1
             trSiswa += '</td>'
-            trSiswa += '<td>'
+            trSiswa += '<td class="td-nisn">'
             trSiswa += res[i].nisn
             trSiswa += '</td>'
-            trSiswa += '<td>'
+            trSiswa += '<td class="td-nama_siswa">'
             trSiswa += res[i].nama_siswa
             trSiswa += '</td>'
             trSiswa += '<td class="text-center">'
             trSiswa += '<div class="btn-group" role="group">'
-            trSiswa += '<a href="' + baseURL + 'lihat_data/' + res[i].link_file + '.pdf" target="_blank" class="badge badge-primary rounded-start" title="Lihat data"><i class="mdi mdi-file-find fs-6"></i></a>'
-            trSiswa += '<a href="' + baseURL + 'download/' + res[i].link_file + '.pdf" target="_blank" class="badge badge-secondary" title="Unduh data"><i class="mdi mdi-cloud-download fs-6"></i></a>'
-            trSiswa += '<span class="badge badge-warning" title="Edit data"><i class="mdi mdi-table-edit fs-6"></i></span>'
+            trSiswa += '<a href="" target="_blank" class="badge badge-secondary rounded-start btn-download" data-file="' + res[i].link_file + '" title="Unduh data"><i class="mdi mdi-cloud-download fs-6"></i></a>'
+            trSiswa += '<a href="" class="badge badge-warning btn-edit" data-id="' + res[i].id + '" title="Edit data"><i class="mdi mdi-table-edit fs-6"></i></a>'
             trSiswa += '<a href="" class="badge badge-danger rounded-end hapus-siswa" data-id="' + res[i].id + '" data-link="' + res[i].tahun_ajaran + '" title="Hapus data"><i class="mdi mdi-delete-forever fs-6"></i></a>'
             trSiswa += '</div>'
             trSiswa += '</td>'
@@ -432,6 +447,9 @@
                 prosessing: true,
                 autoWidth: false,
             })
+            klikHapusSiswa()
+            klikEdit()
+            klikDownload()
         } else {
             $('#table-siswa').DataTable().clear().draw()
         }
@@ -470,6 +488,131 @@
             error: function(err) {
                 console.log(err.responseText)
             }
+        })
+    }
+
+    function klikEdit() {
+        $('.btn-edit').on('click', (e) => {
+            e.preventDefault()
+
+            // cek ada editing lain atau tidak
+            if ($('.simpan-edit')[0]) {
+                // ketika ada
+                Swal.fire({
+                    position: 'center',
+                    icon: 'warning',
+                    title: 'Oops..',
+                    text: 'Ada data yang belum disimpan',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            } else {
+                // ketika tidak ada
+                // cari data
+                let trId = ''
+                if (e.target.tagName == 'I') {
+                    trId = e.target.parentElement.dataset.id
+                } else {
+                    trId = e.target.dataset.id
+                }
+
+                // convert to editable element
+                $('.tr-' + trId + ' .td-nisn').attr('contenteditable', 'true').focus()
+                $('.tr-' + trId + ' .td-nama_siswa').attr('contenteditable', 'true')
+
+                // add save button
+                let ok = '<a href="" class="badge badge-primary mr-2 simpan-edit" data-id="' + trId + '" title="Simpan"><i class="mdi mdi-checkbox-marked-circle-outline fs-6"></i></a>'
+                $('.tr-' + trId + ' td .btn-group').prepend(ok)
+
+                // on click save btn
+                $('.simpan-edit').on('click', (e) => {
+                    e.preventDefault()
+
+                    // inialisasi
+                    let newNisn = $('.tr-' + trId + ' .td-nisn').text()
+                    let newNamaSiswa = $('.tr-' + trId + ' .td-nama_siswa').text()
+
+                    // cek nisn
+                    if ($.isNumeric(newNisn)) {
+
+                        // update data siswa
+                        $.ajax({
+                            url: '<?= base_url('buku_induk_siswa/ubah_data_siswa') ?>',
+                            method: 'POST',
+                            dataType: 'json',
+                            data: {
+                                nisn: newNisn,
+                                nama_siswa: newNamaSiswa,
+                                id: trId
+                            },
+                            success: function(res) {
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: 'Hurray',
+                                    text: 'Berhasil edit data siswa',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+
+                                // update state datatable
+                                $('#table-siswa').DataTable().destroy()
+                                $('#table-siswa').DataTable()
+
+                            },
+                            error: function(err) {
+                                console.log(err.responseText)
+                            }
+                        })
+
+                        // hilangkan attribute editable
+                        $('.tr-' + trId + ' .td-nisn').attr('contenteditable', 'false')
+                        $('.tr-' + trId + ' .td-nama_siswa').attr('contenteditable', 'false')
+
+                        // hilangkan btn save
+                        $('.simpan-edit').remove()
+                    } else {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'Oops..',
+                            text: 'NISN harus berupa angka',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                })
+            }
+        })
+    }
+
+    function klikDownload() {
+        $('.btn-download').on('click', (e) => {
+            e.preventDefault()
+            // cari data
+            let fileName = ''
+            if (e.target.tagName == 'I') {
+                fileName = e.target.parentElement.dataset.file
+            } else {
+                fileName = e.target.dataset.file
+            }
+
+            // ketika belum upload file
+            if (fileName == '') {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'warning',
+                    title: 'Oops..',
+                    text: 'File belum diupload',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            } else {
+                // ketika file ada
+                let url = '<?= base_url('buku_induk_siswa/download/') ?>' + fileName + '.pdf'
+                window.open(url, '_blank');
+            }
+
         })
     }
 </script>
