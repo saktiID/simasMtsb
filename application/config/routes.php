@@ -81,6 +81,5 @@ $route['buku_induk_siswa/tampil_siswa_by_tahun'] = 'bukuIndukSiswa/tampil_siswa_
 $route['buku_induk_siswa/lihat_data/(:any)'] = 'bukuIndukSiswa/lihat_data/$1';
 $route['buku_induk_siswa/download/(:any)'] = 'bukuIndukSiswa/download/$1';
 $route['buku_induk_siswa/upload_data_siswa'] = 'bukuIndukSiswa/upload_data_siswa';
-$route['buku_induk_siswa/upload_file'] = 'bukuIndukSiswa/upload_file';
 $route['buku_induk_siswa/hapus_siswa'] = 'bukuIndukSiswa/hapus_siswa';
 $route['buku_induk_siswa/ubah_data_siswa'] = 'bukuIndukSiswa/ubah_data_siswa';

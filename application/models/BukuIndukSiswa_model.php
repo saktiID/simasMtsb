@@ -71,4 +71,22 @@ class BukuIndukSiswa_model extends CI_Model
         $this->db->where('id', $arr['id']);
         return $this->db->update('buku_siswa');
     }
+
+    /**
+     * method model get siswa by nisn
+     */
+    public function get_siswa_by_nisn($nisn)
+    {
+        $this->db->where('nisn', $nisn);
+        return  $this->db->get('buku_siswa')->result_array();
+    }
+
+    /**
+     * method model get siswa by id
+     */
+    public function get_siswa_by_id($id)
+    {
+        $this->db->where('id', $id);
+        return  $this->db->get('buku_siswa')->result_array();
+    }
 }

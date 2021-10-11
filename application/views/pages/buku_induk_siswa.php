@@ -85,30 +85,34 @@
                                     </div>
                                 </div>
                             </div>
-                            <form method="POST" id="form-upload" enctype="multipart/form-data">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">File Induk</label>
-                                            <div class="col-sm-9">
-                                                <input type="file" class="form-control" name="file_induk" accept=".pdf">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <div class="col-sm-12">
-                                                <button type="submit" class="btn btn-success btn-upload-allrecord">
-                                                    <svg style="width:20px;height:20px" viewBox="0 0 24 24">
-                                                        <path fill="currentColor" d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"></path>
-                                                    </svg>
-                                                    <span>Upload</span>
-                                                </button>
-                                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">File Induk</label>
+                                        <div class="col-sm-9">
+                                            <input type="file" class="form-control" name="file_induk" id="file_induk" accept=".pdf">
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <button type="submit" class="btn btn-success btn-upload-allrecord">
+                                                <svg style="width:20px;height:20px" viewBox="0 0 24 24">
+                                                    <path fill="currentColor" d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"></path>
+                                                </svg>
+                                                <span>Upload</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="progress" style="display: none;">
+                                <div class="progress-bar bg-success" role="progressbar" id="progressBar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+
+
                         </div>
                     </div>
 
@@ -163,21 +167,17 @@
 
     function klikUpload() {
 
-        // file uploader
-        $('#form-upload').on('submit', (e) => {
-            e.preventDefault()
-        })
-
         $('.btn-upload-allrecord').on('click', () => {
 
             // prepare data
             let nisn = $('[name="nisn"]').val()
             let nama_siswa = $('[name="nama_siswa"]').val()
             let tahun_ajaran = $('[name="tahun_ajaran"]').val()
-            let file_induk = $('[name="file_induk"]').val()
+            let file_val = $('#file_induk').val()
+            let fileupload = $('#file_induk').prop('files')[0]
 
             // validator
-            if (nisn == '' || nama_siswa == '') {
+            if (nisn == '' || nama_siswa == '' || file_val == '') {
                 Swal.fire({
                     position: 'center',
                     icon: 'warning',
@@ -187,25 +187,45 @@
                     timer: 1500
                 })
             } else {
+                // cek nisn = angka
                 if ($.isNumeric(nisn)) {
 
                     // interface uploading
                     $('.btn-upload-allrecord span').text('Sedang mengaupload')
+                    $('.progress').show()
+
+                    // instansiasi formData
+                    let formData = new FormData()
+                    formData.append('fileupload', fileupload)
+                    formData.append('nisn', nisn)
+                    formData.append('nama_siswa', nama_siswa)
+                    formData.append('tahun_ajaran', tahun_ajaran)
 
                     $.ajax({
                         url: '<?= base_url('buku_induk_siswa/upload_data_siswa') ?>',
                         type: 'POST',
                         dataType: 'json',
-                        data: {
-                            nisn: nisn,
-                            nama_siswa: nama_siswa,
-                            tahun_ajaran: tahun_ajaran,
-                        },
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        data: formData,
                         success: function(res) {
+                            // ketika nisn sudah ada
+                            if (res[0] == 1) {
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'warning',
+                                    title: 'Oops...',
+                                    text: 'NISN sudah terdaftar dengan nama "' + res[1][0].nama_siswa + '" lulusan tahun ' + res[1][0].tahun_ajaran,
+                                })
+                                $('.btn-upload-allrecord span').text('Upload')
+                                return false
+                            }
                             Swal.fire({
                                 position: 'center',
                                 icon: 'success',
-                                title: 'Berhasil upload data siswa',
+                                title: 'Hurray',
+                                text: 'Berhasil upload data siswa',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -216,10 +236,32 @@
                             $('#table-siswa').DataTable().destroy()
                             tampilSiswa(res, tahun_ajaran)
                             klikHapusSiswa()
+                            setTimeout(() => {
+                                $('.progress').hide()
+                                $('#progressBar').attr('aria-valuenow', 0).css('width', 0 + '%')
+                            }, 2500)
                         },
                         error: function(err) {
                             console.log(err.responseText)
-                        }
+                        },
+                        xhr: function() {
+                            var xhr = new window.XMLHttpRequest();
+                            xhr.upload.addEventListener('progress', function(e) {
+                                if (e.lengthComputable) {
+                                    /**
+                                     * contekan
+                                     * =========================================
+                                     * console.log('Bytes Loaded : ' + e.loaded)
+                                     * console.log('Total Size : ' + e.total)
+                                     * console.log('Persen : ' + (e.loaded / e.total))
+                                     */
+
+                                    var percent = Math.round((e.loaded / e.total) * 100)
+                                    $('#progressBar').attr('aria-valuenow', percent).css('width', percent + '%')
+                                }
+                            });
+                            return xhr;
+                        },
                     })
                 } else {
                     Swal.fire({
@@ -278,6 +320,25 @@
                         },
                         success: function(res) {
                             if (res !== false) {
+                                // ketika gagal hapus file
+                                if (res == 1) {
+                                    Swal.fire(
+                                        'Oops..',
+                                        'Gagal hapus file!',
+                                        'warning'
+                                    )
+                                    return false
+                                }
+                                // ketika gagal hapus data
+                                if (res == 2) {
+                                    Swal.fire(
+                                        'Oops..',
+                                        'Gagal hapus data siswa!',
+                                        'warning'
+                                    )
+                                    return false
+                                }
+
                                 $('#table-siswa').DataTable().destroy()
                                 Swal.fire(
                                     'Terhapus!',
@@ -288,6 +349,11 @@
                             }
                         },
                         error: function(err) {
+                            Swal.fire(
+                                'Oops..',
+                                'Gagal hapus file! mungkin file sedang digunakan. Silahkan coba tutup semua aplikasi yang membuka file tersebut.',
+                                'warning'
+                            )
                             console.log(err.responseText)
                         }
                     })

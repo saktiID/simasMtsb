@@ -85,32 +85,42 @@ class BukuIndukSiswa extends CI_Controller
      */
     public function upload_data_siswa()
     {
-        // prepare data
-        $arr = [
-            'nisn' =>  $this->input->post('nisn'),
-            'nama_siswa' => $this->input->post('nama_siswa'),
-            'tahun_ajaran' => $this->input->post('tahun_ajaran'),
-        ];
-
-        // query insert data dengan model
-        $insert = $this->bukuIndukSiswa_model->insert_data_siswa($arr);
-        if ($insert) {
-            // query reload ajax data siswa
-            $siswa = $this->bukuIndukSiswa_model->get_siswa_by_tahun($arr['tahun_ajaran']);
-            echo json_encode($siswa);
+        // cek nisn sudah ada atau belum
+        $nisn = $this->input->post('nisn');
+        $query = $this->bukuIndukSiswa_model->get_siswa_by_nisn($nisn);
+        if (count($query) > 0) {
+            $found = [1, $query];
+            echo json_encode($found);
+            die;
         }
-    }
 
-    /**
-     * method controller untuk upload file
-     */
-    public function upload_file()
-    {
-        if (isset($_FILES['file']['name'])) {
-            $config['upload_path'] = '.upload/dokumen/bukuinduk/';
+        if (isset($_FILES['fileupload']['name'])) {
+
+            // upload file
+            $config['upload_path'] = './upload/dokumen/bukuinduk/';
+            $config['allowed_types'] = 'pdf';
+            $config['file_type']     = 'application/pdf';
+            $config['file_name']     = 'data_induk_' . $_POST['nisn'] . '.pdf';
             $this->load->library('upload', $config);
-            if (!$this->upload->do_upload('file')) {
+            if (!$this->upload->do_upload('fileupload')) {
                 echo $this->upload->display_errors();
+                die;
+            }
+
+            // prepare data
+            $arr = [
+                'nisn' =>  $this->input->post('nisn'),
+                'nama_siswa' => $this->input->post('nama_siswa'),
+                'tahun_ajaran' => $this->input->post('tahun_ajaran'),
+                'link_file' => 'data_induk_' . $this->input->post('nisn'),
+            ];
+
+            // query insert data dengan model
+            $insert = $this->bukuIndukSiswa_model->insert_data_siswa($arr);
+            if ($insert) {
+                // query reload ajax data siswa
+                $siswa = $this->bukuIndukSiswa_model->get_siswa_by_tahun($arr['tahun_ajaran']);
+                echo json_encode($siswa);
             }
         }
     }
@@ -120,14 +130,21 @@ class BukuIndukSiswa extends CI_Controller
      */
     public function hapus_siswa()
     {
+        // unlink file
         $id = $this->input->post('id');
-        $link = $this->input->post('link');
-        $del = $this->bukuIndukSiswa_model->delete_siswa_by_id($id);
-        if ($del) {
-            $siswa = $this->bukuIndukSiswa_model->get_siswa_by_tahun($link);
-            echo json_encode($siswa);
+        $found = $this->bukuIndukSiswa_model->get_siswa_by_id($id);
+        $path = './upload/dokumen/bukuinduk/' . $found[0]['link_file'] . '.pdf';
+        if (unlink($path)) {
+            $link = $this->input->post('link');
+            $del = $this->bukuIndukSiswa_model->delete_siswa_by_id($id);
+            if ($del) {
+                $siswa = $this->bukuIndukSiswa_model->get_siswa_by_tahun($link);
+                echo json_encode($siswa);
+            } else {
+                echo 2;
+            }
         } else {
-            echo false;
+            echo 1;
         }
     }
 
