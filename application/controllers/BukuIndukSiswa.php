@@ -92,35 +92,34 @@ class BukuIndukSiswa extends CI_Controller
             $found = [1, $query];
             echo json_encode($found);
             die;
-        }
+        } else {
+            if (isset($_FILES['fileupload']['name'])) {
+                // upload file
+                $config['upload_path'] = './upload/dokumen/bukuinduk/';
+                $config['allowed_types'] = 'pdf';
+                $config['file_type']     = 'application/pdf';
+                $config['file_name']     = 'data_induk_' . $_POST['nisn'] . '.pdf';
+                $this->load->library('upload', $config);
+                if (!$this->upload->do_upload('fileupload')) {
+                    echo $this->upload->display_errors();
+                    die;
+                }
 
-        if (isset($_FILES['fileupload']['name'])) {
+                // prepare data
+                $arr = [
+                    'nisn' =>  $this->input->post('nisn'),
+                    'nama_siswa' => $this->input->post('nama_siswa'),
+                    'tahun_ajaran' => $this->input->post('tahun_ajaran'),
+                    'link_file' => 'data_induk_' . $this->input->post('nisn'),
+                ];
 
-            // upload file
-            $config['upload_path'] = './upload/dokumen/bukuinduk/';
-            $config['allowed_types'] = 'pdf';
-            $config['file_type']     = 'application/pdf';
-            $config['file_name']     = 'data_induk_' . $_POST['nisn'] . '.pdf';
-            $this->load->library('upload', $config);
-            if (!$this->upload->do_upload('fileupload')) {
-                echo $this->upload->display_errors();
-                die;
-            }
-
-            // prepare data
-            $arr = [
-                'nisn' =>  $this->input->post('nisn'),
-                'nama_siswa' => $this->input->post('nama_siswa'),
-                'tahun_ajaran' => $this->input->post('tahun_ajaran'),
-                'link_file' => 'data_induk_' . $this->input->post('nisn'),
-            ];
-
-            // query insert data dengan model
-            $insert = $this->bukuIndukSiswa_model->insert_data_siswa($arr);
-            if ($insert) {
-                // query reload ajax data siswa
-                $siswa = $this->bukuIndukSiswa_model->get_siswa_by_tahun($arr['tahun_ajaran']);
-                echo json_encode($siswa);
+                // query insert data dengan model
+                $insert = $this->bukuIndukSiswa_model->insert_data_siswa($arr);
+                if ($insert) {
+                    // query reload ajax data siswa
+                    $siswa = $this->bukuIndukSiswa_model->get_siswa_by_tahun($arr['tahun_ajaran']);
+                    echo json_encode($siswa);
+                }
             }
         }
     }
