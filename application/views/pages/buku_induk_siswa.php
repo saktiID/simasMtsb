@@ -219,27 +219,29 @@
                                     text: 'NISN sudah terdaftar dengan nama "' + res[1][0].nama_siswa + '" lulusan tahun ' + res[1][0].tahun_ajaran,
                                 })
                                 $('.btn-upload-allrecord span').text('Upload')
-                                return false
-                            }
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'success',
-                                title: 'Hurray',
-                                text: 'Berhasil upload data siswa',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                            $('[name="nisn"]').val('')
-                            $('[name="nama_siswa"]').val('')
-                            $('[name="file_induk"]').val('')
-                            $('.btn-upload-allrecord span').text('Upload')
-                            $('#table-siswa').DataTable().destroy()
-                            tampilSiswa(res, tahun_ajaran)
-                            klikHapusSiswa()
-                            setTimeout(() => {
                                 $('.progress').hide()
-                                $('#progressBar').attr('aria-valuenow', 0).css('width', 0 + '%')
-                            }, 500)
+                                return false
+                            } else {
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: 'Hurray',
+                                    text: 'Berhasil upload data siswa',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                                $('[name="nisn"]').val('')
+                                $('[name="nama_siswa"]').val('')
+                                $('[name="file_induk"]').val('')
+                                $('.btn-upload-allrecord span').text('Upload')
+                                $('#table-siswa').DataTable().destroy()
+                                tampilSiswa(res, tahun_ajaran)
+                                klikHapusSiswa()
+                                setTimeout(() => {
+                                    $('.progress').hide()
+                                    $('#progressBar').attr('aria-valuenow', 0).css('width', 0 + '%')
+                                }, 500)
+                            }
                         },
                         error: function(err) {
                             console.log(err.responseText)
