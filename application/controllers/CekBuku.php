@@ -81,5 +81,7 @@ class CekBuku extends CI_Controller
             $this->session->set_flashdata('msg', '<script>Swal.fire({ title: "Berhasil!", text: "Berhasil menolak file", icon: "success", }); </script>');
             redirect('cekbuku/detail/' . $target);
         }
+
+        redirect('cekbuku/detail/' . $target);
     }
 }

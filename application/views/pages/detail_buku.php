@@ -118,7 +118,14 @@
             confirmButtonText: 'Iya, tolak file!'
         }).then((result) => {
             if (result.value) {
-                window.location.replace(e.target.href)
+                let link = ''
+                if (e.target.tagName == 'I') {
+                    link = e.target.parentElement.href
+                    window.location.replace(link)
+                } else {
+                    console.log(e.target.href)
+                    window.location.replace(e.target.href)
+                }
             }
         })
     })
@@ -136,7 +143,14 @@
             confirmButtonText: 'Iya, setujui file!'
         }).then((result) => {
             if (result.value) {
-                window.location.replace(e.target.href)
+                let link = ''
+                if (e.target.tagName == 'I') {
+                    link = e.target.parentElement.href
+                    window.location.replace(link)
+                } else {
+                    console.log(e.target.href)
+                    window.location.replace(e.target.href)
+                }
             }
         })
     })

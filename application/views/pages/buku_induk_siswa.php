@@ -502,7 +502,7 @@
             trSiswa += '<div class="btn-group" role="group">'
             trSiswa += '<a href="" target="_blank" class="badge badge-secondary rounded-start btn-download" data-file="' + res[i].link_file + '" title="Unduh data"><i class="mdi mdi-cloud-download fs-6"></i></a>'
             trSiswa += '<a href="" class="badge badge-warning btn-edit" data-id="' + res[i].id + '" title="Edit data"><i class="mdi mdi-table-edit fs-6"></i></a>'
-            trSiswa += '<a href="" class="badge badge-danger rounded-end hapus-siswa" data-id="' + res[i].id + '" data-link="' + res[i].tahun_ajaran + '" title="Hapus data"><i class="mdi mdi-delete-forever fs-6"></i></a>'
+            trSiswa += '<a href="" class="badge badge-danger rounded-end hapus-siswa" onclick="klikHapusSiswa()" data-id="' + res[i].id + '" data-link="' + res[i].tahun_ajaran + '" title="Hapus data"><i class="mdi mdi-delete-forever fs-6"></i></a>'
             trSiswa += '</div>'
             trSiswa += '</td>'
             trSiswa += '</tr>'
