@@ -239,7 +239,7 @@
                             setTimeout(() => {
                                 $('.progress').hide()
                                 $('#progressBar').attr('aria-valuenow', 0).css('width', 0 + '%')
-                            }, 2000)
+                            }, 500)
                         },
                         error: function(err) {
                             console.log(err.responseText)
