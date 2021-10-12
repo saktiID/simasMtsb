@@ -220,6 +220,7 @@
                                 })
                                 $('.btn-upload-allrecord span').text('Upload')
                                 $('.progress').hide()
+                                $('#progressBar').attr('aria-valuenow', 0).css('width', 0 + '%')
                                 return false
                             } else {
                                 Swal.fire({
