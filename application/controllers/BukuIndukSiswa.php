@@ -98,7 +98,7 @@ class BukuIndukSiswa extends CI_Controller
                 $config['upload_path'] = './upload/dokumen/bukuinduk/';
                 $config['allowed_types'] = 'pdf';
                 $config['file_type']     = 'application/pdf';
-                $config['file_name']     = 'data_induk_' . $_POST['nisn'] . '.pdf';
+                $config['file_name']     = 'data_induk_' . trim($_POST['nisn']) . '.pdf';
                 $this->load->library('upload', $config);
                 if (!$this->upload->do_upload('fileupload')) {
                     echo $this->upload->display_errors();
@@ -110,7 +110,7 @@ class BukuIndukSiswa extends CI_Controller
                     'nisn' =>  $this->input->post('nisn'),
                     'nama_siswa' => $this->input->post('nama_siswa'),
                     'tahun_ajaran' => $this->input->post('tahun_ajaran'),
-                    'link_file' => 'data_induk_' . $this->input->post('nisn'),
+                    'link_file' => 'data_induk_' . trim($this->input->post('nisn')),
                 ];
 
                 // query insert data dengan model
