@@ -523,9 +523,6 @@
                 prosessing: true,
                 autoWidth: false,
             })
-            $('#table-siswa').keypress(() => {
-                console.log('ok')
-            })
             $('.dataTables_wrapper input').keypress(() => {
                 klikHapusSiswa()
                 console.log('del')
