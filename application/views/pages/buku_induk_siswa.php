@@ -528,6 +528,7 @@
             })
             $('.dataTables_wrapper input').keypress(() => {
                 klikHapusSiswa()
+                console.log('del')
             })
             klikHapusSiswa()
             klikEdit($('.btn-edit'))
