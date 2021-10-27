@@ -525,7 +525,8 @@
             })
             $('.dataTables_wrapper input').on("input", () => {
                 klikHapusSiswa()
-                console.log('del')
+                klikEdit($('.btn-edit'))
+                klikDownload()
             })
             klikHapusSiswa()
             klikEdit($('.btn-edit'))
