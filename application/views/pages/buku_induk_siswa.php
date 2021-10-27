@@ -526,7 +526,9 @@
             $('#table-siswa').keypress(() => {
                 console.log('ok')
             })
-            $('.dataTables_wrapper input').keypress(() => klikHapusSiswa())
+            $('.dataTables_wrapper input').keypress(() => {
+                klikHapusSiswa()
+            })
             klikHapusSiswa()
             klikEdit($('.btn-edit'))
             klikDownload()
