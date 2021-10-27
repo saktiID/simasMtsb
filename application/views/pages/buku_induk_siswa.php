@@ -523,6 +523,10 @@
                 prosessing: true,
                 autoWidth: false,
             })
+            $('#table-siswa').keypress(() => {
+                console.log('ok')
+            })
+            $('.dataTables_wrapper input').keypress(() => klikHapusSiswa())
             klikHapusSiswa()
             klikEdit($('.btn-edit'))
             klikDownload()
