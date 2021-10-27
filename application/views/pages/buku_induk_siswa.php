@@ -354,7 +354,7 @@
                         error: function(err) {
                             Swal.fire(
                                 'Oops..',
-                                'Gagal hapus file! mungkin file sedang digunakan. Silahkan coba tutup semua aplikasi yang membuka file tersebut.',
+                                'Gagal hapus file! mungkin file sedang digunakan atau tidak tersedia. Silahkan coba tutup semua aplikasi yang membuka file tersebut.',
                                 'warning'
                             )
                             console.log(err.responseText)
