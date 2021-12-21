@@ -41,6 +41,9 @@ class BukuKerja_model extends CI_Model
     }
 
 
+    /**
+     * method model for get record buku kerja
+     */
     public function get_record_buku()
     {
         $this->db->order_by('users.nama', 'ASC');
