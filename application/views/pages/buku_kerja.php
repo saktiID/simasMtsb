@@ -158,7 +158,7 @@
                             </select>
                         </div>
                         <div class="col mb-3">
-                            <input class="form-control form-control-sm inputan" title="Pilih file format PDF" type="file" id="formFile" name="userfile" required>
+                            <input class="form-control form-control-sm inputan" title="Pilih file format PDF" type="file" id="formFile" name="userfile" accept=".pdf" required>
                         </div>
 
                     </div>
