@@ -117,7 +117,8 @@ class BukuKerja extends CI_Controller
         $pdf_viewer = 'https://smallpdf.com/id/edit-pdf#open=';
         $base = base_url('upload/dokumen/bukukerja/');
         $url = str_replace('%20', '_', $url);
-        redirect($pdf_viewer . $base . $url);
+        // redirect($pdf_viewer . $base . $url);
+        redirect($base . $url);
     }
 
     public function delete($record_id, $file)
