@@ -25,9 +25,11 @@
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
     <!-- swal -->
     <script src="<?= base_url('assets/sweetalert/') ?>dist/sweetalert2.all.min.js"></script>
-
+    <!-- responsive voice -->
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=qprkM1NX"></script>
 
 
 
