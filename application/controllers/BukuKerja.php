@@ -13,15 +13,17 @@ class BukuKerja extends CI_Controller
         $this->load->model('kelas_model');
     }
 
-    public function index($tahun = 0)
+    public function index()
     {
-        if ($tahun == 0) {
+        if (!isset($_GET['tahun'])) {
             $currentTahun = date('Y');
             $currentBulan = date('m');
             if ($currentBulan > 6) {
                 $tahunSmt2 = $currentTahun + 1;
                 $tahun = $currentTahun . '-' . $tahunSmt2;
             }
+        } else {
+            $tahun = $_GET['tahun'];
         }
         $user_id = $this->Users_model->get_user_auth($this->session->userdata('username'))['id'];
         $data = [

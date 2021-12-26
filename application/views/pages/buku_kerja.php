@@ -302,7 +302,7 @@
 
     function slideTahun() {
         let tahun = $('[name="tahun"]').val()
-        let linkTarget = '<?= base_url('bukukerja/') ?>' + tahun
+        let linkTarget = '<?= base_url('bukukerja?tahun=') ?>' + tahun
         location.replace(linkTarget)
     }
 </script>
