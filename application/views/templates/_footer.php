@@ -45,6 +45,19 @@
         $(document).ready(function() {
             $('#table').DataTable();
         });
+
+        /**
+         * table semester 1
+         */
+        $(document).ready(function() {
+            $('#table_smt1').DataTable()
+        })
+        /**
+         * table semester 2
+         */
+        $(document).ready(function() {
+            $('#table_smt2').DataTable()
+        })
     </script>
     <!-- end run -->
     </body>
