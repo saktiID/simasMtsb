@@ -33,19 +33,32 @@ class CekBuku extends CI_Controller
         $this->load->view('templates/_footer');
     }
 
-    public function detail($id = 0)
+    public function detail($id = 0, $tahun = 0)
     {
         if ($id == 0) {
             redirect('staff/cekbuku');
         } else {
+
+            if ($tahun == 0) {
+                $currentTahun = date('Y');
+                $currentBulan = date('m');
+                if ($currentBulan > 6) {
+                    $tahunSmt2 = $currentTahun + 1;
+                    $tahun = $currentTahun . '-' . $tahunSmt2;
+                }
+            }
+
             $data = [
-                'title' => 'Cek Buku Kerja',
+                'title' => 'Buku ' . $this->Users_model->get_by_id($id)['nama'],
                 'user' => $this->Users_model->get_user_auth($this->session->userdata('username')),
                 'cek_buku' => $this->bukuKerja_model->get_buku_self($id),
                 'targetAll' => $this->bukuKerja_model->get_record_buku(),
                 'target' => $this->Users_model->get_by_id($id),
-                'origin' => $this->bukuKerja_model->get_buku_self($id),
+                'cek_buku1' => $this->bukuKerja_model->get_buku_self_by_smt($id, '1', $tahun),
+                'cek_buku2' => $this->bukuKerja_model->get_buku_self_by_smt($id, '2', $tahun),
+                'tahun' => $tahun,
             ];
+
 
             $this->load->view('templates/_header', $data);
             $this->load->view('templates/_navbar');

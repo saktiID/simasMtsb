@@ -40,6 +40,23 @@ class BukuKerja_model extends CI_Model
         return  $this->db->get()->result_array();
     }
 
+    /**
+     * method model for get buku kerja by id by semester by tahun
+     */
+    public function get_buku_self_by_smt($user_id, $smt, $tahun)
+    {
+        $this->db->select('record_buku_kerja.*, record_buku_kerja.id as record_id, mapel.nama_mapel, buku_kerja.isi_buku_kerja, kelas.kelas');
+        $this->db->where('user_id', $user_id);
+        $this->db->where('smt', $smt);
+        $this->db->where('tahun_ajar', $tahun);
+        $this->db->from('mapel', 'kelas', 'buku_kerja');
+        $this->db->join('record_buku_kerja', 'mapel.kode = record_buku_kerja.mapel');
+        $this->db->join('kelas', 'record_buku_kerja.kelas_id = kelas.id');
+        $this->db->join('buku_kerja', 'buku_kerja.id = record_buku_kerja.jenis');
+
+        return  $this->db->get()->result_array();
+    }
+
 
     /**
      * method model for get record buku kerja
