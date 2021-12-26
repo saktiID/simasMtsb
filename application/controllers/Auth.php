@@ -57,7 +57,7 @@ class Auth extends CI_Controller
 
                     $name = $user['nama'];
                     $love = '';
-                    if (strpos($name, 'Nida')) {
+                    if (strpos($name, 'Nida') !== false) {
                         $love = ', tersayang.';
                     }
                     $name = $name . $love;
