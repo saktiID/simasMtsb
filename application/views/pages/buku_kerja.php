@@ -386,6 +386,7 @@
 
     function successUpload(name) {
         $('.loading').addClass('d-none')
+        responsiveVoice.speak('Hore! Berhasil upload buku kerja!', "Indonesian Male")
         Swal.fire({
             position: 'center',
             icon: 'success',
@@ -402,6 +403,7 @@
     }
 
     function fileExist(data) {
+        responsiveVoice.speak('Oops! Buku kerja sudah ada! apakah anda ingin menimpanya?', "Indonesian Male")
         $('.loading').addClass('d-none')
         Swal.fire({
             position: 'center',
