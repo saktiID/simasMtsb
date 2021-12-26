@@ -385,7 +385,7 @@
     })
 
     function successUpload(name) {
-        $('.loading').hide()
+        $('.loading').addClass('d-none')
         Swal.fire({
             position: 'center',
             icon: 'success',
