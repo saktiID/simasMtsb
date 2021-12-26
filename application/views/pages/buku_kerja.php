@@ -402,7 +402,7 @@
     }
 
     function fileExist(data) {
-        $('.loading').hide()
+        $('.loading').addClass('d-none')
         Swal.fire({
             position: 'center',
             icon: 'warning',
