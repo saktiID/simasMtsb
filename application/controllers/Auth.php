@@ -47,6 +47,25 @@ class Auth extends CI_Controller
                         'user_id'  => $user['id']
                     ];
                     $this->session->set_userdata($data);
+
+                    if ($user['gender'] == 'L') {
+                        $gender = 'Bapak';
+                    }
+                    if ($user['gender'] == 'P') {
+                        $gender = 'Ibu';
+                    }
+
+                    $name = $user['nama'];
+                    $love = '';
+                    if (strpos($name, 'Nida')) {
+                        $love = ', tersayang.';
+                    }
+                    $name = $name . $love;
+                    $tanggal = format_indo(date('Y-m-d'));
+                    $sambutan = '. Hari ini, ' . $tanggal . '. selamat bekerja';
+                    $teks = 'Selamat datang, ' . $gender . ' ' . $name . $sambutan;
+
+                    $this->session->set_flashdata('welcome', 'welcome("' . $teks . '")');
                     redirect('home');
                 } else {
                     $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Password salah!</div>');

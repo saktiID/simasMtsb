@@ -153,3 +153,11 @@
 
 </div>
 <!-- content-wrapper ends -->
+
+<script>
+    <?= $this->session->flashdata('welcome'); ?>
+
+    function welcome(teks) {
+        responsiveVoice.speak(teks, "Indonesian Male");
+    }
+</script>
