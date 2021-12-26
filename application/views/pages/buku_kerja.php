@@ -414,14 +414,14 @@
             allowOutsideClick: false,
         }).then((result) => {
             if (result.value) {
+                // interface upload
+                $('.loading').removeClass('d-none')
                 replaceFile(data)
             }
         })
     }
 
     function replaceFile(data) {
-        // interface upload
-        $('.loading').removeClass('d-none')
 
         // instansiasi data ulang
         let replaceFile = new FormData()
