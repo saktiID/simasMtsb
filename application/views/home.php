@@ -150,7 +150,9 @@
             </div>
         </div>
     </div>
-
+    <?= format_indo(date('Y-m-d H:i:s')); ?>
+    <br>
+    <?= date('Y-m-d H:i:s'); ?>
 </div>
 <!-- content-wrapper ends -->
 
