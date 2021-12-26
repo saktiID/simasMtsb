@@ -64,6 +64,7 @@ $route['cekbuku'] = 'cekBuku';
 $route['cekbuku/setujui/(:any)/(:any)'] = 'cekBuku/setujui/$1/$2';
 $route['cekbuku/tolak/(:any)/(:any)'] = 'cekBuku/tolak/$1/$2';
 $route['cekbuku/detail/(:any)'] = 'cekBuku/detail/$1';
+$route['cekbuku/detail/(:any)/(:any)'] = 'cekBuku/detail/$1/$2';
 $route['edit/(:any)'] = 'dataGuru/editProfile/$1';
 $route['edited'] = 'dataGuru/editProfileSubmited/';
 $route['edit_pass'] = 'dataGuru/editPass/';
