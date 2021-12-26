@@ -15,6 +15,11 @@
             flex-direction: column;
         }
 
+        .loading .card {
+            border-radius: 7px;
+            width: 50%;
+        }
+
         .spinner {
             border: 5px solid transparent;
             border-radius: 3px;
@@ -32,8 +37,8 @@
             margin-top: -15px;
             margin-left: -30px;
             border-radius: 50%;
-            border: 5px solid #575757;
-            border-top-color: #ffffff;
+            border: 5px solid #E9ECEF;
+            border-top-color: #71C016;
             animation: spinner .9s linear infinite;
         }
 
@@ -42,17 +47,23 @@
                 transform: rotate(360deg);
             }
         }
-
-        .teks {
-            display: block;
-            color: #ffffff;
-            margin-top: 45px;
-        }
     </style>
 
     <div class="loading d-none">
-        <span class="spinner"></span>
-        <span class="teks">Sedang upload file...</span>
+        <div class="card">
+            <!-- <span class="spinner"></span> -->
+            <div class="card-header card-title mb-0">
+                <h5>Sedang upload file</h5>
+            </div>
+            <div class="card-body">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" id="progressBar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+            <div class="card-footer text-muted text-center">
+                <span class="text-small">sabar nggeh</span>
+            </div>
+        </div>
     </div>
 
     <!-- welcome -->
@@ -100,15 +111,17 @@
                     </div>
                     <p>Pastikan file yang di-upload sudah berformat <strong>PDF</strong>. <br>
                         Pastikan satu jenis buku ada dalam satu file, bukan file terpisah. <br>
-                        Solusi kompres file PDF online agar lebih ringan dan cepat saat upload, klik link <a href="https://tools.pdf24.org/id/compress-pdf" target="_blank">PDF24</a>.
+                        Solusi kompres file PDF online agar lebih ringan dan cepat saat upload, klik link <a href="https://tools.pdf24.org/id/compress-pdf" target="_blank">Kompresi file | PDF24</a> <br>
+                        Solusi menggabungkan file PDF, klik link <a href="https://tools.pdf24.org/id/gabung-pdf" target="_blank">Gabungkan file | PDF24</a>
                     </p>
                     <hr>
                     <small class="mb-0">Semoga amal ibadah dan buku kerja Anda diterima, Amin!.</small>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
 
-                <form enctype="multipart/form-data" method="post" accept-charset="utf-8" action="<?= base_url('bukukerja/upload_buku'); ?>" class="bukerForm">
+                <form enctype="multipart/form-data" method="post" action="#" class="bukerForm">
                     <div class="row">
+                        <!-- input tahun ajar -->
                         <div class="col mb-3">
                             <select class="form-select inputan" aria-label="Default select example" name="tahun_ajar" required>
                                 <option selected value="">-- Tahun ajaran --</option>
@@ -117,6 +130,7 @@
                                 <option value="2024-2024">2023 - 2024</option>
                             </select>
                         </div>
+                        <!-- input semester -->
                         <div class="col mb-3">
                             <select class="form-select inputan" aria-label="Default select example" name="smt" required>
                                 <option selected value="">-- Semester --</option>
@@ -124,6 +138,7 @@
                                 <option value="2">Genap</option>
                             </select>
                         </div>
+                        <!-- input nama buku kerja -->
                         <div class="col mb-3">
                             <select class="form-select inputan" aria-label="Default select example" name="buku_kerja" required>
                                 <option selected value="">-- Buku kerja --</option>
@@ -140,6 +155,7 @@
                         </div>
                     </div>
                     <div class="row">
+                        <!-- input mapel -->
                         <div class="col mb-3">
                             <select class="form-select inputan" aria-label="Default select example" name="mapel" required>
                                 <option selected value="">-- Mapel --</option>
@@ -149,6 +165,7 @@
                                 <?php endforeach; ?>
                             </select>
                         </div>
+                        <!-- input kelas -->
                         <div class="col mb-3">
                             <select class="form-select inputan" aria-label="Default select example" name="kelas_id" required>
                                 <option selected value="">-- Kelas --</option>
@@ -157,6 +174,7 @@
                                 <?php endforeach; ?>
                             </select>
                         </div>
+                        <!-- input file buku kerja -->
                         <div class="col mb-3">
                             <input class="form-control form-control-sm inputan" title="Pilih file format PDF" type="file" id="formFile" name="userfile" accept=".pdf" required>
                         </div>
@@ -296,9 +314,166 @@
         })
     })
 
-    $('.bukerForm').on('submit', () => {
+    $('.bukerForm').on('submit', (e) => {
+        e.preventDefault()
+        // interface uploading
         $('.loading').removeClass('d-none')
+
+        // prepare data
+        let tahun_ajar = $('[name="tahun_ajar"]').val()
+        let smt = $('[name="smt"]').val()
+        let buku_kerja = $('[name="buku_kerja"]').val()
+        let mapel = $('[name="mapel"]').val()
+        let kelas_id = $('[name="kelas_id"]').val()
+        let fileupload = $('#formFile').prop('files')[0]
+
+        // instansiasi formData
+        let formData = new FormData()
+        formData.append('tahun_ajar', tahun_ajar)
+        formData.append('smt', smt)
+        formData.append('buku_kerja', buku_kerja)
+        formData.append('mapel', mapel)
+        formData.append('kelas_id', kelas_id)
+        formData.append('fileupload', fileupload)
+
+        // run upload ajax
+        $.ajax({
+            url: '<?= base_url('bukukerja/upload') ?>',
+            type: 'POST',
+            dataType: 'json',
+            cache: false,
+            processData: false,
+            contentType: false,
+            data: formData,
+            /** function on success */
+            success: function(res) {
+                if (res.value == 'uploaded') {
+                    successUpload(res.data.filename)
+                }
+                if (res.value == 'exist') {
+                    fileExist(res.data)
+                }
+                if (res.value == 'failed') {
+                    failedUpload()
+                }
+            },
+            /** function on progree */
+            xhr: function() {
+                var xhr = new window.XMLHttpRequest();
+                xhr.upload.addEventListener('progress', function(e) {
+                    if (e.lengthComputable) {
+                        /**
+                         * contekan
+                         * =========================================
+                         * console.log('Bytes Loaded : ' + e.loaded)
+                         * console.log('Total Size : ' + e.total)
+                         * console.log('Persen : ' + (e.loaded / e.total))
+                         */
+
+                        var percent = Math.round((e.loaded / e.total) * 100)
+                        $('#progressBar').attr('aria-valuenow', percent).css('width', percent + '%')
+                    }
+                });
+                return xhr
+            },
+            /** function on error */
+            error: function(err) {
+                console.log(err.responseText)
+            },
+        })
+
     })
+
+    function successUpload(name) {
+        $('.loading').hide()
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Hurray',
+            html: 'Berhasil upload buku kerja <br> <small>' + name + '</small>',
+            showConfirmButton: true,
+            confirmButtonText: 'Siap!',
+            allowOutsideClick: false,
+        }).then((result) => {
+            if (result.value) {
+                location.reload()
+            }
+        })
+    }
+
+    function fileExist(data) {
+        $('.loading').hide()
+        Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'Oops...',
+            html: 'File dengan nama <br><small>' + data.userfile + '</small><br> sudah ada di database dan penyimpanan',
+            showConfirmButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Timpa file',
+            allowOutsideClick: false,
+        }).then((result) => {
+            if (result.value) {
+                replaceFile(data)
+            }
+        })
+    }
+
+    function replaceFile(data) {
+        // interface upload
+        $('.loading').removeClass('d-none')
+
+        // instansiasi data ulang
+        let replaceFile = new FormData()
+        let fileupload = $('#formFile').prop('files')[0]
+        replaceFile.append('filename', data.userfile)
+        replaceFile.append('fileupload', fileupload)
+        $.ajax({
+            url: '<?= base_url('bukukerja/replace') ?>',
+            type: 'POST',
+            dataType: 'json',
+            cache: false,
+            processData: false,
+            contentType: false,
+            data: replaceFile,
+            success: function(res) {
+                if (res.value == 'replaced') {
+                    successUpload(res.data.filename)
+                }
+                if (res.value == 'failed') {
+                    failedUpload()
+                }
+            },
+            xhr: function() {
+                var xhr = new window.XMLHttpRequest();
+                xhr.upload.addEventListener('progress', function(e) {
+                    if (e.lengthComputable) {
+                        var percent = Math.round((e.loaded / e.total) * 100)
+                        $('#progressBar').attr('aria-valuenow', percent).css('width', percent + '%')
+                    }
+                });
+                return xhr
+            },
+            error: function(err) {
+                console.log(err.responseText)
+            },
+        })
+    }
+
+    function failedUpload() {
+        Swal.file({
+            position: 'center',
+            icon: 'warning',
+            title: 'Oops...',
+            html: 'Gagal upload file, <br> Silahkan ulangi kembali!',
+            showConfirmButton: true,
+            confirmButtonText: 'Siap!',
+        }).then((result) => {
+            if (result.value) {
+                location.reload()
+            }
+        })
+    }
 
     function slideTahun() {
         let tahun = $('[name="tahun"]').val()

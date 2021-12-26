@@ -159,4 +159,96 @@ class BukuKerja extends CI_Controller
             redirect('bukukerja');
         }
     }
+
+    /**
+     * method controller for uploading buku kerja with ajax
+     */
+    public function upload()
+    {
+        // prepare data
+        $id_isi = $this->input->post('buku_kerja');
+        $buku_kerja = $this->bukuKerja_model->get_parrent_buku($id_isi);
+        $user_id = $this->Users_model->get_user_auth($this->session->userdata('username'))['id'];
+        $mapel = $this->input->post('mapel');
+        $jenis = $this->input->post('buku_kerja');
+        $tahun_ajar = $this->input->post('tahun_ajar');
+        $smt = $this->input->post('smt');
+        $kelas_id = $this->input->post('kelas_id');
+
+        // prepare book name
+        $nama_buku = $this->bukuKerja_model->get_nama_buku($jenis);
+        $nama_mapel = $this->mapel_model->get_nama_mapel($mapel);
+        $kelas      = $this->kelas_model->get_main_kelas($kelas_id);
+        $config['upload_path']   = './upload/dokumen/bukukerja/';
+        $config['allowed_types'] = 'pdf';
+        $config['file_type']     = 'application/pdf';
+        $config['file_name']     = $nama_buku . '_' . $nama_mapel . '_' . $kelas . '_' . $tahun_ajar . '_' . 'SMT' . $smt . '_' . $user_id . '.pdf';
+
+        if (isset($_FILES['fileupload']['name'])) {
+            // record uploaded file to database
+            $array = [
+                'user_id' => $user_id,
+                'mapel'   => $mapel,
+                'buku_kerja' => $buku_kerja,
+                'jenis'   => $jenis,
+                'tahun_ajar' => $tahun_ajar,
+                'smt'      => $smt,
+                'kelas_id' => $kelas_id,
+                'status'   => 'Pending',
+                'class'    => 'badge-warning',
+                'userfile' => $config['file_name'],
+            ];
+
+            // cek file sudah ada atau belum
+            $path = './upload/dokumen/bukukerja/' . str_replace(' ', '_', $config['file_name']);
+            if (!file_exists($path)) {
+                // jika file belum ada lakukan upload
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('fileupload')) {
+                    // execute record uploaded file to database
+                    $this->bukuKerja_model->insert_record_buku($array);
+                    $res = ['value' => 'uploaded', 'data' => ['filename' => $config['file_name']]];
+                    echo json_encode($res);
+                } else {
+                    $res = ['value' => 'failed', 'data' => $array];
+                    echo json_encode($res);
+                }
+            } else {
+                // jika file sudah ada
+                $res = ['value' => 'exist', 'data' => $array];
+                echo json_encode($res);
+            }
+        }
+    }
+
+    /**
+     * method controller for replacing exist file
+     */
+    public function replace()
+    {
+        // prepare data
+        $filename = $this->input->post('filename');
+        $path = './upload/dokumen/bukukerja/' . str_replace(' ', '_', $filename);
+        // delete file
+        unlink($path);
+        // setup config
+        $config['upload_path']   = './upload/dokumen/bukukerja/';
+        $config['allowed_types'] = 'pdf';
+        $config['file_type']     = 'application/pdf';
+        $config['file_name'] = $filename;
+        // check file
+        if (isset($_FILES['fileupload']['name'])) {
+            // upload file
+            $this->load->library('upload', $config);
+            if ($this->upload->do_upload('fileupload')) {
+                // respond
+                $res = ['value' => 'replaced', 'data' => ['filename' => $config['file_name']]];
+                echo json_encode($res);
+            } else {
+                // respond
+                $res = ['value' => 'failed', 'data' => ['filename' => $config['file_name']]];
+                echo json_encode($res);
+            }
+        }
+    }
 }

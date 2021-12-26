@@ -54,6 +54,8 @@ $route['404_override'] = 'error_404';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['bukukerja'] = 'bukuKerja';
+$route['bukukerja/upload'] = 'bukuKerja/upload';
+$route['bukukerja/replace'] = 'bukuKerja/replace';
 $route['bukukerja/upload_buku'] = 'bukuKerja/upload_buku';
 $route['bukukerja/delete/(:any)/(:any)'] = 'bukuKerja/delete/$1/$2';
 $route['bukukerja/download/(:any)'] = 'bukuKerja/download/$1';
