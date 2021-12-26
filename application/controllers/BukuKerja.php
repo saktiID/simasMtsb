@@ -13,8 +13,16 @@ class BukuKerja extends CI_Controller
         $this->load->model('kelas_model');
     }
 
-    public function index()
+    public function index($tahun = 0)
     {
+        if ($tahun == 0) {
+            $currentTahun = date('Y');
+            $currentBulan = date('m');
+            if ($currentBulan > 6) {
+                $tahunSmt2 = $currentTahun + 1;
+                $tahun = $currentTahun . '-' . $tahunSmt2;
+            }
+        }
         $user_id = $this->Users_model->get_user_auth($this->session->userdata('username'))['id'];
         $data = [
             'title' => 'Buku Kerja',
@@ -23,7 +31,9 @@ class BukuKerja extends CI_Controller
             'isi_buku' => $this->bukuKerja_model->get_isi_buku(),
             'mapel' => $this->mapel_model->get_mapel(),
             'kelas' => $this->kelas_model->get_kelas(),
-            'buku_self' => $this->bukuKerja_model->get_buku_self($user_id),
+            'buku_self1' => $this->bukuKerja_model->get_buku_self_by_smt($user_id, '1', $tahun),
+            'buku_self2' => $this->bukuKerja_model->get_buku_self_by_smt($user_id, '2', $tahun),
+            'tahun' => $tahun,
         ];
         $this->load->view('templates/_header', $data);
         $this->load->view('templates/_navbar');

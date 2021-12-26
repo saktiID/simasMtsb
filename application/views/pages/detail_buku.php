@@ -61,7 +61,7 @@
                     </select>
                 </div>
 
-                <h4 class="mt-5">Buku Kerja Semester 1 <br> Tahun Ajaran <?= $tahun; ?></h4>
+                <h4 class="card-title mt-5">Buku Kerja Semester 1 <br> Tahun Ajaran <?= $tahun; ?></h4>
                 <div class="table-responsive">
                     <table class="table table-hover" id="table_smt1">
                         <thead>
@@ -100,7 +100,7 @@
                     </table>
                 </div>
 
-                <h4 class="mt-5">Buku Kerja Semester 2 <br> Tahun Ajaran <?= $tahun; ?></h4>
+                <h4 class="card-title mt-5">Buku Kerja Semester 2 <br> Tahun Ajaran <?= $tahun; ?></h4>
                 <div class="table-responsive">
                     <table class="table table-hover" id="table_smt2">
                         <thead>
