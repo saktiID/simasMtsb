@@ -111,8 +111,9 @@
                     </div>
                     <p>Pastikan file yang di-upload sudah berformat <strong>PDF</strong>. <br>
                         Pastikan satu jenis buku ada dalam satu file, bukan file terpisah. <br>
+                        Solusi konversi ke format PDF, klik link <a href="https://tools.pdf24.org/id/konverter-pdf">Konversi file | PDF24</a> <br>
+                        Solusi menggabungkan file PDF, klik link <a href="https://tools.pdf24.org/id/gabung-pdf" target="_blank">Gabungkan file | PDF24</a> <br>
                         Solusi kompres file PDF online agar lebih ringan dan cepat saat upload, klik link <a href="https://tools.pdf24.org/id/compress-pdf" target="_blank">Kompresi file | PDF24</a> <br>
-                        Solusi menggabungkan file PDF, klik link <a href="https://tools.pdf24.org/id/gabung-pdf" target="_blank">Gabungkan file | PDF24</a>
                     </p>
                     <hr>
                     <small class="mb-0">Semoga amal ibadah dan buku kerja Anda diterima, Amin!.</small>
