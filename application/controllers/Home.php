@@ -23,7 +23,7 @@ class Home extends CI_Controller
         // get count jenjang
         $count_jenjang = 0;
         if ($jenjang == '') {
-            $jenjang = ',,';
+            $jenjang = '1,,';
         }
         $expJenjang = explode(',', $jenjang);
         for ($i = 0; $i < 3; $i++) {
@@ -68,7 +68,6 @@ class Home extends CI_Controller
                 $percent_uploaded[$i][$x] = round(($count_uploaded[$i][$x] / $count_buku[$x]) * 100) . '%';
             }
         }
-
 
         $data = [
             'title' => 'Dashboard',
