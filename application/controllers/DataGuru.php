@@ -43,6 +43,8 @@ class DataGuru extends CI_Controller
     public function editProfile($username)
     {
         $edited = $this->Users_model->get_user_auth($username);
+        $expJenjang = explode(',', $edited['jenjang']);
+
         $data = [
             'title' => 'Edit Profile ' . '(' . $username . ')',
             'user' => $this->Users_model->get_user_auth($this->session->userdata('username')),
@@ -56,6 +58,7 @@ class DataGuru extends CI_Controller
                 'mapel' => $this->mapel_model->get_guru_mapel($edited['id']),
                 'mapelArr' => explode(",", $this->mapel_model->get_guru_mapel($edited['id'])['kode_mapel']),
                 'walas' => $this->walas_model->get_walas($edited['id']),
+                'jenjang' => $expJenjang,
             ],
         ];
 
@@ -134,7 +137,23 @@ class DataGuru extends CI_Controller
         $walas = $this->input->post('walas');
         $walas_of = $this->input->post('walas_of');
         $mapel = $this->input->post('mapel');
-
+        $kelas = [];
+        if (isset($_POST['kelas7'])) {
+            $kelas[0] = 'VII';
+        } else {
+            $kelas[0] = '';
+        }
+        if (isset($_POST['kelas8'])) {
+            $kelas[1] = 'VIII';
+        } else {
+            $kelas[1] = '';
+        }
+        if (isset($_POST['kelas9'])) {
+            $kelas[2] = 'IX';
+        } else {
+            $kelas[2] = '';
+        }
+        $jenjang = $kelas[0] . ',' . $kelas[1] . ',' . $kelas[2];
 
         $arrData = [
             'nama' => $nama,
@@ -144,6 +163,7 @@ class DataGuru extends CI_Controller
             'role_id' => $role_id,
             'is_pengajar' => $is_pengajar,
             'is_walas'  => $walas,
+            'jenjang'   => $jenjang,
         ];
 
         // update users table

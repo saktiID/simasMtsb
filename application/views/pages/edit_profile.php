@@ -169,6 +169,34 @@
                             </div>
                         <?php endforeach; ?>
                     </div>
+
+                    <div class="row">
+                        <p class="card-description">Jenjang Kelas</p>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input ml-1" type="checkbox" value="VII" name="kelas7" id="kelas7" <?php if ($edited['jenjang'][0] != '') : ?> checked <?php endif; ?>>
+                                <label class="form-check-label" for="kelas7">
+                                    Kelas VII
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input ml-1" type="checkbox" value="VIII" name="kelas8" id="kelas8" <?php if ($edited['jenjang'][1] != '') : ?> checked <?php endif; ?>>
+                                <label class="form-check-label" for="kelas8">
+                                    Kelas VIII
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input ml-1" type="checkbox" value="IX" name="kelas9" id="kelas9" <?php if ($edited['jenjang'][2] != '') : ?> checked <?php endif; ?>>
+                                <label class="form-check-label" for="kelas9">
+                                    Kelas IX
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row mt-3">
                         <div class="col d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary" id="simpan">Simpan</button>

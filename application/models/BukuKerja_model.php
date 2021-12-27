@@ -48,7 +48,7 @@ class BukuKerja_model extends CI_Model
         $this->db->select('record_buku_kerja.*, record_buku_kerja.id as record_id, mapel.nama_mapel, buku_kerja.isi_buku_kerja, kelas.kelas');
         $this->db->where('user_id', $user_id);
         $this->db->where('smt', $smt);
-        $this->db->where('tahun_ajar', $tahun);
+        $this->db->where('smt', $tahun);
         $this->db->from('mapel', 'kelas', 'buku_kerja');
         $this->db->join('record_buku_kerja', 'mapel.kode = record_buku_kerja.mapel');
         $this->db->join('kelas', 'record_buku_kerja.kelas_id = kelas.id');
@@ -106,5 +106,32 @@ class BukuKerja_model extends CI_Model
     {
         $this->db->where('id', $record_id);
         return $this->db->delete('record_buku_kerja');
+    }
+
+    /**
+     * method model for count isi buku kerja
+     */
+    public function count_isi_buku($no_buku)
+    {
+        $this->db->select('*');
+        $this->db->where('parrent', 0);
+        $this->db->where('no_buku_kerja', $no_buku);
+        return $this->db->count_all_results('buku_kerja');
+    }
+
+    /**
+     * method model for count progress buku kerja by user id
+     * $arr = user_id, tahun, smt, no_buku, status
+     */
+    public function count_progress_buku($arr, $smt, $no_buku)
+    {
+        $this->db->select('user_id', 'buku_kerja', 'status');
+        $this->db->where('user_id', $arr['user_id']);
+        $this->db->where('tahun_ajar', $arr['tahun']);
+        $this->db->where('smt', $smt);
+        $this->db->where('buku_kerja', $no_buku);
+        $this->db->where('status', $arr['status']);
+        $count = $this->db->count_all_results('record_buku_kerja');
+        return $count;
     }
 }

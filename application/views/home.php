@@ -192,15 +192,6 @@
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Terupload</span>
-                                                    <span>50%</span>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                            </td>
-                                            <td width="200">
-                                                <div class="text-small d-flex justify-content-between mb-1">
                                                     <span>Pending</span>
                                                     <span>25%</span>
                                                 </div>
@@ -232,15 +223,6 @@
                                                 <div class="d-flex align-items-center">
                                                     <i class="mdi mdi-book mr-3 icon-md text-warning"></i>
                                                     <span>Buku 2</span>
-                                                </div>
-                                            </td>
-                                            <td width="200">
-                                                <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Terupload</span>
-                                                    <span>50%</span>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
@@ -280,15 +262,6 @@
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Terupload</span>
-                                                    <span>50%</span>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                            </td>
-                                            <td width="200">
-                                                <div class="text-small d-flex justify-content-between mb-1">
                                                     <span>Pending</span>
                                                     <span>25%</span>
                                                 </div>
@@ -320,15 +293,6 @@
                                                 <div class="d-flex align-items-center">
                                                     <i class="mdi mdi-book mr-3 icon-md text-danger"></i>
                                                     <span>Buku 4</span>
-                                                </div>
-                                            </td>
-                                            <td width="200">
-                                                <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Terupload</span>
-                                                    <span>50%</span>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
@@ -381,15 +345,6 @@
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Terupload</span>
-                                                    <span>50%</span>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                            </td>
-                                            <td width="200">
-                                                <div class="text-small d-flex justify-content-between mb-1">
                                                     <span>Pending</span>
                                                     <span>25%</span>
                                                 </div>
@@ -421,15 +376,6 @@
                                                 <div class="d-flex align-items-center">
                                                     <i class="mdi mdi-book mr-3 icon-md text-warning"></i>
                                                     <span>Buku 2</span>
-                                                </div>
-                                            </td>
-                                            <td width="200">
-                                                <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Terupload</span>
-                                                    <span>50%</span>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
@@ -469,15 +415,6 @@
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Terupload</span>
-                                                    <span>50%</span>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                            </td>
-                                            <td width="200">
-                                                <div class="text-small d-flex justify-content-between mb-1">
                                                     <span>Pending</span>
                                                     <span>25%</span>
                                                 </div>
@@ -511,15 +448,7 @@
                                                     <span>Buku 4</span>
                                                 </div>
                                             </td>
-                                            <td width="200">
-                                                <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Terupload</span>
-                                                    <span>50%</span>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                            </td>
+
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
                                                     <span>Pending</span>
@@ -544,7 +473,7 @@
                                                     <span>25%</span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="1" aria-valuemin="0" aria-valuemax="2"></div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -555,14 +484,11 @@
                         </div>
                         <!-- end semeter 2 -->
 
-
                     </div>
                 </div>
             </div>
         </div>
         <!-- end info progress buku kerja -->
-
-
 
     </div>
 </div>
