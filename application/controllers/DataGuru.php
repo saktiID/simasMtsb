@@ -43,7 +43,6 @@ class DataGuru extends CI_Controller
     public function editProfile($username)
     {
         $edited = $this->Users_model->get_user_auth($username);
-        $expJenjang = explode(',', $edited['jenjang']);
 
         $data = [
             'title' => 'Edit Profile ' . '(' . $username . ')',
@@ -58,7 +57,7 @@ class DataGuru extends CI_Controller
                 'mapel' => $this->mapel_model->get_guru_mapel($edited['id']),
                 'mapelArr' => explode(",", $this->mapel_model->get_guru_mapel($edited['id'])['kode_mapel']),
                 'walas' => $this->walas_model->get_walas($edited['id']),
-                'jenjang' => $expJenjang,
+                'jenjang' => explode(',', $edited['jenjang']),
             ],
         ];
 
