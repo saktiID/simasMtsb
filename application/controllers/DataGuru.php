@@ -126,6 +126,7 @@ class DataGuru extends CI_Controller
     {
         $id = $this->input->post('id');
         $nama = $this->input->post('nama');
+        $gender = $this->input->post('gender');
         $email = $this->input->post('email');
         $username = $this->input->post('username');
         $role_id = $this->input->post('role_id');
@@ -137,6 +138,7 @@ class DataGuru extends CI_Controller
 
         $arrData = [
             'nama' => $nama,
+            'gender' => $gender,
             'email' => $email,
             'username' => $username,
             'role_id' => $role_id,

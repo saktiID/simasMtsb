@@ -57,6 +57,7 @@ class Users_model extends CI_Model
     public function set_user_data($data, $user_id)
     {
         $this->db->set('nama', $data['nama']);
+        $this->db->set('gender', $data['gender']);
         $this->db->set('email', $data['email']);
         $this->db->set('username', $data['username']);
         $this->db->set('role_id', $data['role_id']);
