@@ -134,8 +134,14 @@
                         <div class="col-md-6">
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Nama Lengkap</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-6">
                                     <input type="text" class="form-control" name="nama" value="<?= $user['nama']; ?>" required>
+                                </div>
+                                <div class="col-sm-3">
+                                    <select class="form-control" name="gender" required="">
+                                        <option value="L" <?= $user['gender'] == 'L' ? 'selected' : '' ?>>Laki-laki</option>
+                                        <option value="P" <?= $user['gender'] == 'P' ? 'selected' : '' ?>>Perempuan</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

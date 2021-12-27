@@ -12,14 +12,45 @@ class Home extends CI_Controller
         $this->load->model('kelas_model');
         $this->load->model('walas_model');
         $this->load->model('jadwal_model');
+        $this->load->model('bukuKerja_model');
     }
 
     public function index()
     {
+        /**
+         * prepare data
+         */
+        // get user id
+        $user_id = $this->Users_model->get_user_auth($this->session->userdata('username'))['id'];
+
+        // get count buku
+        $count_buku = [];
+        for ($i = 1; $i <= 4; $i++) {
+            $count_buku[$i] = $this->bukuKerja_model->count_isi_buku($i);
+        }
+
+        // get tahun
+        if (!isset($_GET['tahun'])) {
+            $currentTahun = date('Y');
+            $currentBulan = date('m');
+            if ($currentBulan > 6) {
+                $tahunSmt2 = $currentTahun + 1;
+                $tahun = $currentTahun . '-' . $tahunSmt2;
+            }
+
+            if ($currentBulan < 6) {
+                $tahunSmt1 = $currentTahun - 1;
+                $tahun = $tahunSmt1 . '-' . $currentTahun;
+            }
+        } else {
+            $tahun = $_GET['tahun'];
+        }
+
+
         $data = [
             'title' => 'Dashboard',
             'user' => $this->Users_model->get_user_auth($this->session->userdata('username')),
-
+            'count_buku' => $count_buku,
         ];
         $this->load->view('templates/_header', $data);
         $this->load->view('templates/_navbar');
@@ -240,15 +271,18 @@ class Home extends CI_Controller
     {
         $id = $this->input->post('id');
         $nama = $this->input->post('nama');
+        $gender = $this->input->post('gender');
         $email = $this->input->post('email');
         $username = $this->input->post('username');
         $mapel = $this->input->post('mapel');
 
         $arrData = [
             'nama' => $nama,
+            'gender' => $gender,
             'email' => $email,
             'username' => $username,
         ];
+
 
         // update user tabel
         $this->Users_model->set_personal_data($arrData, $id);
