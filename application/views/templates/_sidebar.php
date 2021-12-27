@@ -8,12 +8,6 @@
                     <span class="menu-title">Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('landing'); ?>">
-                    <i class="mdi mdi-apps menu-icon"></i>
-                    <span class="menu-title">Menu Utama</span>
-                </a>
-            </li>
 
             <li>
                 <span class="mx-3"></span>
@@ -31,7 +25,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="<?= base_url('jurnal'); ?>">
                         <i class="mdi mdi-timetable menu-icon"></i>
                         <span class="menu-title">Jurnal</span>
                     </a>
