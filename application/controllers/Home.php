@@ -17,16 +17,25 @@ class Home extends CI_Controller
 
     public function index()
     {
-        /**
-         * prepare data
-         */
-        // get user id
-        $user_id = $this->Users_model->get_user_auth($this->session->userdata('username'))['id'];
+        // get jenjang
+        $jenjang = $this->Users_model->get_user_auth($this->session->userdata('username'))['jenjang'];
 
-        // get count buku
+        // get count jenjang
+        $count_jenjang = 0;
+        if ($jenjang == '') {
+            $jenjang = ',,';
+        }
+        $expJenjang = explode(',', $jenjang);
+        for ($i = 0; $i < 3; $i++) {
+            if ($expJenjang[$i] != '') {
+                $count_jenjang += 1;
+            }
+        }
+
+        // get count all buku
         $count_buku = [];
         for ($i = 1; $i <= 4; $i++) {
-            $count_buku[$i] = $this->bukuKerja_model->count_isi_buku($i);
+            $count_buku[$i] = $this->bukuKerja_model->count_isi_buku($i) * $count_jenjang;
         }
 
         // get tahun
@@ -46,11 +55,27 @@ class Home extends CI_Controller
             $tahun = $_GET['tahun'];
         }
 
+        //  get count uploaded buku
+        $count_uploaded = []; # parrent index : smt. chid index : no buku
+        $percent_uploaded = [];
+        $arr = [
+            'user_id' => $this->Users_model->get_user_auth($this->session->userdata('username'))['id'],
+            'tahun' => $tahun,
+        ];
+        for ($i = 1; $i <= 2; $i++) {
+            for ($x = 1; $x <= 4; $x++) {
+                $count_uploaded[$i][$x] = $this->bukuKerja_model->count_uploaded_buku($arr, $i, $x);
+                $percent_uploaded[$i][$x] = round(($count_uploaded[$i][$x] / $count_buku[$x]) * 100) . '%';
+            }
+        }
+
 
         $data = [
             'title' => 'Dashboard',
             'user' => $this->Users_model->get_user_auth($this->session->userdata('username')),
             'count_buku' => $count_buku,
+            'count_uploaded' => $count_uploaded,
+            'percent_uploaded' => $percent_uploaded,
         ];
         $this->load->view('templates/_header', $data);
         $this->load->view('templates/_navbar');

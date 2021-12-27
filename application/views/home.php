@@ -186,8 +186,21 @@
                                         <tr>
                                             <td width="100">
                                                 <div class="d-flex align-items-center">
-                                                    <i class="mdi mdi-book mr-3 icon-md text-primary"></i>
-                                                    <span>Buku 1</span>
+                                                    <i class="mdi mdi-book mr-1 icon-md text-primary"></i>
+                                                    <span><strong>Buku 1</strong><br>
+                                                        <small>
+                                                            <?= $count_uploaded[1][1]; ?> / <?= $count_buku[1]; ?> File
+                                                        </small>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Terupload</span>
+                                                    <span><?= $percent_uploaded[1][1]; ?></span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: <?= $percent_uploaded[1][1]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
@@ -221,8 +234,20 @@
                                         <tr>
                                             <td width="100">
                                                 <div class="d-flex align-items-center">
-                                                    <i class="mdi mdi-book mr-3 icon-md text-warning"></i>
-                                                    <span>Buku 2</span>
+                                                    <i class="mdi mdi-book mr-1 icon-md text-warning"></i>
+                                                    <span><strong>Buku 2</strong><br>
+                                                        <small>
+                                                            <?= $count_uploaded[1][2]; ?> / <?= $count_buku[2]; ?> File
+                                                        </small>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Terupload</span>
+                                                    <span><?= $percent_uploaded[1][2]; ?></span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: <?= $percent_uploaded[1][2]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
@@ -256,8 +281,20 @@
                                         <tr>
                                             <td width="100">
                                                 <div class="d-flex align-items-center">
-                                                    <i class="mdi mdi-book mr-3 icon-md text-success"></i>
-                                                    <span>Buku 3</span>
+                                                    <i class="mdi mdi-book mr-1 icon-md text-success"></i>
+                                                    <span><strong>Buku 3</strong><br>
+                                                        <small>
+                                                            <?= $count_uploaded[1][3]; ?> / <?= $count_buku[3]; ?> File
+                                                        </small>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Terupload</span>
+                                                    <span><?= $percent_uploaded[1][3]; ?></span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: <?= $percent_uploaded[1][3]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
@@ -291,8 +328,20 @@
                                         <tr>
                                             <td width="100">
                                                 <div class="d-flex align-items-center">
-                                                    <i class="mdi mdi-book mr-3 icon-md text-danger"></i>
-                                                    <span>Buku 4</span>
+                                                    <i class="mdi mdi-book mr-1 icon-md text-secondary"></i>
+                                                    <span><strong>Buku 4</strong><br>
+                                                        <small>
+                                                            <?= $count_uploaded[1][4]; ?> / <?= $count_buku[4]; ?> File
+                                                        </small>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Terupload</span>
+                                                    <span><?= $percent_uploaded[1][4]; ?></span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: <?= $percent_uploaded[1][4]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
@@ -339,8 +388,20 @@
                                         <tr>
                                             <td width="100">
                                                 <div class="d-flex align-items-center">
-                                                    <i class="mdi mdi-book mr-3 icon-md text-primary"></i>
-                                                    <span>Buku 1</span>
+                                                    <i class="mdi mdi-book mr-1 icon-md text-primary"></i>
+                                                    <span><strong>Buku 1</strong><br>
+                                                        <small>
+                                                            <?= $count_uploaded[2][1]; ?> / <?= $count_buku[1]; ?> File
+                                                        </small>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Terupload</span>
+                                                    <span><?= $percent_uploaded[2][1]; ?></span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: <?= $percent_uploaded[2][1]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
@@ -374,8 +435,20 @@
                                         <tr>
                                             <td width="100">
                                                 <div class="d-flex align-items-center">
-                                                    <i class="mdi mdi-book mr-3 icon-md text-warning"></i>
-                                                    <span>Buku 2</span>
+                                                    <i class="mdi mdi-book mr-1 icon-md text-warning"></i>
+                                                    <span><strong>Buku 2</strong><br>
+                                                        <small>
+                                                            <?= $count_uploaded[2][2]; ?> / <?= $count_buku[2]; ?> File
+                                                        </small>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Terupload</span>
+                                                    <span><?= $percent_uploaded[2][2]; ?></span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: <?= $percent_uploaded[2][2]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
@@ -409,8 +482,20 @@
                                         <tr>
                                             <td width="100">
                                                 <div class="d-flex align-items-center">
-                                                    <i class="mdi mdi-book mr-3 icon-md text-success"></i>
-                                                    <span>Buku 3</span>
+                                                    <i class="mdi mdi-book mr-1 icon-md text-success"></i>
+                                                    <span><strong>Buku 3</strong><br>
+                                                        <small>
+                                                            <?= $count_uploaded[2][3]; ?> / <?= $count_buku[3]; ?> File
+                                                        </small>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Terupload</span>
+                                                    <span><?= $percent_uploaded[2][3]; ?></span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: <?= $percent_uploaded[2][3]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
@@ -444,11 +529,22 @@
                                         <tr>
                                             <td width="100">
                                                 <div class="d-flex align-items-center">
-                                                    <i class="mdi mdi-book mr-3 icon-md text-danger"></i>
-                                                    <span>Buku 4</span>
+                                                    <i class="mdi mdi-book mr-1 icon-md text-secondary"></i>
+                                                    <span><strong>Buku 4</strong><br>
+                                                        <small>
+                                                            <?= $count_uploaded[2][4]; ?> / <?= $count_buku[4]; ?> File
+                                                        </small>
                                                 </div>
                                             </td>
-
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Terupload</span>
+                                                    <span><?= $percent_uploaded[2][4]; ?></span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width:<?= $percent_uploaded[2][4]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
                                                     <span>Pending</span>

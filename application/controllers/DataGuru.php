@@ -44,7 +44,7 @@ class DataGuru extends CI_Controller
     {
         $edited = $this->Users_model->get_user_auth($username);
         if ($edited['jenjang'] == '') {
-            $edited['jenjang'] = ',,,';
+            $edited['jenjang'] = ',,';
         }
 
         $data = [

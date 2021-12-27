@@ -134,4 +134,19 @@ class BukuKerja_model extends CI_Model
         $count = $this->db->count_all_results('record_buku_kerja');
         return $count;
     }
+
+    /**
+     * method model for count uploaded buku kerja by user id
+     * by tahun by smt by no buku
+     */
+    public function count_uploaded_buku($arr, $smt, $no_buku)
+    {
+        $this->db->select('*');
+        $this->db->where('user_id', $arr['user_id']);
+        $this->db->where('tahun_ajar', $arr['tahun']);
+        $this->db->where('smt', $smt);
+        $this->db->where('buku_kerja', $no_buku);
+        $count = $this->db->count_all_results('record_buku_kerja');
+        return $count;
+    }
 }
