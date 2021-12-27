@@ -75,8 +75,14 @@
                         <div class="col-md-6">
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Nama Lengkap</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-6">
                                     <input type="text" class="form-control" name="nama" required>
+                                </div>
+                                <div class="col-sm-3">
+                                    <select class="form-control" name="gender" required="">
+                                        <option value="L" selected>Laki-laki</option>
+                                        <option value="P">Perempuan</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -348,6 +354,7 @@
     // event add user
     $('#tambahGuru').on('click', () => {
         let nama = $('[name="nama"]').val()
+        let gender = $('[name="gender"]').val()
         let email = $('[name="email"]').val()
         let username = $('[name="username"]')
         let role_id = $('[name="role_id"]').val()
@@ -363,7 +370,7 @@
                 if (password1.val() === password2.val()) {
                     $.ajax({
                         type: 'POST',
-                        data: 'nama=' + nama + '&email=' + email + '&username=' + username.val() + '&role_id=' + role_id + '&password1=' + password1.val() + '&mapel=' + mapel + '&is_pengajar=' + is_pengajar + '&is_walas=' + is_walas + '&walas_of=' + walas_of,
+                        data: 'nama=' + nama + '&gender=' + gender + '&email=' + email + '&username=' + username.val() + '&role_id=' + role_id + '&password1=' + password1.val() + '&mapel=' + mapel + '&is_pengajar=' + is_pengajar + '&is_walas=' + is_walas + '&walas_of=' + walas_of,
                         url: '<?= base_url('dataguru/tambahguru'); ?>',
                         dataType: 'json',
                         success: function(res) {

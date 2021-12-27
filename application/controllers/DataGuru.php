@@ -208,6 +208,7 @@ class DataGuru extends CI_Controller
     public function tambahGuru()
     {
         $nama = $this->input->post('nama');
+        $gender = $this->input->post('gender');
         $email = $this->input->post('email');
         $username = $this->input->post('username');
         $role_id = $this->input->post('role_id');
@@ -251,6 +252,7 @@ class DataGuru extends CI_Controller
                             'username' => $username,
                             'password' => password_hash($password1, PASSWORD_DEFAULT),
                             'nama'     => $nama,
+                            'gender'   => $gender,
                             'role_id'  => $role_id,
                             'is_walas'    => $is_walas,
                             'email'    => $email,
