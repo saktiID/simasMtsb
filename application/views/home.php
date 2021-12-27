@@ -3,11 +3,17 @@
     <!-- welcome -->
     <div class="row">
         <div class="col-md-12 grid-margin">
-            <div class="d-flex justify-content-between flex-wrap">
+            <div class="d-flex justify-content-between">
                 <div class="d-flex align-items-end flex-wrap">
                     <div class="mr-md-3 mr-xl-5">
                         <h2>Selamat datang,</h2>
                         <p class="mb-md-0"><?= $user['nama']; ?></p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <div class="mr-md-3 mr-xl-5 text-small">
+                        <?= format_indo(date('Y-m-d')); ?>
+                        <!-- <br><?= date('Y-m-d H:i:s'); ?> -->
                     </div>
                 </div>
             </div>
@@ -150,9 +156,6 @@
             </div>
         </div>
     </div>
-    <?= format_indo(date('Y-m-d H:i:s')); ?>
-    <br>
-    <?= date('Y-m-d H:i:s'); ?>
 </div>
 <!-- content-wrapper ends -->
 
