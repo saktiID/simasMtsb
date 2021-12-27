@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <div class="mr-md-3 mr-xl-5 text-small">
+                    <div class="text-small">
                         <?= format_indo(date('Y-m-d')); ?>
                         <!-- <br><?= date('Y-m-d H:i:s'); ?> -->
                     </div>
@@ -38,6 +38,7 @@
 
 
     <div class="row">
+        <!-- info siswa dan kelas -->
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body dashboard-tabs p-0">
@@ -155,6 +156,414 @@
                 </div>
             </div>
         </div>
+        <!-- end info siswa dan kelas -->
+
+        <!-- info progress buku kerja -->
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div class="card-title">
+                            Progres Buku Kerja
+                        </div>
+                        <div class="tahun">
+                            Pilih tahun ajaran :
+                            <select name="tahun" id="tahun">
+                                <option value="">2021-2022</option>
+                                <option value="">2021-2022</option>
+                                <option value="">2021-2022</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <!-- semester 1 -->
+                        <div class="col-md-12 mb-5">
+                            <p class="card-description">Semester Ganjil</p>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td width="100">
+                                                <div class="d-flex align-items-center">
+                                                    <i class="mdi mdi-book mr-3 icon-md text-primary"></i>
+                                                    <span>Buku 1</span>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Terupload</span>
+                                                    <span>50%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Pending</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Diterima</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Ditolak</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100">
+                                                <div class="d-flex align-items-center">
+                                                    <i class="mdi mdi-book mr-3 icon-md text-warning"></i>
+                                                    <span>Buku 2</span>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Terupload</span>
+                                                    <span>50%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Pending</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Diterima</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Ditolak</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100">
+                                                <div class="d-flex align-items-center">
+                                                    <i class="mdi mdi-book mr-3 icon-md text-success"></i>
+                                                    <span>Buku 3</span>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Terupload</span>
+                                                    <span>50%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Pending</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Diterima</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Ditolak</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100">
+                                                <div class="d-flex align-items-center">
+                                                    <i class="mdi mdi-book mr-3 icon-md text-danger"></i>
+                                                    <span>Buku 4</span>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Terupload</span>
+                                                    <span>50%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Pending</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Diterima</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Ditolak</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- end semeter 1 -->
+
+                        <!-- semester 2 -->
+                        <div class="col-md-12 mb-5">
+                            <p class="card-description">Semester Genap</p>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td width="100">
+                                                <div class="d-flex align-items-center">
+                                                    <i class="mdi mdi-book mr-3 icon-md text-primary"></i>
+                                                    <span>Buku 1</span>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Terupload</span>
+                                                    <span>50%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Pending</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Diterima</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Ditolak</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100">
+                                                <div class="d-flex align-items-center">
+                                                    <i class="mdi mdi-book mr-3 icon-md text-warning"></i>
+                                                    <span>Buku 2</span>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Terupload</span>
+                                                    <span>50%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Pending</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Diterima</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Ditolak</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100">
+                                                <div class="d-flex align-items-center">
+                                                    <i class="mdi mdi-book mr-3 icon-md text-success"></i>
+                                                    <span>Buku 3</span>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Terupload</span>
+                                                    <span>50%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Pending</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Diterima</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Ditolak</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100">
+                                                <div class="d-flex align-items-center">
+                                                    <i class="mdi mdi-book mr-3 icon-md text-danger"></i>
+                                                    <span>Buku 4</span>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Terupload</span>
+                                                    <span>50%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Pending</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Diterima</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td width="200">
+                                                <div class="text-small d-flex justify-content-between mb-1">
+                                                    <span>Ditolak</span>
+                                                    <span>25%</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- end semeter 2 -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end info progress buku kerja -->
+
+
+
     </div>
 </div>
 <!-- content-wrapper ends -->
