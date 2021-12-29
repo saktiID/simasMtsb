@@ -197,6 +197,35 @@
                             </div>
                         <?php endforeach; ?>
                     </div>
+
+                    <div class="row">
+                        <p class="card-description">Jenjang Kelas</p>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input ml-1" type="checkbox" value="VII" name="kelas7" id="kelas7">
+                                <label class="form-check-label" for="kelas7">
+                                    Kelas VII
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input ml-1" type="checkbox" value="VIII" name="kelas8" id="kelas8">
+                                <label class="form-check-label" for="kelas8">
+                                    Kelas VIII
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input ml-1" type="checkbox" value="IX" name="kelas9" id="kelas9">
+                                <label class="form-check-label" for="kelas9">
+                                    Kelas IX
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row mt-3">
                         <div class="col d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary" id="tambahGuru">Tambah</button>
@@ -364,16 +393,32 @@
         let is_pengajar = $('[name="is_pengajar"]').val()
         let is_walas = $('[name="is_walas"]').val()
         let walas_of = $('[name="walas_of"]').val()
+        let kelas7 = $('[name="kelas7"]').val()
+        let kelas8 = $('[name="kelas8"]').val()
+        let kelas9 = $('[name="kelas9"]').val()
+
+        let data = 'nama=' + nama + '&gender=' + gender + '&email=' + email + '&username=' + username.val() + '&role_id=' + role_id + '&password1=' + password1.val() + '&mapel=' + mapel + '&is_pengajar=' + is_pengajar + '&is_walas=' + is_walas + '&walas_of=' + walas_of
+
+        if ($('[name="kelas7"]').is(':checked')) {
+            data = data + '&kelas7=' + kelas7
+        }
+        if ($('[name="kelas8"]').is(':checked')) {
+            data = data + '&kelas8=' + kelas8
+        }
+        if ($('[name="kelas9"]').is(':checked')) {
+            data = data + '&kelas9=' + kelas9
+        }
 
         if (username.val().length > 4) {
             if (password1.val().length > 5) {
                 if (password1.val() === password2.val()) {
                     $.ajax({
                         type: 'POST',
-                        data: 'nama=' + nama + '&gender=' + gender + '&email=' + email + '&username=' + username.val() + '&role_id=' + role_id + '&password1=' + password1.val() + '&mapel=' + mapel + '&is_pengajar=' + is_pengajar + '&is_walas=' + is_walas + '&walas_of=' + walas_of,
+                        data: data,
                         url: '<?= base_url('dataguru/tambahguru'); ?>',
                         dataType: 'json',
                         success: function(res) {
+                            console.log(res)
                             $(window).scrollTop(0)
                             if (res.psn == 'Success') {
                                 $('.btn-close').click()

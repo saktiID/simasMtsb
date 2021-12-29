@@ -97,6 +97,10 @@ class Home extends CI_Controller
             $kelas = '- 0 -';
         }
 
+        if ($user['jenjang'] == '') {
+            $user['jenjang'] = ',,';
+        }
+
         $data = [
             'title' => 'Personal Setting',
             'user' => $user,
@@ -106,6 +110,7 @@ class Home extends CI_Controller
             'mapelString' => $mapelCheck['kode_mapel'],
             'sub_kelas' => $sub_kelas,
             'main_kelas' => $main_kelas,
+            'jenjang'   => explode(',', $user['jenjang']),
         ];
         $this->load->view('templates/_header', $data);
         $this->load->view('templates/_navbar');
@@ -299,12 +304,30 @@ class Home extends CI_Controller
         $email = $this->input->post('email');
         $username = $this->input->post('username');
         $mapel = $this->input->post('mapel');
+        $kelas = [];
+        if (isset($_POST['kelas7'])) {
+            $kelas[0] = 'VII';
+        } else {
+            $kelas[0] = '';
+        }
+        if (isset($_POST['kelas8'])) {
+            $kelas[1] = 'VIII';
+        } else {
+            $kelas[1] = '';
+        }
+        if (isset($_POST['kelas9'])) {
+            $kelas[2] = 'IX';
+        } else {
+            $kelas[2] = '';
+        }
+        $jenjang = $kelas[0] . ',' . $kelas[1] . ',' . $kelas[2];
 
         $arrData = [
             'nama' => $nama,
             'gender' => $gender,
             'email' => $email,
             'username' => $username,
+            'jenjang'   => $jenjang,
         ];
 
 

@@ -241,6 +241,23 @@ class DataGuru extends CI_Controller
         $is_walas = $this->input->post('is_walas');
         $is_pengajar = $this->input->post('is_pengajar');
         $walas_of = $this->input->post('walas_of');
+        $kelas = [];
+        if (isset($_POST['kelas7'])) {
+            $kelas[0] = 'VII';
+        } else {
+            $kelas[0] = '';
+        }
+        if (isset($_POST['kelas8'])) {
+            $kelas[1] = 'VIII';
+        } else {
+            $kelas[1] = '';
+        }
+        if (isset($_POST['kelas9'])) {
+            $kelas[2] = 'IX';
+        } else {
+            $kelas[2] = '';
+        }
+        $jenjang = $kelas[0] . ',' . $kelas[1] . ',' . $kelas[2];
 
         $msg['psn'] = '';
         if ($nama == '') {
@@ -278,7 +295,8 @@ class DataGuru extends CI_Controller
                             'nama'     => $nama,
                             'gender'   => $gender,
                             'role_id'  => $role_id,
-                            'is_walas'    => $is_walas,
+                            'is_walas' => $is_walas,
+                            'jenjang'  => $jenjang,
                             'email'    => $email,
                             'image'    => 'profile.svg',
                             'is_pengajar' => $is_pengajar,

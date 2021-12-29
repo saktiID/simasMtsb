@@ -91,6 +91,7 @@ class Users_model extends CI_Model
         $this->db->set('gender', $data['gender']);
         $this->db->set('email', $data['email']);
         $this->db->set('username', $data['username']);
+        $this->db->set('jenjang', $data['jenjang']);
         $this->db->where('id', $user_id);
         $update = $this->db->update('users');
         if ($update) {
