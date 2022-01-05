@@ -69,12 +69,79 @@ class Home extends CI_Controller
             }
         }
 
+        // get count pending buku
+        $convert_count_uploaded = [];
+        $count_pending = [];
+        $percent_pending = [];
+        $arrProgressPending = [
+            'user_id' => $arr['user_id'],
+            'tahun' => $arr['tahun'],
+            'status' => 'Pending'
+        ];
+        for ($i = 1; $i <= 2; $i++) {
+            for ($x = 1; $x <= 4; $x++) {
+                $count_pending[$i][$x] = $this->bukuKerja_model->count_progress_buku($arrProgressPending, $i, $x);
+                if ($count_uploaded[$i][$x] == '0%') {
+                    $convert_count_uploaded[$i][$x] = 1;
+                } else {
+                    $convert_count_uploaded[$i][$x] = $count_uploaded[$i][$x];
+                }
+                $percent_pending[$i][$x] = round(($count_pending[$i][$x] / $convert_count_uploaded[$i][$x]) * 100) . '%';
+            }
+        }
+
+        // get count disetujui buku
+        $count_disetujui = [];
+        $percent_disetujui = [];
+        $arrProgressDisetujui = [
+            'user_id' => $arr['user_id'],
+            'tahun' => $arr['tahun'],
+            'status' => 'Disetujui'
+        ];
+        for ($i = 1; $i <= 2; $i++) {
+            for ($x = 1; $x <= 4; $x++) {
+                $count_disetujui[$i][$x] = $this->bukuKerja_model->count_progress_buku($arrProgressDisetujui, $i, $x);
+                if ($count_uploaded[$i][$x] == '0%') {
+                    $convert_count_uploaded[$i][$x] = 1;
+                } else {
+                    $convert_count_uploaded[$i][$x] = $count_uploaded[$i][$x];
+                }
+                $percent_disetujui[$i][$x] = round(($count_disetujui[$i][$x] / $convert_count_uploaded[$i][$x]) * 100) . '%';
+            }
+        }
+
+        // get count ditolak buku
+        $count_ditolak = [];
+        $percent_ditolak = [];
+        $arrProgressDitolak = [
+            'user_id' => $arr['user_id'],
+            'tahun' => $arr['tahun'],
+            'status' => 'Ditolak'
+        ];
+        for ($i = 1; $i <= 2; $i++) {
+            for ($x = 1; $x <= 4; $x++) {
+                $count_ditolak[$i][$x] = $this->bukuKerja_model->count_progress_buku($arrProgressDitolak, $i, $x);
+                if ($count_uploaded[$i][$x] == '0%') {
+                    $convert_count_uploaded[$i][$x] = 1;
+                } else {
+                    $convert_count_uploaded[$i][$x] = $count_uploaded[$i][$x];
+                }
+                $percent_ditolak[$i][$x] = round(($count_ditolak[$i][$x] / $convert_count_uploaded[$i][$x]) * 100) . '%';
+            }
+        }
+
         $data = [
             'title' => 'Dashboard',
             'user' => $this->Users_model->get_user_auth($this->session->userdata('username')),
             'count_buku' => $count_buku,
             'count_uploaded' => $count_uploaded,
             'percent_uploaded' => $percent_uploaded,
+            'count_pending' => $count_pending,
+            'percent_pending' => $percent_pending,
+            'count_disetujui' => $count_disetujui,
+            'percent_disetujui' => $percent_disetujui,
+            'count_ditolak' => $count_ditolak,
+            'percent_ditolak' => $percent_ditolak,
         ];
         $this->load->view('templates/_header', $data);
         $this->load->view('templates/_navbar');

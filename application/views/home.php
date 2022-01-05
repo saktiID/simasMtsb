@@ -196,7 +196,7 @@
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Terupload</span>
+                                                    <span>Terupload [<?= $count_uploaded[1][1]; ?>]</span>
                                                     <span><?= $percent_uploaded[1][1]; ?></span>
                                                 </div>
                                                 <div class="progress">
@@ -205,29 +205,29 @@
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Pending</span>
-                                                    <span>25%</span>
+                                                    <span>Pending [<?= $count_pending[1][1]; ?>]</span>
+                                                    <span><?= $percent_pending[1][1]; ?><span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: <?= $percent_pending[1][1]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Diterima</span>
-                                                    <span>25%</span>
+                                                    <span>Disetujui [<?= $count_disetujui[1][1]; ?>]</span>
+                                                    <span><?= $percent_disetujui[1][1]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: <?= $percent_disetujui[1][1]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Ditolak</span>
-                                                    <span>25%</span>
+                                                    <span>Ditolak [<?= $count_ditolak[1][1]; ?>]</span>
+                                                    <span><?= $percent_ditolak[1][1]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: <?= $percent_ditolak[1][1]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -243,7 +243,7 @@
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Terupload</span>
+                                                    <span>Terupload [<?= $count_uploaded[1][2]; ?>]</span>
                                                     <span><?= $percent_uploaded[1][2]; ?></span>
                                                 </div>
                                                 <div class="progress">
@@ -252,29 +252,29 @@
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Pending</span>
-                                                    <span>25%</span>
+                                                    <span>Pending [<?= $count_pending[1][2]; ?>]</span>
+                                                    <span><?= $percent_pending[1][2]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: <?= $percent_pending[1][2]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Diterima</span>
-                                                    <span>25%</span>
+                                                    <span>Disetujui [<?= $count_disetujui[1][2]; ?>]</span>
+                                                    <span><?= $percent_disetujui[1][2]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: <?= $percent_disetujui[1][2]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Ditolak</span>
-                                                    <span>25%</span>
+                                                    <span>Ditolak [<?= $count_ditolak[1][2]; ?>]</span>
+                                                    <span><?= $percent_ditolak[1][2]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: <?= $percent_ditolak[1][2]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -290,7 +290,7 @@
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Terupload</span>
+                                                    <span>Terupload [<?= $count_uploaded[1][3]; ?>]</span>
                                                     <span><?= $percent_uploaded[1][3]; ?></span>
                                                 </div>
                                                 <div class="progress">
@@ -299,29 +299,29 @@
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Pending</span>
-                                                    <span>25%</span>
+                                                    <span>Pending [<?= $count_pending[1][3]; ?>]</span>
+                                                    <span><?= $percent_pending[1][3]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: <?= $percent_pending[1][3]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Diterima</span>
-                                                    <span>25%</span>
+                                                    <span>Disetujui [<?= $count_disetujui[1][3]; ?>]</span>
+                                                    <span><?= $percent_disetujui[1][3]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: <?= $percent_disetujui[1][3]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Ditolak</span>
-                                                    <span>25%</span>
+                                                    <span>Ditolak [<?= $count_ditolak[1][3]; ?>]</span>
+                                                    <span><?= $percent_ditolak[1][3]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: <?= $percent_ditolak[1][3]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -337,7 +337,7 @@
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Terupload</span>
+                                                    <span>Terupload [<?= $count_uploaded[1][4]; ?>]</span>
                                                     <span><?= $percent_uploaded[1][4]; ?></span>
                                                 </div>
                                                 <div class="progress">
@@ -346,29 +346,29 @@
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Pending</span>
-                                                    <span>25%</span>
+                                                    <span>Pending [<?= $count_pending[1][4]; ?>]</span>
+                                                    <span><?= $percent_pending[1][4]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: <?= $percent_pending[1][4]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Diterima</span>
-                                                    <span>25%</span>
+                                                    <span>Disetujui [<?= $count_disetujui[1][4]; ?>]</span>
+                                                    <span><?= $percent_disetujui[1][4]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: <?= $percent_disetujui[1][4]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Ditolak</span>
-                                                    <span>25%</span>
+                                                    <span>Ditolak [<?= $count_ditolak[1][4]; ?>]</span>
+                                                    <span><?= $percent_ditolak[1][4]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: <?= $percent_ditolak[1][4]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -397,7 +397,7 @@
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Terupload</span>
+                                                    <span>Terupload [<?= $count_uploaded[2][1]; ?>]</span>
                                                     <span><?= $percent_uploaded[2][1]; ?></span>
                                                 </div>
                                                 <div class="progress">
@@ -406,29 +406,29 @@
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Pending</span>
-                                                    <span>25%</span>
+                                                    <span>Pending [<?= $count_pending[2][1]; ?>]</span>
+                                                    <span><?= $percent_pending[2][1]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: <?= $percent_pending[2][1]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Diterima</span>
-                                                    <span>25%</span>
+                                                    <span>Disetujui [<?= $count_disetujui[2][1]; ?>]</span>
+                                                    <span><?= $percent_disetujui[2][1]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: <?= $percent_disetujui[2][1]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Ditolak</span>
-                                                    <span>25%</span>
+                                                    <span>Ditolak [<?= $count_ditolak[2][1]; ?>]</span>
+                                                    <span><?= $percent_ditolak[2][1]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: <?= $percent_ditolak[2][1]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -444,7 +444,7 @@
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Terupload</span>
+                                                    <span>Terupload [<?= $count_uploaded[2][2]; ?>]</span>
                                                     <span><?= $percent_uploaded[2][2]; ?></span>
                                                 </div>
                                                 <div class="progress">
@@ -453,29 +453,29 @@
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Pending</span>
-                                                    <span>25%</span>
+                                                    <span>Pending [<?= $count_pending[2][2]; ?>]</span>
+                                                    <span><?= $percent_pending[2][2]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: <?= $percent_pending[2][2]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Diterima</span>
-                                                    <span>25%</span>
+                                                    <span>Disetujui [<?= $count_disetujui[2][2]; ?>]</span>
+                                                    <span><?= $percent_disetujui[2][2]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: <?= $percent_disetujui[2][2]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Ditolak</span>
-                                                    <span>25%</span>
+                                                    <span>Ditolak [<?= $count_disetujui[2][2]; ?>]</span>
+                                                    <span><?= $percent_ditolak[2][2]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: <?= $percent_ditolak[2][2]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -491,7 +491,7 @@
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Terupload</span>
+                                                    <span>Terupload [<?= $count_uploaded[2][3]; ?>]</span>
                                                     <span><?= $percent_uploaded[2][3]; ?></span>
                                                 </div>
                                                 <div class="progress">
@@ -500,29 +500,29 @@
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Pending</span>
-                                                    <span>25%</span>
+                                                    <span>Pending [<?= $count_pending[2][3]; ?>]</span>
+                                                    <span><?= $percent_pending[2][3]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: <?= $percent_pending[2][3]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Diterima</span>
-                                                    <span>25%</span>
+                                                    <span>Disetujui [<?= $count_disetujui[2][3]; ?>]</span>
+                                                    <span><?= $percent_disetujui[2][3]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: <?= $percent_disetujui[2][3]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Ditolak</span>
-                                                    <span>25%</span>
+                                                    <span>Ditolak [<?= $count_ditolak[2][3]; ?>]</span>
+                                                    <span><?= $percent_ditolak[2][3]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: <?= $percent_ditolak[2][3]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -538,7 +538,7 @@
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Terupload</span>
+                                                    <span>Terupload [<?= $count_uploaded[2][4]; ?>]</span>
                                                     <span><?= $percent_uploaded[2][4]; ?></span>
                                                 </div>
                                                 <div class="progress">
@@ -547,29 +547,29 @@
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Pending</span>
-                                                    <span>25%</span>
+                                                    <span>Pending [<?= $count_pending[2][4]; ?>]</span>
+                                                    <span><?= $percent_pending[2][4]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: <?= $percent_pending[2][4]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Diterima</span>
-                                                    <span>25%</span>
+                                                    <span>Disetujui [<?= $count_disetujui[2][4]; ?>]</span>
+                                                    <span><?= $percent_disetujui[2][4]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: <?= $percent_disetujui[2][4]; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </td>
                                             <td width="200">
                                                 <div class="text-small d-flex justify-content-between mb-1">
-                                                    <span>Ditolak</span>
-                                                    <span>25%</span>
+                                                    <span>Ditolak [<?= $count_ditolak[2][4]; ?>]</span>
+                                                    <span><?= $percent_ditolak[2][4]; ?></span>
                                                 </div>
                                                 <div class="progress">
-                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="1" aria-valuemin="0" aria-valuemax="2"></div>
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: <?= $percent_ditolak[2][4]; ?>" aria-valuenow="1" aria-valuemin="0" aria-valuemax="2"></div>
                                                 </div>
                                             </td>
                                         </tr>
