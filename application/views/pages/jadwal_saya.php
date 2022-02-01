@@ -291,7 +291,7 @@
                     title: "Ups!",
                     text: "Gagal simpan jadwal",
                     icon: "error",
-                    footer: '<small>Pergi ke halaman lain lalu coba kembali ke halaman ini</samll>',
+                    footer: '<small>Pergi ke halaman lain lalu coba kembali ke halaman ini</small>',
                 })
             }
         })

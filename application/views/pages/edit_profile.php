@@ -78,9 +78,14 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <span class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ubahPassModal">Ubah kata sandi</span>
+                                <span class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ubahPassModal">
+                                    Ubah kata sandi <i class="mdi mdi-security fs-6"></i>
+                                </span>
+                                <a href="<?= base_url('biodata?id=') . $edited['user']['id']; ?>" class="btn btn-success">
+                                    Biodata guru <i class="mdi mdi-camera-front-variant fs-6"></i>
+                                </a>
                             </div>
                         </div>
                     </div>

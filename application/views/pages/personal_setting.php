@@ -76,6 +76,23 @@
             bottom: 0;
         }
 
+        .slide-up .edit-container {
+            width: 170px;
+            height: 170px;
+            padding: auto;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide-up .edit-container span {
+            margin-top: 85px;
+            width: 35px;
+            height: 35px;
+            background-color: coral;
+        }
+
         .slide-up .over-lay {
             background-color: #4eed53;
             transform: translateY(100%);
@@ -89,6 +106,11 @@
             cursor: pointer;
         }
     </style>
+
+    <!-- cropper js plugin -->
+    <link rel="stylesheet" href="https://unpkg.com/cropperjs@1.4.3/dist/cropper.min.css" />
+    <script src="https://unpkg.com/cropperjs@1.4.3/dist/cropper.min.js"></script>
+    <!-- end cropper js plugin -->
 
     <!-- content -->
     <div class="col-lg grid-margin stretch-card">
@@ -109,6 +131,13 @@
                         <div class="d-flex justify-content-center">
                             <div class="d-flex flex-column slide-up">
                                 <div class="box">
+                                    <div class="edit-container">
+                                        <span class="rounded-circle text-dark fs-2">
+                                            <label for="formFile">
+                                                <i class="mdi mdi-account-edit"></i>
+                                            </label>
+                                        </span>
+                                    </div>
                                     <label for="formFile">
                                         <img src="<?= base_url('assets/images/faces/') . $user['image']; ?>" class="img-thumbnail" alt="profile" style="width: 170px;">
                                     </label>

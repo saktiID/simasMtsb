@@ -86,3 +86,8 @@ $route['buku_induk_siswa/download/(:any)'] = 'bukuIndukSiswa/download/$1';
 $route['buku_induk_siswa/upload_data_siswa'] = 'bukuIndukSiswa/upload_data_siswa';
 $route['buku_induk_siswa/hapus_siswa'] = 'bukuIndukSiswa/hapus_siswa';
 $route['buku_induk_siswa/ubah_data_siswa'] = 'bukuIndukSiswa/ubah_data_siswa';
+$route['biodata'] = 'biodataGuru';
+
+$route['api/siswa'] = 'API_Raport/siswa';
+$route['api/guru'] = 'API_Raport/guru';
+$route['api/kelas'] = 'API_Raport/kelas';
