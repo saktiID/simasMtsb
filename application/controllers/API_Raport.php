@@ -63,16 +63,37 @@ class API_Raport extends RestController
                         ], 404);
                     }
                     break;
+                case 'biodata_siswa':
+                    if ($siswa_id) {
+                        $siswa = $this->api_raport->get_biodata_siswa($siswa_id);
+                        if ($siswa) {
+                            $this->response([
+                                'status' => true,
+                                'message' => $siswa
+                            ], 200);
+                        } else {
+                            $this->response([
+                                'status' => false,
+                                'message' => 'siswa dengan siswa id ' . $siswa_id . ' tidak ditemukan.'
+                            ], 404);
+                        }
+                    } else {
+                        $this->response([
+                            'status' => false,
+                            'message' => 'parameter siswa_id dibutuhkan.'
+                        ], 400);
+                    }
+                    break;
                 default:
                     $this->response([
                         'status' => false,
-                        'message' => 'value opt tidak valid. opt: specific_siswa|all_siswa'
+                        'message' => 'value opt tidak valid. opt: specific_siswa|all_siswa|biodata_siswa'
                     ], 400);
             }
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'parameter opt dibutuhkan. opt: info_kelas|siswa_kelas'
+                'message' => 'parameter opt dibutuhkan. opt: info_kelas|siswa_kelas|biodata_siswa'
             ], 400);
         }
     }

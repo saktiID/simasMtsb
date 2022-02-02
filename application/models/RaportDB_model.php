@@ -87,6 +87,27 @@ class RaportDB_model extends CI_Model
     }
 
     /**
+     * method model get biodata siswa
+     */
+    public function get_biodata_siswa($siswa_id)
+    {
+        $this->db_raport->select('
+            siswa_id,
+            siswa_nama,
+            siswa_gender,
+            siswa_tempat,
+            siswa_tgllahir,
+            siswa_alamat,
+            siswa_telpon,
+            siswa_anakke,
+            nama_ayah,
+            nama_ibu,
+            sekolah_asal
+        ');
+        return $this->db_raport->get_where('e_siswa', ['siswa_id' => $siswa_id])->result_array();
+    }
+
+    /**
      * method model for get guru spesifik
      */
     public function get_guru($guru_id)
