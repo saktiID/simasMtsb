@@ -2,3 +2,4 @@
 /application/config/database.php
 /upload/dokumen/bukukerja/*
 /upload/dokumen/bukuinduk/*
+db_pass.txt
