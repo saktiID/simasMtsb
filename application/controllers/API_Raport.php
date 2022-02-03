@@ -30,11 +30,11 @@ class API_Raport extends RestController
             switch ($opt) {
                 case 'specific_siswa':
                     if ($siswa_id) {
-                        $siswa = $this->api_raport->get_siswa($siswa_id)[0];
+                        $siswa = $this->api_raport->get_siswa($siswa_id);
                         if ($siswa) {
                             $this->response([
                                 'status' => true,
-                                'message' => $siswa
+                                'message' => $siswa[0]
                             ], 200);
                         } else {
                             $this->response([
@@ -65,11 +65,11 @@ class API_Raport extends RestController
                     break;
                 case 'biodata_siswa':
                     if ($siswa_id) {
-                        $siswa = $this->api_raport->get_biodata_siswa($siswa_id)[0];
+                        $siswa = $this->api_raport->get_biodata_siswa($siswa_id);
                         if ($siswa) {
                             $this->response([
                                 'status' => true,
-                                'message' => $siswa
+                                'message' => $siswa[0]
                             ], 200);
                         } else {
                             $this->response([
