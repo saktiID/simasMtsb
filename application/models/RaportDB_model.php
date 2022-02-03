@@ -41,12 +41,17 @@ class RaportDB_model extends CI_Model
     public function get_all_kelas()
     {
         $this->db_raport->select('
-            kelas_id,
-            tingkat_id,
-            kelas_nama,
-            guru_id
+            e_kelas.kelas_id,
+            e_tingkat.tingkat_nama,
+            e_kelas.kelas_nama,
+            e_kelas.guru_id,
+            e_guru.guru_nama,
+            e_guru.guru_gender
         ');
-        return $this->db_raport->get('e_kelas')->result_array();
+        $this->db_raport->from('e_kelas');
+        $this->db_raport->join('e_guru', 'e_guru.guru_id = e_kelas.guru_id');
+        $this->db_raport->join('e_tingkat', 'e_tingkat.tingkat_id = e_kelas.tingkat_id');
+        return $this->db_raport->get()->result_array();
     }
 
     /** 
@@ -117,6 +122,23 @@ class RaportDB_model extends CI_Model
     }
 
     /**
+     * method model for get kelas milik guru
+     */
+    public function get_kelas_guru($guru_id)
+    {
+        $this->db_raport->select('
+            e_kelas.kelas_id,
+            e_tingkat.tingkat_nama,
+            e_kelas.kelas_nama,
+        ');
+        $this->db_raport->where('e_kelas.guru_id', $guru_id);
+        $this->db_raport->from('e_kelas');
+        $this->db_raport->join('e_guru', 'e_guru.guru_id = e_kelas.guru_id');
+        $this->db_raport->join('e_tingkat', 'e_tingkat.tingkat_id = e_kelas.tingkat_id');
+        return $this->db_raport->get()->result_array();
+    }
+
+    /**
      * method model for get walas
      */
     public function get_walas($guru_id)
@@ -152,7 +174,7 @@ class RaportDB_model extends CI_Model
         $siswa = $this->db_raport->get('e_siswa')->result_array();
         $info_kelas = $this->get_info_kelas($kelas_id);
 
-        return $data = [
+        return  [
             'info_kelas' => $info_kelas,
             'siswa' => $siswa,
         ];
