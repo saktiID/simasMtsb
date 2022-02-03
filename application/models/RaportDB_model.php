@@ -173,11 +173,12 @@ class RaportDB_model extends CI_Model
         $this->db_raport->where('kelas_id', $kelas_id);
         $siswa = $this->db_raport->get('e_siswa')->result_array();
         $info_kelas = $this->get_info_kelas($kelas_id);
-
-        return  [
-            'info_kelas' => $info_kelas,
-            'siswa' => $siswa,
-        ];
+        if ($info_kelas) {
+            return  [
+                'info_kelas' => $info_kelas,
+                'siswa' => $siswa,
+            ];
+        }
     }
 
     /**
@@ -199,19 +200,21 @@ class RaportDB_model extends CI_Model
         $this->db_raport->from('e_kelas');
         $this->db_raport->join('e_tingkat', 'e_tingkat.tingkat_id = e_kelas.tingkat_id');
         $this->db_raport->join('e_guru', 'e_guru.guru_id = e_kelas.guru_id');
-        $query = $this->db_raport->get()->result_array()[0];
-        return $data = [
-            'kelas_id' => $query['kelas_id'],
-            'tingkat_id' => $query['tingkat_id'],
-            'kelas_nama' => $query['kelas_nama'],
-            'tingkat_nama' => $query['tingkat_nama'],
-            'guru_id' => $query['guru_id'],
-            'guru_nama' => $query['guru_nama'],
-            'guru_gender' => $query['guru_gender'],
-            'total_peserta' => $this->get_count_siswa_in_kelas($kelas_id),
-            'total_laki' => $this->get_count_gender_in_kelas($kelas_id, 'L'),
-            'total_perempuan' => $this->get_count_gender_in_kelas($kelas_id, 'P'),
-        ];
+        $query = $this->db_raport->get()->result_array();
+        if ($query) {
+            return [
+                'kelas_id' => $query[0]['kelas_id'],
+                'tingkat_id' => $query[0]['tingkat_id'],
+                'kelas_nama' => $query[0]['kelas_nama'],
+                'tingkat_nama' => $query[0]['tingkat_nama'],
+                'guru_id' => $query[0]['guru_id'],
+                'guru_nama' => $query[0]['guru_nama'],
+                'guru_gender' => $query[0]['guru_gender'],
+                'total_peserta' => $this->get_count_siswa_in_kelas($kelas_id),
+                'total_laki' => $this->get_count_gender_in_kelas($kelas_id, 'L'),
+                'total_perempuan' => $this->get_count_gender_in_kelas($kelas_id, 'P'),
+            ];
+        }
     }
 
     /**
