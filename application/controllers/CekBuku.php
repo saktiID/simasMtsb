@@ -47,7 +47,7 @@ class CekBuku extends CI_Controller
                     $tahun = $currentTahun . '-' . $tahunSmt2;
                 }
 
-                if ($currentBulan < 6) {
+                if ($currentBulan <= 6) {
                     $tahunSmt1 = $currentTahun - 1;
                     $tahun = $tahunSmt1 . '-' . $currentTahun;
                 }
