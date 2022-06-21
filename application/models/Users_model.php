@@ -61,6 +61,7 @@ class Users_model extends CI_Model
         $this->db->set('email', $data['email']);
         $this->db->set('username', $data['username']);
         $this->db->set('role_id', $data['role_id']);
+        $this->db->set('is_admineci', $data['is_admineci']);
         $this->db->set('is_pengajar', $data['is_pengajar']);
         $this->db->set('is_walas', $data['is_walas']);
         $this->db->set('jenjang', $data['jenjang']);

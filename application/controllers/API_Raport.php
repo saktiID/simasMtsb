@@ -34,18 +34,18 @@ class API_Raport extends RestController
                         if ($siswa) {
                             $this->response([
                                 'status' => true,
-                                'message' => $siswa[0]
+                                'data' => $siswa[0]
                             ], 200);
                         } else {
                             $this->response([
                                 'status' => false,
-                                'message' => 'siswa dengan siswa id ' . $siswa_id . ' tidak ditemukan.'
+                                'data' => 'siswa dengan siswa id ' . $siswa_id . ' tidak ditemukan.'
                             ], 404);
                         }
                     } else {
                         $this->response([
                             'status' => false,
-                            'message' => 'parameter siswa_id dibutuhkan.'
+                            'data' => 'parameter siswa_id dibutuhkan.'
                         ], 400);
                     }
                     break;
@@ -54,12 +54,12 @@ class API_Raport extends RestController
                     if ($siswa) {
                         $this->response([
                             'status' => true,
-                            'message' => $siswa
+                            'data' => $siswa
                         ], 200);
                     } else {
                         $this->response([
                             'status' => false,
-                            'message' => 'tidak ada siswa ditemukan.'
+                            'data' => 'tidak ada siswa ditemukan.'
                         ], 404);
                     }
                     break;
@@ -69,31 +69,31 @@ class API_Raport extends RestController
                         if ($siswa) {
                             $this->response([
                                 'status' => true,
-                                'message' => $siswa[0]
+                                'data' => $siswa[0]
                             ], 200);
                         } else {
                             $this->response([
                                 'status' => false,
-                                'message' => 'siswa dengan siswa id ' . $siswa_id . ' tidak ditemukan.'
+                                'data' => 'siswa dengan siswa id ' . $siswa_id . ' tidak ditemukan.'
                             ], 404);
                         }
                     } else {
                         $this->response([
                             'status' => false,
-                            'message' => 'parameter siswa_id dibutuhkan.'
+                            'data' => 'parameter siswa_id dibutuhkan.'
                         ], 400);
                     }
                     break;
                 default:
                     $this->response([
                         'status' => false,
-                        'message' => 'value opt tidak valid. opt: specific_siswa|all_siswa|biodata_siswa'
+                        'data' => 'value opt tidak valid. opt: specific_siswa|all_siswa|biodata_siswa'
                     ], 400);
             }
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'parameter opt dibutuhkan. opt: info_kelas|siswa_kelas|biodata_siswa'
+                'data' => 'parameter opt dibutuhkan. opt: info_kelas|siswa_kelas|biodata_siswa'
             ], 400);
         }
     }
@@ -121,18 +121,18 @@ class API_Raport extends RestController
                         if ($info_kelas) {
                             $this->response([
                                 'status' => true,
-                                'message' => $info_kelas
+                                'data' => $info_kelas
                             ], 200);
                         } else {
                             $this->response([
                                 'status' => false,
-                                'message' => 'kelas dengan kelas id ' . $kelas_id . ' tidak ditemukan.'
+                                'data' => 'kelas dengan kelas id ' . $kelas_id . ' tidak ditemukan.'
                             ], 404);
                         }
                     } else {
                         $this->response([
                             'status' => false,
-                            'message' => 'parameter kelas_id dibutuhkan.'
+                            'data' => 'parameter kelas_id dibutuhkan.'
                         ], 400);
                     }
                     break;
@@ -142,18 +142,18 @@ class API_Raport extends RestController
                         if ($siswa_kelas) {
                             $this->response([
                                 'status' => true,
-                                'message' => $siswa_kelas
+                                'data' => $siswa_kelas
                             ], 200);
                         } else {
                             $this->response([
                                 'status' => false,
-                                'message' => 'kelas dengan kelas id ' . $kelas_id . ' tidak ditemukan.'
+                                'data' => 'kelas dengan kelas id ' . $kelas_id . ' tidak ditemukan.'
                             ], 404);
                         }
                     } else {
                         $this->response([
                             'status' => false,
-                            'message' => 'parameter kelas_id dibituhkan.'
+                            'data' => 'parameter kelas_id dibituhkan.'
                         ], 400);
                     }
                     break;
@@ -162,25 +162,25 @@ class API_Raport extends RestController
                     if ($kelas) {
                         $this->response([
                             'status' => true,
-                            'message' => $kelas
+                            'data' => $kelas
                         ], 200);
                     } else {
                         $this->response([
                             'status' => false,
-                            'message' => 'tidak ada kelas ditemukan.'
+                            'data' => 'tidak ada kelas ditemukan.'
                         ], 404);
                     }
                     break;
                 default:
                     $this->response([
                         'status' => false,
-                        'message' => 'value opt tidak valid. opt: all_kelas|info_kelas|siswa_kelas'
+                        'data' => 'value opt tidak valid. opt: all_kelas|info_kelas|siswa_kelas'
                     ], 400);
             }
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'parameter opt dibutuhkan. opt: all_kelas|info_kelas|siswa_kelas'
+                'data' => 'parameter opt dibutuhkan. opt: all_kelas|info_kelas|siswa_kelas'
             ], 400);
         }
     }
@@ -216,18 +216,18 @@ class API_Raport extends RestController
                             }
                             $this->response([
                                 'status' => true,
-                                'message' => ['info_guru' => $guru[0], 'kelas_guru' => $kelas_guru]
+                                'data' => ['info_guru' => $guru[0], 'kelas_guru' => $kelas_guru]
                             ], 200);
                         } else {
                             $this->response([
                                 'status' => false,
-                                'message' => 'guru dengan guru_id ' . $guru_id . ' tidak ditemukan.'
+                                'data' => 'guru dengan guru_id ' . $guru_id . ' tidak ditemukan.'
                             ], 404);
                         }
                     } else {
                         $this->response([
                             'status' => false,
-                            'message' => 'parameter guru_id dibutuhkan.'
+                            'data' => 'parameter guru_id dibutuhkan.'
                         ], 400);
                     }
                     break;
@@ -236,12 +236,12 @@ class API_Raport extends RestController
                     if ($guru) {
                         $this->response([
                             'status' => true,
-                            'message' => $guru
+                            'data' => $guru
                         ], 200);
                     } else {
                         $this->response([
                             'status' => false,
-                            'message' => 'tidak ada guru ditemukan.'
+                            'data' => 'tidak ada guru ditemukan.'
                         ], 404);
                     }
                     break;
@@ -253,37 +253,37 @@ class API_Raport extends RestController
                             if ($walas) {
                                 $this->response([
                                     'status' => true,
-                                    'message' => $walas
+                                    'data' => $walas
                                 ], 200);
                             } else {
                                 $this->response([
                                     'status' => false,
-                                    'message' => 'guru dengan guru_id ' . $guru_id . ' bukan sebagai walas.'
+                                    'data' => 'guru dengan guru_id ' . $guru_id . ' bukan sebagai walas.'
                                 ], 404);
                             }
                         } else {
                             $this->response([
                                 'status' => false,
-                                'message' => 'guru dengan guru_id ' . $guru_id . ' tidak ditemukan.'
+                                'data' => 'guru dengan guru_id ' . $guru_id . ' tidak ditemukan.'
                             ], 404);
                         }
                     } else {
                         $this->response([
                             'status' => false,
-                            'message' => 'parameter guru_id dibutuhkan.'
+                            'data' => 'parameter guru_id dibutuhkan.'
                         ], 400);
                     }
                     break;
                 default:
                     $this->response([
                         'status' => false,
-                        'message' => 'value opt tidak valid. opt: specific_guru|all_guru|walas_guru'
+                        'data' => 'value opt tidak valid. opt: specific_guru|all_guru|walas_guru'
                     ], 400);
             }
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'parameter opt dibutuhkan. opt: specific_guru|all_guru|walas_guru'
+                'data' => 'parameter opt dibutuhkan. opt: specific_guru|all_guru|walas_guru'
             ], 400);
         }
     }

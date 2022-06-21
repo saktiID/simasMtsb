@@ -102,12 +102,17 @@
                         <div class="col-md-6">
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Role</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-9 d-flex">
                                     <select class="form-control" name="role_id" required>
                                         <option value="">-- Pilih Role --</option>
                                         <?php foreach ($role as $r) : ?>
                                             <option value="<?= $r['role_id']; ?>" <?php if ($edited['user']['role_id'] == $r['role_id']) : ?> selected <?php endif; ?><?php if ($r['role_id'] == 1 && $user['role_id'] != 1) : ?>disabled<?php endif; ?>><?= $r['role_name']; ?></option>
                                         <?php endforeach; ?>
+                                    </select>
+                                    <select class="form-control" name="is_admineci" required>
+                                        <option value="">-- Pilih Admin ECI --</option>
+                                        <option value="1" <?php if ($edited['user']['is_admineci']) : ?> selected <?php endif; ?>>Admin ECI</option>
+                                        <option value="0" <?php if (!$edited['user']['is_admineci']) : ?> selected <?php endif; ?>>Bukan admin ECI</option>
                                     </select>
                                 </div>
                             </div>

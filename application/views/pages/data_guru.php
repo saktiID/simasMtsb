@@ -125,12 +125,17 @@
                         <div class="col-md-6">
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Role</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-9 d-flex">
                                     <select class="form-control" name="role_id" required>
                                         <option value="">-- Pilih Role --</option>
                                         <?php foreach ($role as $r) : ?>
                                             <option value="<?= $r['role_id']; ?>" <?php if ($r['role_id'] == 1 && $user['role_id'] != 1) : ?>disabled<?php endif; ?>><?= $r['role_name']; ?></option>
                                         <?php endforeach; ?>
+                                    </select>
+                                    <select class="form-control" name="is_admineci" required>
+                                        <option value="">-- Pilih Admin ECI --</option>
+                                        <option value="1">Admin ECI</option>
+                                        <option value="0">Bukan admin ECI</option>
                                     </select>
                                 </div>
                             </div>
@@ -387,6 +392,7 @@
         let email = $('[name="email"]').val()
         let username = $('[name="username"]')
         let role_id = $('[name="role_id"]').val()
+        let is_admineci = $('[name="is_admineci"]').val()
         let password1 = $('[name="password1"]')
         let password2 = $('[name="password2"]')
         let mapel = $('[name="mapel"]').val()
@@ -397,7 +403,7 @@
         let kelas8 = $('[name="kelas8"]').val()
         let kelas9 = $('[name="kelas9"]').val()
 
-        let data = 'nama=' + nama + '&gender=' + gender + '&email=' + email + '&username=' + username.val() + '&role_id=' + role_id + '&password1=' + password1.val() + '&mapel=' + mapel + '&is_pengajar=' + is_pengajar + '&is_walas=' + is_walas + '&walas_of=' + walas_of
+        let data = 'nama=' + nama + '&gender=' + gender + '&email=' + email + '&username=' + username.val() + '&role_id=' + role_id + '&password1=' + password1.val() + '&mapel=' + mapel + '&is_pengajar=' + is_pengajar + '&is_walas=' + is_walas + '&walas_of=' + walas_of + '&is_admineci=' + is_admineci
 
         if ($('[name="kelas7"]').is(':checked')) {
             data = data + '&kelas7=' + kelas7

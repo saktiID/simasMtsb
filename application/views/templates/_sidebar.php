@@ -42,6 +42,20 @@
                         <span class="menu-title">Penilaian Siswa</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="mdi mdi-bulletin-board menu-icon"></i>
+                        <span class="menu-title">ECI Siswa</span>
+                    </a>
+                </li>
+                <?php if ($user['is_admineci'] == 1) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="mdi mdi-chart-histogram menu-icon"></i>
+                            <span class="menu-title">Nilai ECI</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
 
                 <li>
                     <span class="mx-3"></span>
@@ -115,6 +129,20 @@
                         <span class="menu-title">Penilaian Siswa</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="mdi mdi-chart-bar menu-icon"></i>
+                        <span class="menu-title">ECI Siswa</span>
+                    </a>
+                </li>
+                <?php if ($user['is_admineci'] == 1) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="mdi mdi-chart-histogram menu-icon"></i>
+                            <span class="menu-title">Nilai ECI</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
             <?php endif; ?>
             <!-- end menu user -->
 

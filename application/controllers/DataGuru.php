@@ -136,6 +136,7 @@ class DataGuru extends CI_Controller
         $username = $this->input->post('username');
         $role_id = $this->input->post('role_id');
         $is_pengajar = $this->input->post('is_pengajar');
+        $is_admineci = $this->input->post('is_admineci');
         $walas = $this->input->post('walas');
         $walas_of = $this->input->post('walas_of');
         $mapel = $this->input->post('mapel');
@@ -163,6 +164,7 @@ class DataGuru extends CI_Controller
             'email' => $email,
             'username' => $username,
             'role_id' => $role_id,
+            'is_admineci' => $is_admineci,
             'is_pengajar' => $is_pengajar,
             'is_walas'  => $walas,
             'jenjang'   => $jenjang,
@@ -238,6 +240,7 @@ class DataGuru extends CI_Controller
         $role_id = $this->input->post('role_id');
         $mapel = $this->input->post('mapel');
         $password1 = $this->input->post('password1');
+        $is_admineci = $this->input->post('is_admineci');
         $is_walas = $this->input->post('is_walas');
         $is_pengajar = $this->input->post('is_pengajar');
         $walas_of = $this->input->post('walas_of');
@@ -295,6 +298,7 @@ class DataGuru extends CI_Controller
                             'nama'     => $nama,
                             'gender'   => $gender,
                             'role_id'  => $role_id,
+                            'is_admineci' => $is_admineci,
                             'is_walas' => $is_walas,
                             'jenjang'  => $jenjang,
                             'email'    => $email,
