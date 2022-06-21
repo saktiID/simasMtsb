@@ -171,6 +171,7 @@ class RaportDB_model extends CI_Model
             e_siswa.siswa_nama,
         ');
         $this->db_raport->where('kelas_id', $kelas_id);
+        $this->db_raport->where('siswa_alasan_mutasi', NULL);
         $siswa = $this->db_raport->get('e_siswa')->result_array();
         $info_kelas = $this->get_info_kelas($kelas_id);
         if ($info_kelas) {
