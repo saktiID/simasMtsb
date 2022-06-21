@@ -56,11 +56,11 @@ class Auth extends CI_Controller
                     }
 
                     $name = $user['nama'];
-                    $love = '';
-                    if (strpos($name, 'Nida') !== false) {
-                        $love = ', tersayang';
-                    }
-                    $name = $name . $love;
+                    // $love = '';
+                    // if (strpos($name, 'Nida') !== false) {
+                    //     $love = ', tersayang';
+                    // }
+                    // $name = $name . $love;
                     $tanggal = format_indo(date('Y-m-d'));
                     $sambutan = '. Hari ini, ' . $tanggal . '. selamat bekerja';
                     $teks = 'Selamat datang, ' . $gender . ' ' . $name . $sambutan;
