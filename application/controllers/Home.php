@@ -142,6 +142,7 @@ class Home extends CI_Controller
             'percent_disetujui' => $percent_disetujui,
             'count_ditolak' => $count_ditolak,
             'percent_ditolak' => $percent_ditolak,
+            'tahun' => $tahun,
         ];
         $this->load->view('templates/_header', $data);
         $this->load->view('templates/_navbar');

@@ -42,21 +42,50 @@
 
     <!-- run datatable -->
     <script>
+        let option = {
+            language: {
+                "zeroRecords": "Tidak ada data yang cocok ditemukan",
+                "decimal": "",
+                "emptyTable": "Tidak ada data di dalam tabel",
+                "info": "Menampilkan _START_ hingga _END_ dari _TOTAL_ entri",
+                "infoEmpty": "Menampilkan 0 hingga 0 dari 0 entri",
+                "infoFiltered": "(disaring dari _MAX_ total entri)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Tampilkan _MENU_ entri per halaman",
+                "loadingRecords": "Loading...",
+                "processing": "",
+                "search": "Cari:",
+                "paginate": {
+                    "first": "Pertama",
+                    "last": "Terakhir",
+                    "next": "Selanjutnya",
+                    "previous": "Sebelumnya"
+                },
+            },
+        }
+
         $(document).ready(function() {
-            $('#table').DataTable();
+            $('#table').DataTable({
+                language: option.language,
+            });
         });
 
         /**
          * table semester 1
          */
         $(document).ready(function() {
-            $('#table_smt1').DataTable()
+            $('#table_smt1').DataTable({
+                language: option.language,
+            })
         })
         /**
          * table semester 2
          */
         $(document).ready(function() {
-            $('#table_smt2').DataTable()
+            $('#table_smt2').DataTable({
+                language: option.language,
+            })
         })
     </script>
     <!-- end run -->

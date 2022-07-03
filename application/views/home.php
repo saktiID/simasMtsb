@@ -167,11 +167,12 @@
                             Progres Buku Kerja
                         </div>
                         <div class="tahun">
-                            Pilih tahun ajaran :
-                            <select name="tahun" id="tahun">
-                                <option value="">2021-2022</option>
-                                <option value="">2021-2022</option>
-                                <option value="">2021-2022</option>
+                            <label for="tahun">Pilih tahun ajaran :</label>
+                            <select name="tahun" id="tahun" onchange="slideTahun()">
+                                <option value="2021-2022" <?php if ($tahun == '2021-2022') : ?> selected <?php endif; ?>>2021-2020</option>
+                                <option value="2022-2023" <?php if ($tahun == '2022-2023') : ?> selected <?php endif; ?>>2022-2023</option>
+                                <option value="2023-2024" <?php if ($tahun == '2023-2024') : ?> selected <?php endif; ?>>2023-2024</option>
+                                <option value="2024-2025" <?php if ($tahun == '2024-2025') : ?> selected <?php endif; ?>>2024-2025</option>
                             </select>
                         </div>
 
@@ -593,7 +594,13 @@
 <script>
     <?= $this->session->flashdata('welcome'); ?>
 
-    function welcome(teks) {
-        responsiveVoice.speak(teks, "Indonesian Male");
+    // function welcome(teks) {
+    //     responsiveVoice.speak(teks, "Indonesian Male");
+    // }
+
+    function slideTahun() {
+        let tahun = $('[name="tahun"]').val()
+        let linkTarget = '<?= base_url('home?tahun=') ?>' + tahun
+        location.replace(linkTarget)
     }
 </script>
