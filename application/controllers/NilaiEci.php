@@ -148,7 +148,7 @@ class NilaiEci extends CI_Controller
         $sheet->getColumnDimension('H')->setWidth(16);
 
         // Set judul file excel nya
-        // $sheet->setTitle("Template Nilai ECI Kelas " . $kelas);
+        $sheet->setTitle($kelas);
 
         // Proses file excel
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

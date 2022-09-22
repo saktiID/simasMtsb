@@ -109,6 +109,74 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Upload Nilai</h4>
+                    <form class="upload">
+                        <div class="row">
+                            <!-- input tahun ajar -->
+                            <div class="col mb-3">
+                                <select class="form-select" name="tahun_ajaran" required>
+                                    <option selected value="">-- Tahun ajaran --</option>
+                                    <option value="2021-2022">2021-2022</option>
+                                    <option value="2022-2023">2022-2023</option>
+                                    <option value="2024-2024">2023-2024</option>
+                                </select>
+                            </div>
+                            <!-- input semester -->
+                            <div class="col mb-3">
+                                <select class="form-select" name="semester" required>
+                                    <option selected value="">-- Semester --</option>
+                                    <option value="1">Ganjil</option>
+                                    <option value="2">Genap</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- input jenis ujian -->
+                            <div class="col mb-3">
+                                <select class="form-select" name="bulan" required>
+                                    <option selected value="">-- Bulan --</option>
+                                    <option>Januari</option>
+                                    <option>Februari</option>
+                                    <option>Maret</option>
+                                    <option>April</option>
+                                    <option>Mei</option>
+                                    <option>Juni</option>
+                                    <option>Juli</option>
+                                    <option>Agustus</option>
+                                    <option>September</option>
+                                    <option>Oktober</option>
+                                    <option>November</option>
+                                    <option>Desember</option>
+                                </select>
+                            </div>
+                            <!-- input kelas -->
+                            <div class="col mb-3">
+                                <select class="form-select" name="kelas_id" required>
+                                    <option selected value="">-- Kelas --</option>
+                                    <?php foreach ($kelas as $kls) : ?>
+                                        <optgroup label="<?= $kls['kelas'] ?>">
+                                            <?php foreach ($sub_kelas as $sub) : ?>
+                                                <?php if ($sub['child'] == $kls['id']) : ?>
+                                                    <option value="<?= $sub['id']; ?>"><?= $sub['kelas'] ?></option>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </optgroup>
+                                    <?php endforeach; ?>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- input file -->
+                            <div class="col mb-3">
+                                <input class="form-control" type="file" id="formFile" required>
+                            </div>
+                            <!-- input submit -->
+                            <div class="col mb-3 d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary ml-2">Upload</button>
+                            </div>
+
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -241,12 +309,22 @@
             }
 
             if (!data.tahun_ajaran && !data.semester && !data.bulan && !data.kelas_id) {
-                alert('Isi formulir terlebih dahulu!')
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Isi formulir terlebih dahulu!',
+                })
                 return false
             } else {
                 let parameter = new URLSearchParams(data).toString()
                 let url = '<?= base_url('nilai_eci/download?') ?>' + parameter
                 window.location.href = url
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil download!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
 
         })
