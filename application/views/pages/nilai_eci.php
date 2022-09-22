@@ -215,10 +215,6 @@
     </div>
     <!-- end content Nilai ECI -->
 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loadingScreen">
-        Launch static backdrop modal
-    </button>
-
     <!-- Modal loading -->
     <div class="modal fade" id="loadingScreen" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
