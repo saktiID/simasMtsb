@@ -11,7 +11,7 @@ class Kelas_model extends CI_Model
 
     public function get_sub_kelas()
     {
-        return $this->db->get_where('kelas', ['parrent' => 0])->result_array();
+        return $this->db->get_where('kelas', ['parrent' => 0, 'is_active => 1'])->result_array();
     }
 
     public function get_main_kelas($id)
