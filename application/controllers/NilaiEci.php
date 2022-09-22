@@ -21,7 +21,7 @@ class NilaiEci extends CI_Controller
     public function index()
     {
         $data = [
-            'title' => 'Dashboard',
+            'title' => 'Nilai ECI',
             'user' => $this->Users_model->get_user_auth($this->session->userdata('username')),
             'kelas' => $this->kelas_model->get_kelas(),
             'sub_kelas' => $this->kelas_model->get_sub_kelas()
