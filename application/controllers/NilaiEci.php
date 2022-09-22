@@ -77,7 +77,7 @@ class NilaiEci extends CI_Controller
         $kelas = $this->nilaiEci_model->get_identitas_kelas($kelas_id)[0]['kelas'];
         $judul = "NILAI ECI KELAS " . $kelas . " | " . strtoupper($bulan) . " SEMESTER " . $semester . " " . $tahun_ajaran;
         $sheet->setCellValue('A1', $judul);
-        $sheet->mergeCells('A1:G1'); // Set Merge Cell pada kolom A1 sampai F1
+        $sheet->mergeCells('A1:H1'); // Set Merge Cell pada kolom A1 sampai F1
         $sheet->getStyle('A1')->getFont()->setBold(true); // Set bold kolom A1
         $sheet->getStyle('A1')->applyFromArray([
             'alignment' => [
@@ -88,12 +88,13 @@ class NilaiEci extends CI_Controller
 
         // Buat header tabel nya pada baris ke 3
         $sheet->setCellValue('A3', "NO");
-        $sheet->setCellValue('B3', "NAMA");
-        $sheet->setCellValue('C3', "LISTENING");
-        $sheet->setCellValue('D3', "READING");
-        $sheet->setCellValue('E3', "SPEAKING");
-        $sheet->setCellValue('F3', "WRITING");
-        $sheet->setCellValue('G3', "DESCRIBE/VOCAB");
+        $sheet->setCellValue('B3', "NIS");
+        $sheet->setCellValue('C3', "NAMA");
+        $sheet->setCellValue('D3', "LISTENING");
+        $sheet->setCellValue('E3', "READING");
+        $sheet->setCellValue('F3', "SPEAKING");
+        $sheet->setCellValue('G3', "WRITING");
+        $sheet->setCellValue('H3', "DESCRIBE/VOCAB");
 
         // Apply style header yang telah kita buat tadi ke masing-masing kolom header
         $sheet->getStyle('A3')->applyFromArray($style_col);
@@ -103,6 +104,7 @@ class NilaiEci extends CI_Controller
         $sheet->getStyle('E3')->applyFromArray($style_col);
         $sheet->getStyle('F3')->applyFromArray($style_col);
         $sheet->getStyle('G3')->applyFromArray($style_col);
+        $sheet->getStyle('H3')->applyFromArray($style_col);
 
         // Isi row dari db kelas
         $siswa = $this->nilaiEci_model->get_siswa_kelas($kelas_id);
@@ -110,11 +112,12 @@ class NilaiEci extends CI_Controller
         $row = 4;
         foreach ($siswa as $s) {
             $sheet->setCellValue('A' . $row, $no);
-            $sheet->setCellValue('B' . $row, $s['nama']);
-            $sheet->setCellValue('C' . $row, '');
+            $sheet->setCellValue('B' . $row, $s['nis']);
+            $sheet->setCellValue('C' . $row, $s['nama']);
             $sheet->setCellValue('D' . $row, '');
             $sheet->setCellValue('F' . $row, '');
             $sheet->setCellValue('G' . $row, '');
+            $sheet->setCellValue('H' . $row, '');
 
             // Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
             $sheet->getStyle('A' . $row)->applyFromArray($style_row);
@@ -124,9 +127,11 @@ class NilaiEci extends CI_Controller
             $sheet->getStyle('E' . $row)->applyFromArray($style_row);
             $sheet->getStyle('F' . $row)->applyFromArray($style_row);
             $sheet->getStyle('G' . $row)->applyFromArray($style_row);
+            $sheet->getStyle('H' . $row)->applyFromArray($style_row);
 
             $sheet->getStyle('A' . $row)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
             $sheet->getStyle('B' . $row)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+            $sheet->getStyle('C' . $row)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
 
             $no++;
             $row++;
@@ -134,12 +139,13 @@ class NilaiEci extends CI_Controller
 
         // Set width kolom
         $sheet->getColumnDimension('A')->setWidth(5);
-        $sheet->getColumnDimension('B')->setWidth(45);
-        $sheet->getColumnDimension('C')->setWidth(16);
+        $sheet->getColumnDimension('B')->setWidth(30);
+        $sheet->getColumnDimension('C')->setWidth(45);
         $sheet->getColumnDimension('D')->setWidth(16);
         $sheet->getColumnDimension('E')->setWidth(16);
         $sheet->getColumnDimension('F')->setWidth(16);
         $sheet->getColumnDimension('G')->setWidth(16);
+        $sheet->getColumnDimension('H')->setWidth(16);
 
         // Set judul file excel nya
         // $sheet->setTitle("Template Nilai ECI Kelas " . $kelas);
