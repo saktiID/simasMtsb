@@ -4,6 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 // Include librari PhpSpreadsheet
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\IOFactory as ssIOFactory;
 
 class NilaiEci extends CI_Controller
 {
@@ -157,5 +158,100 @@ class NilaiEci extends CI_Controller
 
         $writer = new Xlsx($spreadsheet);
         $writer->save('php://output');
+    }
+
+    /**
+     * method controller upload nilai
+     */
+    public function upload_nilai()
+    {
+        // identity
+        $kelas_id = $_POST['kelas_id'];
+        $semester = $_POST['semester'];
+        $bulan = $_POST['bulan'];
+        $tahun_ajaran = $_POST['tahun_ajaran'];
+
+
+        if (!$semester) {
+            echo json_encode([
+                'status' => false,
+                'msg' => 'Semester kosong!'
+            ]);
+            return false;
+        }
+        if (!$bulan) {
+            echo json_encode([
+                'status' => false,
+                'msg' => 'Bulan kosong!'
+            ]);
+            return false;
+        }
+        if (!$tahun_ajaran) {
+            echo json_encode([
+                'status' => false,
+                'msg' => 'Tahun ajaran kosong!'
+            ]);
+            return false;
+        }
+
+        // file prop
+        $filename = $_FILES['nilaiXls']['name'];
+        $filetmp = $_FILES['nilaiXls']['tmp_name'];
+        $filetype = pathinfo($filename)['extension'];
+        $extAllowed = ['xls', 'xlsx',];
+
+        if (!$filename) {
+            echo json_encode([
+                'status' => false,
+                'msg' => 'File kosong!'
+            ]);
+            return false;
+        }
+        if (!in_array($filetype, $extAllowed)) {
+            echo json_encode([
+                'status' => false,
+                'msg' => 'Format file salah!'
+            ]);
+            return false;
+        }
+
+        $reader = ssIOFactory::createReaderForFile($filetmp);
+        $spreadsheet = $reader->load($filetmp);
+        $sheetData = $spreadsheet->getActiveSheet()->toArray();
+
+        for ($i = 3; $i < count($sheetData); $i++) {
+            $nis = $sheetData[$i]['1'];
+            $nama = $sheetData[$i]['2'];
+            $listening = $sheetData[$i]['3'] ? $sheetData[$i]['3'] : '';
+            $reading = $sheetData[$i]['4'] ? $sheetData[$i]['4'] : '';
+            $speaking = $sheetData[$i]['5'] ? $sheetData[$i]['5'] : '';
+            $writing = $sheetData[$i]['6'] ? $sheetData[$i]['6'] : '';
+            $describe_vocab = $sheetData[$i]['7'] ? $sheetData[$i]['7'] : '';
+
+            $data = [
+                'nis' => $nis,
+                'tahun_ajaran' => $tahun_ajaran,
+                'semester' => $semester,
+                'bulan' => $bulan,
+                'semester' => $semester,
+                'listening' => $listening,
+                'reading' => $reading,
+                'speaking' => $speaking,
+                'writing' => $writing,
+                'describe_vocab' => $describe_vocab,
+            ];
+
+            $nilai = $this->nilaiEci_model->get_nilai($data);
+            if (!$nilai) {
+                $this->nilaiEci_model->insert_nilai($data);
+            } else {
+                $this->nilaiEci_model->set_nilai($data);
+            }
+        }
+
+        echo json_encode([
+            'status' => true,
+            'msg' => 'Berhasil upload',
+        ]);
     }
 }

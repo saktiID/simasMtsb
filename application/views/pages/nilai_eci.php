@@ -109,11 +109,11 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Upload Nilai</h4>
-                    <form class="upload">
+                    <form class="upload" enctype="multipart/form-data">
                         <div class="row">
                             <!-- input tahun ajar -->
                             <div class="col mb-3">
-                                <select class="form-select" name="tahun_ajaran" required>
+                                <select class="form-select" name="tahun_ajaran">
                                     <option selected value="">-- Tahun ajaran --</option>
                                     <option value="2021-2022">2021-2022</option>
                                     <option value="2022-2023">2022-2023</option>
@@ -122,7 +122,7 @@
                             </div>
                             <!-- input semester -->
                             <div class="col mb-3">
-                                <select class="form-select" name="semester" required>
+                                <select class="form-select" name="semester">
                                     <option selected value="">-- Semester --</option>
                                     <option value="1">Ganjil</option>
                                     <option value="2">Genap</option>
@@ -132,7 +132,7 @@
                         <div class="row">
                             <!-- input jenis ujian -->
                             <div class="col mb-3">
-                                <select class="form-select" name="bulan" required>
+                                <select class="form-select" name="bulan">
                                     <option selected value="">-- Bulan --</option>
                                     <option>Januari</option>
                                     <option>Februari</option>
@@ -150,7 +150,7 @@
                             </div>
                             <!-- input kelas -->
                             <div class="col mb-3">
-                                <select class="form-select" name="kelas_id" required>
+                                <select class="form-select" name="kelas_id">
                                     <option selected value="">-- Kelas --</option>
                                     <?php foreach ($kelas as $kls) : ?>
                                         <optgroup label="<?= $kls['kelas'] ?>">
@@ -168,7 +168,7 @@
                         <div class="row">
                             <!-- input file -->
                             <div class="col mb-3">
-                                <input class="form-control" type="file" id="formFile" required>
+                                <input class="form-control" name="nilaiXls" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" type="file" id="formFile" required>
                             </div>
                             <!-- input submit -->
                             <div class="col mb-3 d-flex justify-content-end">
@@ -188,7 +188,7 @@
         <div class="col-md grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Nilai ECI siswa</h4>
+                    <h4 class="card-title" id="nilai">Nilai ECI siswa</h4>
                     <p class="card-description desc">Belum ada kelas yang dipilih!</p>
                     <div class="table-responsive">
                         <table class="table table-hover" style="width: 100%;" id="tableEci">
@@ -219,8 +219,11 @@
     <div class="modal fade" id="loadingScreen" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-body d-flex justify-content-center">
-                    Sedang memuat...
+                <div class="modal-body">
+                    <div class="d-flex align-items-center">
+                        <span>Loading...</span>
+                        <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -232,21 +235,15 @@
 <script>
     $(document).ready(function() {
 
-        const showLoading = () => {
-            $('#loadingScreen').modal('show')
-        }
-
-        const hideLoading = () => {
-            $('#loadingScreen').modal('hide')
-        }
-
-        let result = []
-
-
-        let tableEci = $('#tableEci').DataTable({
+        const result = []
+        const tableEci = $('#tableEci').DataTable({
             ordering: false,
             data: result,
             pageLength: 40,
+            columnDefs: [{
+                className: "text-center",
+                targets: [2, 3, 4, 5, 6, 7]
+            }],
             columns: [{
                     data: 'no'
                 },
@@ -294,6 +291,48 @@
             },
         });
 
+        const showLoading = () => {
+            $('#loadingScreen').modal('show')
+        }
+
+        const hideLoading = () => {
+            $('#loadingScreen').modal('hide')
+        }
+
+        const fetchData = (data) => {
+            $.ajax({
+                url: '<?= base_url('api/eci') ?>',
+                dataType: 'json',
+                data: data,
+                success: function(res) {
+                    setTimeout(() => {
+                        hideLoading()
+                    }, 500)
+                    let i = 0
+                    let n = 1
+                    res.data.forEach(() => {
+                        result.push({
+                            no: n,
+                            nama: res.data[i].nama,
+                            listening: res.data[i].listening,
+                            reading: res.data[i].reading,
+                            speaking: res.data[i].speaking,
+                            writing: res.data[i].writing,
+                            describe_vocab: res.data[i].describe_vocab,
+                            print: '<button class="btn btn-primary" data-link="' + res.data[i].link + '">Print</button>',
+                        })
+                        i++
+                        n++
+                    })
+                    tableEci.rows.add(result).draw();
+                    $('.desc').html(`Kelas ${res.identity[0].kelas} | ${data.bulan} Semester ${data.semester} Tahun Ajaran ${data.tahun_ajaran}`);
+                    let el = document.getElementById('nilai')
+                    let elPos = el.getBoundingClientRect().top - 90
+                    window.scrollTo(0, elPos)
+                }
+            })
+        }
+
         $('.download').on('click', (e) => {
             e.preventDefault();
             let query = $('form.cari').serializeArray();
@@ -304,7 +343,7 @@
                 kelas_id: query[3].value,
             }
 
-            if (!data.tahun_ajaran && !data.semester && !data.bulan && !data.kelas_id) {
+            if (!data.tahun_ajaran || !data.semester || !data.bulan || !data.kelas_id) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -327,9 +366,11 @@
 
         $('form.cari').on('submit', (e) => {
             e.preventDefault();
+            while (result.length > 0) {
+                result.pop()
+            }
             tableEci.clear();
             showLoading()
-            result = []
 
             let query = $('form.cari').serializeArray();
             let data = {
@@ -339,33 +380,63 @@
                 kelas_id: query[3].value,
             }
 
+            fetchData(data)
+        })
+
+        $('form.upload').on('submit', (e) => {
+            e.preventDefault()
+            while (result.length > 0) {
+                result.pop()
+            }
+            tableEci.clear();
+            let query = $('form.upload').serializeArray()
+            let nilaiXls = $('[name="nilaiXls"]').prop('files')[0]
+
+            let formData = new FormData()
+            formData.append('tahun_ajaran', query[0].value)
+            formData.append('semester', query[1].value)
+            formData.append('bulan', query[2].value)
+            formData.append('kelas_id', query[3].value)
+            formData.append('nilaiXls', nilaiXls)
+
             $.ajax({
-                url: '<?= base_url('api/eci') ?>',
+                url: '<?= base_url('nilai_eci/upload') ?>',
+                type: 'POST',
                 dataType: 'json',
-                data: data,
+                processData: false,
+                contentType: false,
+                data: formData,
+                beforeSend: () => {
+                    showLoading()
+                },
+                /**function on success */
                 success: function(res) {
-                    setTimeout(() => {
-                        hideLoading()
-                    }, 500)
-                    let i = 0
-                    let n = 1
-                    res.data.forEach(() => {
-                        result.push({
-                            no: n,
-                            nama: res.data[i].nama,
-                            listening: res.data[i].listening,
-                            reading: res.data[i].reading,
-                            speaking: res.data[i].speaking,
-                            writing: res.data[i].writing,
-                            describe_vocab: res.data[i].describe_vocab,
-                            print: res.data[i].link,
+                    if (res.status) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Horee',
+                            text: 'Behasil upload!',
+                            showConfirmButton: false,
+                            timer: 1500
                         })
-                        i++
-                        n++
-                    })
-                    tableEci.rows.add(result).draw();
-                    $('.desc').html(`Kelas ${res.identity[0].kelas} | ${query[2].value} Semester ${query[1].value} Tahun Ajaran ${query[0].value}`);
+                        setTimeout(() => {
+                            showLoading()
+                            fetchData(query)
+                        }, 1600)
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops',
+                            text: res.msg,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                },
+                error: function(err) {
+                    console.log(err.responseText)
                 }
+
             })
         })
 

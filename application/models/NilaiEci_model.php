@@ -28,11 +28,47 @@ class NilaiEci_model extends CI_Model
     {
         $this->db->select('id, listening, reading, speaking, writing, describe_vocab, link');
         $where = [
-            'siswa_id' => $arr['siswa_id'],
+            'nis' => $arr['nis'],
             'tahun_ajaran' => $arr['tahun_ajaran'],
             'semester' => $arr['semester'],
             'bulan' => $arr['bulan']
         ];
         return $this->db->get_where('nilai_eci', $where)->result_array();
+    }
+
+    /**
+     * method model untuk menambah nilai
+     */
+    public function insert_nilai($arr)
+    {
+        $insert = $this->db->insert('nilai_eci', $arr);
+        if ($insert) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    /**
+     * method model untuk merubah nilai
+     */
+    public function set_nilai($arr)
+    {
+        $this->db->set('listening', $arr['listening']);
+        $this->db->set('reading', $arr['reading']);
+        $this->db->set('speaking', $arr['speaking']);
+        $this->db->set('writing', $arr['writing']);
+        $this->db->set('describe_vocab', $arr['describe_vocab']);
+
+        $this->db->where('nis', $arr['nis']);
+        $this->db->where('tahun_ajaran', $arr['tahun_ajaran']);
+        $this->db->where('semester', $arr['semester']);
+        $this->db->where('bulan', $arr['bulan']);
+        $query = $this->db->update('nilai_eci');
+        if ($query) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 }

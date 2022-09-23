@@ -31,7 +31,7 @@ class API_nilai_eci extends RestController
 
         if ($siswa) {
             foreach ($siswa as $s) {
-                $arr['siswa_id'] = $s['id'];
+                $arr['nis'] = $s['nis'];
                 $nilai = $this->nilaiEci_model->get_nilai($arr);
 
                 $result[] = [
