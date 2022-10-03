@@ -23,4 +23,13 @@ class Kelas_model extends CI_Model
             return FALSE;
         }
     }
+
+    /**
+     * method model untuk mengambik spesifik kelas
+     */
+    public function get_spesific_kelas($kelas_id)
+    {
+        $this->db->select('kelas');
+        return $this->db->get_where('kelas', ['id' => $kelas_id])->result_array();
+    }
 }

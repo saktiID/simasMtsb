@@ -13,10 +13,9 @@ class NilaiEci extends CI_Controller
         parent::__construct();
         is_logged_in();
         $this->load->model('Users_model');
-        $this->load->model('mapel_model');
         $this->load->model('kelas_model');
-        $this->load->model('walas_model');
         $this->load->model('nilaiEci_model');
+        $this->load->model('siswa_model');
     }
 
     public function index()
@@ -148,8 +147,8 @@ class NilaiEci extends CI_Controller
         $sheet->getColumnDimension('G')->setWidth(16);
         $sheet->getColumnDimension('H')->setWidth(16);
 
-        // Set judul file excel nya
-        $sheet->setTitle($kelas);
+        // Set judul sheet nya
+        $sheet->setTitle($kelas . '.eci');
 
         // Proses file excel
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -219,6 +218,24 @@ class NilaiEci extends CI_Controller
         $spreadsheet = $reader->load($filetmp);
         $sheetData = $spreadsheet->getActiveSheet()->toArray();
 
+        $sheetName = $spreadsheet->getSheetNames()[0];
+        $extSheet = explode('.', $sheetName);
+
+        if (!array_key_exists(1, $extSheet)) {
+            echo json_encode([
+                'status' => false,
+                'msg' => 'Format file salah!'
+            ]);
+            return false;
+        }
+        if ($extSheet[1] !== "eci") {
+            echo json_encode([
+                'status' => false,
+                'msg' => 'Format file salah!'
+            ]);
+            return false;
+        }
+
         for ($i = 3; $i < count($sheetData); $i++) {
             $nis = $sheetData[$i]['1'];
             $nama = $sheetData[$i]['2'];
@@ -239,6 +256,8 @@ class NilaiEci extends CI_Controller
                 'speaking' => $speaking,
                 'writing' => $writing,
                 'describe_vocab' => $describe_vocab,
+                'link' => substr($nis, 13) . '-' . uniqid(),
+                'timestamp' => time()
             ];
 
             $nilai = $this->nilaiEci_model->get_nilai($data);
@@ -253,5 +272,48 @@ class NilaiEci extends CI_Controller
             'status' => true,
             'msg' => 'Berhasil upload',
         ]);
+    }
+
+    /**
+     * method controller print pdf nilai
+     */
+    public function print_nilai_eci()
+    {
+        $link = $_GET['uniqid'];
+        if (empty($link)) {
+            $this->session->set_flashdata('pesan', 'Belum upload nilai atau record database hilang!');
+            redirect('nilai_eci');
+        }
+        $data_eci = $this->nilaiEci_model->get_nilai_per_siswa($link);
+        if (!$data_eci) {
+            $this->session->set_flashdata('pesan', 'Data tidak ditemukan atau record database hilang!!');
+            redirect('nilai_eci');
+        }
+
+        $data_siswa = $this->siswa_model->get_siswa($data_eci[0]['nis']);
+        if (!$data_siswa) {
+            $this->session->set_flashdata('pesan', 'Siswa tidak ditemkan atau record database hilang!');
+            redirect('nilai_eci');
+        }
+        $data_kelas = $this->kelas_model->get_spesific_kelas($data_siswa[0]['kelas_id']);
+        if (!$data_siswa) {
+            $this->session->set_flashdata('pesan', 'Kelas tidak ditemukan atau record database hilang!');
+            redirect('nilai_eci');
+        }
+
+        $data = [
+            'nama' => $data_siswa[0]['nama'],
+            'nis' => $data_siswa[0]['nis'],
+            'kelas' => $data_kelas[0]['kelas'],
+            'bulan' => $data_eci[0]['bulan'],
+            'listening' => $data_eci[0]['listening'],
+            'speaking' => $data_eci[0]['speaking'],
+            'writing' => $data_eci[0]['writing'],
+            'reading' => $data_eci[0]['reading'],
+            'describe_vocab' => $data_eci[0]['describe_vocab'],
+            'timestamp' => $data_eci[0]['timestamp'],
+            'link' => $data_eci[0]['link'],
+        ];
+        $this->load->view('print_pdf/print_nilai_eci2', $data);
     }
 }

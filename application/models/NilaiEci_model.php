@@ -37,6 +37,15 @@ class NilaiEci_model extends CI_Model
     }
 
     /**
+     * method model untuk mengambil nilai per siswa
+     */
+    public function get_nilai_per_siswa($uniqid)
+    {
+        $this->db->select('nis, bulan, listening, reading, speaking, writing, describe_vocab, link, timestamp');
+        return $this->db->get_where('nilai_eci', ['link' => $uniqid])->result_array();
+    }
+
+    /**
      * method model untuk menambah nilai
      */
     public function insert_nilai($arr)

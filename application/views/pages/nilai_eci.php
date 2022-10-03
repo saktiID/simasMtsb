@@ -61,18 +61,18 @@
                             <div class="col mb-3">
                                 <select class="form-select" name="bulan" required>
                                     <option selected value="">-- Bulan --</option>
-                                    <option>Januari</option>
-                                    <option>Februari</option>
-                                    <option>Maret</option>
+                                    <option>January</option>
+                                    <option>February</option>
+                                    <option>March</option>
                                     <option>April</option>
-                                    <option>Mei</option>
-                                    <option>Juni</option>
-                                    <option>Juli</option>
-                                    <option>Agustus</option>
+                                    <option>May</option>
+                                    <option>June</option>
+                                    <option>July</option>
+                                    <option>August</option>
                                     <option>September</option>
-                                    <option>Oktober</option>
+                                    <option>October</option>
                                     <option>November</option>
-                                    <option>Desember</option>
+                                    <option>December</option>
                                 </select>
                             </div>
                             <!-- input kelas -->
@@ -134,18 +134,18 @@
                             <div class="col mb-3">
                                 <select class="form-select" name="bulan">
                                     <option selected value="">-- Bulan --</option>
-                                    <option>Januari</option>
-                                    <option>Februari</option>
-                                    <option>Maret</option>
+                                    <option>January</option>
+                                    <option>February</option>
+                                    <option>March</option>
                                     <option>April</option>
-                                    <option>Mei</option>
-                                    <option>Juni</option>
-                                    <option>Juli</option>
-                                    <option>Agustus</option>
+                                    <option>May</option>
+                                    <option>June</option>
+                                    <option>July</option>
+                                    <option>August</option>
                                     <option>September</option>
-                                    <option>Oktober</option>
+                                    <option>October</option>
                                     <option>November</option>
-                                    <option>Desember</option>
+                                    <option>December</option>
                                 </select>
                             </div>
                             <!-- input kelas -->
@@ -229,6 +229,16 @@
         </div>
     </div>
 
+    <?php if ($this->session->flashdata('pesan')) : ?>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '<?= $this->session->flashdata('pesan'); ?>',
+            })
+        </script>
+    <?php endif; ?>
+
 </div>
 <!-- content-wrapper ends -->
 
@@ -236,6 +246,7 @@
     $(document).ready(function() {
 
         const result = []
+        const pURL = '<?= base_url('nilai_eci/print?uniqid='); ?>'
         const tableEci = $('#tableEci').DataTable({
             ordering: false,
             data: result,
@@ -293,6 +304,19 @@
 
         const showLoading = () => {
             $('#loadingScreen').modal('show')
+
+            setTimeout(() => {
+                if ($('#loadingScreen').hasClass('show')) {
+                    hideLoading()
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops',
+                        text: 'Terjadi masalah server!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            }, 1000 * 15)
         }
 
         const hideLoading = () => {
@@ -319,16 +343,21 @@
                             speaking: res.data[i].speaking,
                             writing: res.data[i].writing,
                             describe_vocab: res.data[i].describe_vocab,
-                            print: '<button class="btn btn-primary" data-link="' + res.data[i].link + '">Print</button>',
+                            print: '<a class="btn btn-primary" target="_blank" href="' + pURL + res.data[i].link + '" disabled>Print</a>',
                         })
                         i++
                         n++
                     })
                     tableEci.rows.add(result).draw();
+
                     $('.desc').html(`Kelas ${res.identity[0].kelas} | ${data.bulan} Semester ${data.semester} Tahun Ajaran ${data.tahun_ajaran}`);
                     let el = document.getElementById('nilai')
                     let elPos = el.getBoundingClientRect().top - 90
                     window.scrollTo(0, elPos)
+                },
+                error: function(err) {
+                    hideLoading()
+                    location.reload();
                 }
             })
         }
@@ -385,59 +414,83 @@
 
         $('form.upload').on('submit', (e) => {
             e.preventDefault()
-            while (result.length > 0) {
-                result.pop()
-            }
-            tableEci.clear();
-            let query = $('form.upload').serializeArray()
-            let nilaiXls = $('[name="nilaiXls"]').prop('files')[0]
-
-            let formData = new FormData()
-            formData.append('tahun_ajaran', query[0].value)
-            formData.append('semester', query[1].value)
-            formData.append('bulan', query[2].value)
-            formData.append('kelas_id', query[3].value)
-            formData.append('nilaiXls', nilaiXls)
-
-            $.ajax({
-                url: '<?= base_url('nilai_eci/upload') ?>',
-                type: 'POST',
-                dataType: 'json',
-                processData: false,
-                contentType: false,
-                data: formData,
-                beforeSend: () => {
-                    showLoading()
-                },
-                /**function on success */
-                success: function(res) {
-                    if (res.status) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Horee',
-                            text: 'Behasil upload!',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        setTimeout(() => {
-                            showLoading()
-                            fetchData(query)
-                        }, 1600)
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops',
-                            text: res.msg,
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
+            Swal.fire({
+                title: 'Upload nilai?',
+                html: "Anda akan mengupload nilai ini? <br/> jika sudah pernah upload maka nilai lama akan terganti dengan nilai baru.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Iya upload!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.value) {
+                    while (result.length > 0) {
+                        result.pop()
                     }
-                },
-                error: function(err) {
-                    console.log(err.responseText)
-                }
+                    tableEci.clear();
+                    let query = $('form.upload').serializeArray()
+                    let nilaiXls = $('[name="nilaiXls"]').prop('files')[0]
 
+                    let formData = new FormData()
+                    formData.append('tahun_ajaran', query[0].value)
+                    formData.append('semester', query[1].value)
+                    formData.append('bulan', query[2].value)
+                    formData.append('kelas_id', query[3].value)
+                    formData.append('nilaiXls', nilaiXls)
+
+                    let data = {
+                        tahun_ajaran: query[0].value,
+                        semester: query[1].value,
+                        bulan: query[2].value,
+                        kelas_id: query[3].value,
+                    }
+
+                    $.ajax({
+                        url: '<?= base_url('nilai_eci/upload') ?>',
+                        type: 'POST',
+                        dataType: 'json',
+                        processData: false,
+                        contentType: false,
+                        data: formData,
+                        beforeSend: () => {
+                            showLoading()
+                        },
+                        /**function on success */
+                        success: function(res) {
+                            if (res.status) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Horee',
+                                    text: 'Behasil upload!',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                                setTimeout(() => {
+                                    showLoading()
+                                    fetchData(data)
+                                }, 1600)
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops',
+                                    text: res.msg,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                                setTimeout(() => {
+                                    hideLoading()
+                                }, 500)
+                            }
+                        },
+                        error: function(err) {
+                            console.log(err.responseText)
+                        }
+
+                    })
+                }
             })
+
         })
 
 
