@@ -316,7 +316,7 @@
                         timer: 1500
                     })
                 }
-            }, 1000 * 15)
+            }, 1000 * 10)
         }
 
         const hideLoading = () => {
@@ -324,6 +324,10 @@
         }
 
         const fetchData = (data) => {
+            while (result.length > 0) {
+                result.pop()
+            }
+            tableEci.clear();
             $.ajax({
                 url: '<?= base_url('api/eci') ?>',
                 dataType: 'json',
