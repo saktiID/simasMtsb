@@ -91,6 +91,8 @@ $route['nilai_eci'] = 'nilaiEci';
 $route['nilai_eci/download'] = 'nilaiEci/download_template';
 $route['nilai_eci/upload'] = 'nilaiEci/upload_nilai';
 $route['nilai_eci/print'] = 'nilaiEci/print_nilai_eci';
+$route['eci'] = 'qNilaiEci';
+$route['eci/download'] = 'qNilaiEci/download';
 
 $route['api/siswa'] = 'API_Raport/siswa';
 $route['api/guru'] = 'API_Raport/guru';
