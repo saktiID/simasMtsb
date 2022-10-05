@@ -12,6 +12,12 @@
     <title>Score Achievement | <?= $nama; ?></title>
 
     <style>
+        .box-number {
+            font-size: 10pt;
+            margin-top: -9px;
+            margin-bottom: 7px;
+        }
+
         @media print {
             .box-stripped {
                 width: 100%;
@@ -40,6 +46,9 @@
         </div>
         <div class="wrapper-middle d-flex justify-content-center">
             <div class="box-content">
+                <div class="box-number text-center">
+                    <span>Report Number: <?= date('d/m/y/', $timestamp) . $link; ?></span>
+                </div>
                 <div class="box-title text-center">
                     <p class="text-title"><u><b>TO WHOM MAY CONCERN</b></u></p>
                 </div>
