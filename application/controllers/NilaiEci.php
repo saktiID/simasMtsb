@@ -178,6 +178,13 @@ class NilaiEci extends CI_Controller
             ]);
             return false;
         }
+        if (!$kelas_id) {
+            echo json_encode([
+                'status' => false,
+                'msg' => 'Kelas kosong!'
+            ]);
+            return false;
+        }
         if (!$bulan) {
             echo json_encode([
                 'status' => false,
@@ -192,6 +199,9 @@ class NilaiEci extends CI_Controller
             ]);
             return false;
         }
+
+        // menyiapkan kelas
+        $kelas = $this->kelas_model->get_spesific_kelas($kelas_id)[0]['kelas'];
 
         // file prop
         $filename = $_FILES['nilaiXls']['name'];
@@ -247,6 +257,7 @@ class NilaiEci extends CI_Controller
 
             $data = [
                 'nis' => $nis,
+                'kelas' => $kelas,
                 'tahun_ajaran' => $tahun_ajaran,
                 'semester' => $semester,
                 'bulan' => $bulan,
@@ -304,7 +315,7 @@ class NilaiEci extends CI_Controller
         $data = [
             'nama' => $data_siswa[0]['nama'],
             'nis' => $data_siswa[0]['nis'],
-            'kelas' => $data_kelas[0]['kelas'],
+            'kelas' => $data_eci[0]['kelas'],
             'bulan' => $data_eci[0]['bulan'],
             'listening' => $data_eci[0]['listening'],
             'speaking' => $data_eci[0]['speaking'],

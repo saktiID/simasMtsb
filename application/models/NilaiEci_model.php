@@ -22,11 +22,11 @@ class NilaiEci_model extends CI_Model
     }
 
     /**
-     * method model untuk mengambil nilai siswa
+     * method model untuk mengambil nilai siswa (nilai ganda)
      */
     public function get_nilai($arr)
     {
-        $this->db->select('id, listening, reading, speaking, writing, describe_vocab, link');
+        $this->db->select('id, kelas, listening, reading, speaking, writing, describe_vocab, link');
         $where = [
             'nis' => $arr['nis'],
             'tahun_ajaran' => $arr['tahun_ajaran'],
@@ -37,11 +37,11 @@ class NilaiEci_model extends CI_Model
     }
 
     /**
-     * method model untuk mengambil nilai per siswa
+     * method model untuk mengambil nilai per siswa dengan unique id
      */
     public function get_nilai_per_siswa($uniqid)
     {
-        $this->db->select('nis, bulan, listening, reading, speaking, writing, describe_vocab, link, timestamp');
+        $this->db->select('nis, kelas, bulan, listening, reading, speaking, writing, describe_vocab, link, timestamp');
         return $this->db->get_where('nilai_eci', ['link' => $uniqid])->result_array();
     }
 

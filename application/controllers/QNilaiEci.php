@@ -39,8 +39,14 @@ class QNilaiEci extends CI_Controller
             return false;
         }
 
+        if (strlen($data_siswa[0]['nama']) > 20) {
+            $nama = substr($data_siswa[0]['nama'], 0, 20) . '...';
+        } else {
+            $nama = $data_siswa[0]['nama'];
+        }
+
         $data = [
-            'nama' => $data_siswa[0]['nama'],
+            'nama' => $nama,
             'nis' => $data_siswa[0]['nis'],
             'listening' => $data_eci[0]['listening'],
             'speaking' => $data_eci[0]['speaking'],
@@ -103,7 +109,7 @@ class QNilaiEci extends CI_Controller
         $data = [
             'nama' => $data_siswa[0]['nama'],
             'nis' => $data_siswa[0]['nis'],
-            'kelas' => $data_kelas[0]['kelas'],
+            'kelas' => $data_eci[0]['kelas'],
             'bulan' => $data_eci[0]['bulan'],
             'listening' => $data_eci[0]['listening'],
             'speaking' => $data_eci[0]['speaking'],
