@@ -9,6 +9,7 @@ class NilaiEci_model extends CI_Model
     public function get_siswa_kelas($kelas_id)
     {
         $this->db->select('id, nama, nis');
+        $this->db->order_by('nama', 'ASC');
         return $this->db->get_where('siswa', ['kelas_id' => $kelas_id, 'is_active' => 1])->result_array();
     }
 

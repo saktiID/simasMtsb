@@ -13,6 +13,7 @@ class NilaiEci extends CI_Controller
         parent::__construct();
         is_logged_in();
         $this->load->model('Users_model');
+        $this->load->model('walas_model');
         $this->load->model('kelas_model');
         $this->load->model('nilaiEci_model');
         $this->load->model('siswa_model');
@@ -21,7 +22,7 @@ class NilaiEci extends CI_Controller
     public function index()
     {
         $data = [
-            'title' => 'Nilai ECI',
+            'title' => 'Admin ECI',
             'user' => $this->Users_model->get_user_auth($this->session->userdata('username')),
             'kelas' => $this->kelas_model->get_kelas(),
             'sub_kelas' => $this->kelas_model->get_sub_kelas()
@@ -31,6 +32,33 @@ class NilaiEci extends CI_Controller
         $this->load->view('templates/_navbar');
         $this->load->view('templates/_sidebar');
         $this->load->view('pages/nilai_eci');
+        $this->load->view('templates/_footer');
+    }
+
+    /**
+     * method controller panel eci for walas
+     */
+    public function eci_walas()
+    {
+        $user = $this->Users_model->get_user_auth($this->session->userdata('username'));
+        $kelas_id = $this->walas_model->get_walas($user['id'])['kelas_id'];
+        $kelas_nama = $this->kelas_model->get_spesific_kelas($kelas_id)[0]['kelas'];
+
+        $data = [
+            'title' => 'ECI Siswa',
+            'user' => $user,
+            'kelas' => $this->kelas_model->get_kelas(),
+            'sub_kelas' => $this->kelas_model->get_sub_kelas(),
+            'kelas_self' => [
+                'kelas' => $kelas_nama,
+                'id' => $kelas_id
+            ],
+        ];
+
+        $this->load->view('templates/_header', $data);
+        $this->load->view('templates/_navbar');
+        $this->load->view('templates/_sidebar');
+        $this->load->view('pages/eci_walas');
         $this->load->view('templates/_footer');
     }
 

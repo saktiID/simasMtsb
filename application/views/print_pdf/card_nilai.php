@@ -85,6 +85,21 @@
             border-bottom: 3px solid #fff;
             border-right: 3px solid #fff;
             transition: 0.5s ease-in-out;
+            animation: updown 1s ease-in-out infinite;
+        }
+
+        @keyframes updown {
+            0% {
+                top: 40%
+            }
+
+            50% {
+                top: 55%
+            }
+
+            100% {
+                top: 40%
+            }
         }
 
         .card.active .toggle span {

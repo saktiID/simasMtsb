@@ -6,6 +6,7 @@ class Users_model extends CI_Model
 
     public function get_user_auth($username)
     {
+        $this->db->select(['id', 'username', 'gender', 'nama', 'role_id', 'is_walas', 'is_admineci', 'jenjang', 'email', 'image', 'is_pengajar', 'is_active']);
         return $this->db->get_where('users', ['username' => $username])->row_array();
     }
 

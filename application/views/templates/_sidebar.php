@@ -44,7 +44,7 @@
                 </li>
                 <?php if ($user['is_walas'] == 1) : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="<?= base_url('eci_walas'); ?>">
                             <i class="mdi mdi-bulletin-board menu-icon"></i>
                             <span class="menu-title">ECI Siswa</span>
                         </a>
@@ -54,7 +54,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('nilai_eci'); ?>">
                             <i class="mdi mdi-chart-histogram menu-icon"></i>
-                            <span class="menu-title">Nilai ECI</span>
+                            <span class="menu-title">Admin ECI</span>
                         </a>
                     </li>
                 <?php endif; ?>
@@ -133,7 +133,7 @@
                 </li>
                 <?php if ($user['is_walas'] == 1) : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="<?= base_url('eci_walas'); ?>">
                             <i class="mdi mdi-bulletin-board menu-icon"></i>
                             <span class="menu-title">ECI Siswa</span>
                         </a>
@@ -143,7 +143,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('nilai_eci'); ?>">
                             <i class="mdi mdi-chart-histogram menu-icon"></i>
-                            <span class="menu-title">Nilai ECI</span>
+                            <span class="menu-title">Admin ECI</span>
                         </a>
                     </li>
                 <?php endif; ?>
