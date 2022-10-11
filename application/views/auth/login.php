@@ -52,11 +52,11 @@
                             </div>
                             <form class="pt-3" method="post" action="<?= base_url('auth'); ?>">
                                 <div class="form-group">
-                                    <input type="text" name="username" class="form-control form-control-lg" id="userid" placeholder="User ID" value="<?= set_value('username'); ?>">
+                                    <input type="text" name="username" class="form-control form-control-lg" id="userid" placeholder="User ID" value="<?= set_value('username'); ?>" required>
                                     <?= form_error('username', '<span class="text-danger text-small">', '</span>'); ?>
                                 </div>
                                 <div class="form-group d-flex">
-                                    <input type="password" name="password" class="form-control form-control-lg" id="password" placeholder="Password">
+                                    <input type="password" name="password" class="form-control form-control-lg" id="password" placeholder="Password" required>
                                     <span class="mdi mdi-eye eyeBtn"></span>
                                     <?= form_error('password', '<span class="text-danger text-small">', '</span>'); ?>
                                 </div>
