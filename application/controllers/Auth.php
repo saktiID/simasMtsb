@@ -38,9 +38,10 @@ class Auth extends CI_Controller
         $password = $this->input->post('password');
 
         $user = $this->Users_model->get_user_auth($username);
+        $pw = $this->Users_model->get_user_pw($username);
         if ($user != NULL) {
             if ($user['is_active'] == 1) {
-                if (password_verify($password, $user['password'])) {
+                if (password_verify($password, $pw['password'])) {
                     $data = [
                         'username' => $user['username'],
                         'role_id'  => $user['role_id'],
@@ -84,7 +85,7 @@ class Auth extends CI_Controller
     public function logout()
     {
         $this->session->unset_userdata('username');
-        $this->session->unset_userdata('role_idd');
+        $this->session->unset_userdata('role_id');
         $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Anda berhasil logout!</div>');
         redirect('auth');
     }

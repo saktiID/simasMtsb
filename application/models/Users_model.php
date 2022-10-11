@@ -10,6 +10,12 @@ class Users_model extends CI_Model
         return $this->db->get_where('users', ['username' => $username])->row_array();
     }
 
+    public function get_user_pw($username)
+    {
+        $this->db->select(['password']);
+        return $this->db->get_where('users', ['username' => $username])->row_array();
+    }
+
     public function get_user_pass_by_id($id)
     {
         $this->db->select(['password']);
