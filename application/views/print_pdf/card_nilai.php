@@ -215,7 +215,7 @@
         }
 
         .divided .buttonBox {
-            margin-top: auto;
+            margin-top: 7px;
             display: flex;
             justify-content: space-between;
         }
@@ -248,6 +248,21 @@
         }
 
         button.followBtn:hover {
+            background-color: #fff;
+            color: #877633;
+        }
+
+        a.sawer {
+            font-size: 9pt;
+            color: #fff;
+            margin-top: auto;
+            border: 2px solid #fff;
+            text-decoration: none;
+            padding: 3px 3px;
+            transition: 0.2s ease-in-out;
+        }
+
+        a.sawer:hover {
             background-color: #fff;
             color: #877633;
         }
@@ -289,7 +304,8 @@
                     </div>
                 </div>
                 <div class="divided">
-                    <span>Dengan ini menyatakan bahwa nama yang bersangkutan dan nilai yang didapat adalah benar dan sudah terekam dalam database simas MTsB.</span>
+                    <span><?= $teks; ?></span>
+                    <a href="https://saweria.co/romosakti" target="_blank" class="sawer">Dukung kami dalam mengembangkan aplikasi</a>
                     <div class="buttonBox">
                         <button class="downloadBtn">Download PDF</button>
                         <button class="followBtn">Follow</button>

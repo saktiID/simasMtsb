@@ -20,11 +20,12 @@ class QNilaiEci extends CI_Controller
     public function index()
     {
         $data = [];
-        $uniqid = $_GET['q'];
-        if (!$uniqid) {
+        if (!isset($_GET['q'])) {
             $p = 'Tidak ada Unique ID';
             $this->_unknown($p);
             return false;
+        } else {
+            $uniqid = $_GET['q'];
         }
         $data_eci = $this->nilaiEci_model->get_nilai_per_siswa($uniqid);
         if (!$data_eci) {
@@ -54,6 +55,7 @@ class QNilaiEci extends CI_Controller
             'reading' => $data_eci[0]['reading'],
             'describe_vocab' => $data_eci[0]['describe_vocab'],
             'link' => $data_eci[0]['link'],
+            'teks' => 'Dengan ini menyatakan bahwa nama yang bersangkutan dan nilai yang didapat adalah benar dan sudah terekam dalam database simas MTsB.'
         ];
 
 
@@ -69,12 +71,13 @@ class QNilaiEci extends CI_Controller
             'p' => $p,
             'nama' => 'unknown',
             'nis' => 'uknown',
-            'listening' => 'unknown',
-            'speaking' => 'unknown',
-            'writing' => 'unknown',
-            'reading' => 'unknown',
-            'describe_vocab' => 'unknown',
+            'listening' => '0',
+            'speaking' => '0',
+            'writing' => '0',
+            'reading' => '0',
+            'describe_vocab' => '0',
             'link' => 'unknown',
+            'teks' => 'Tidak ada data yang dapat ditampilkan.',
         ];
         $this->load->view('print_pdf/card_nilai', $data);
     }

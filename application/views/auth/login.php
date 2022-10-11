@@ -25,6 +25,10 @@
             right: 10%;
             color: grey;
         }
+
+        .sawer:hover {
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -41,6 +45,11 @@
                             <h4>Sistem Informasi Manajemen Madrasah</h4>
                             <h6 class="font-weight-light">Silakan login.</h6>
                             <?= $this->session->flashdata('pesan'); ?>
+                            <div class="mt-3">
+                                <div class="alert alert-warning text-center sawer" role="alert">
+                                    <span class="mdi mdi-gift"></span> Dukung kami dengan berdonasi <a href="#" class="alert-link" data-toggle="modal" data-target="#sawerModal">melalui saweria</a>.
+                                </div>
+                            </div>
                             <form class="pt-3" method="post" action="<?= base_url('auth'); ?>">
                                 <div class="form-group">
                                     <input type="text" name="username" class="form-control form-control-lg" id="userid" placeholder="User ID" value="<?= set_value('username'); ?>">
@@ -74,6 +83,35 @@
     <script src="<?= base_url() ?>assets/js/template.js"></script> -->
     <!-- endinject -->
 
+
+    <!-- Modal -->
+    <div class="modal fade" id="sawerModal" tabindex="-1" role="dialog" aria-labelledby="sawerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="sawerModalLabel">Mari berdonasi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="my-3">Scan QR Code atau klik langsung. <br> Dapat melalui berbagai macam Bank Indonesia dan E-Wallet.</p>
+                    <a href="https://saweria.co/romosakti" target="_blank">
+                        <img src="<?= base_url('assets/images/sawer.png'); ?>" alt="sawer" width="150">
+                    </a>
+                    <p class="my-3">Atau <a href="https://saweria.co/romosakti" class="alert-link" target="_blank">langsung kunjungi link</a></p>
+                </div>
+                <div class="text-center my-3">
+                    <span style="font-size:9pt ;"><span class="mdi mdi-cards-heart"></span> Dukungan Anda sangat berarti bagi kami <span class="mdi mdi-cards-heart"></span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+
     <script>
         let eye = document.querySelector('.eyeBtn')
         let pass = document.getElementById('password')
@@ -89,6 +127,14 @@
                 eye.style.color = 'grey'
                 pass.type = 'password'
             }
+        })
+    </script>
+
+    <script>
+        let link_sawer = $('.sawer')
+        let modal_sawer = $('#sawerModal')
+        link_sawer.on('click', function() {
+            modal_sawer.modal('show')
         })
     </script>
 </body>
