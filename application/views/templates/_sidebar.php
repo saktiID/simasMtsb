@@ -1,4 +1,18 @@
 <div class="container-fluid page-body-wrapper">
+
+    <style>
+        .sidebar .nav .nav-item.active {
+            border-right: 4px solid #4d83ff;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar .nav .nav-item.active {
+                border-left: 4px solid #4d83ff;
+                border-right: none;
+            }
+        }
+    </style>
+
     <!-- partial:partials/_sidebar.html -->
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
@@ -40,6 +54,12 @@
                     <a class="nav-link" href="#">
                         <i class="mdi mdi-chart-bar menu-icon"></i>
                         <span class="menu-title">Penilaian Siswa</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('tahfidz'); ?>">
+                        <i class="mdi mdi-leaf menu-icon"></i>
+                        <span class="menu-title">Tahfidz</span>
                     </a>
                 </li>
                 <?php if ($user['is_walas'] == 1) : ?>
@@ -129,6 +149,12 @@
                     <a class="nav-link" href="#">
                         <i class="mdi mdi-chart-bar menu-icon"></i>
                         <span class="menu-title">Penilaian Siswa</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="mdi mdi-chart-bar menu-icon"></i>
+                        <span class="menu-title">Tahfidz</span>
                     </a>
                 </li>
                 <?php if ($user['is_walas'] == 1) : ?>
