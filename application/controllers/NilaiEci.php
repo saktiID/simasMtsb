@@ -275,6 +275,7 @@ class NilaiEci extends CI_Controller
         }
 
         for ($i = 3; $i < count($sheetData); $i++) {
+            // menyiapkan data dari xls
             $nis = $sheetData[$i]['1'];
             $nama = $sheetData[$i]['2'];
             $listening = $sheetData[$i]['3'] ? $sheetData[$i]['3'] : '';
@@ -283,28 +284,76 @@ class NilaiEci extends CI_Controller
             $writing = $sheetData[$i]['6'] ? $sheetData[$i]['6'] : '';
             $describe_vocab = $sheetData[$i]['7'] ? $sheetData[$i]['7'] : '';
 
-            $data = [
+            // menyiapkan old value
+            $data_check = [
                 'nis' => $nis,
-                'kelas' => $kelas,
                 'tahun_ajaran' => $tahun_ajaran,
                 'semester' => $semester,
-                'bulan' => $bulan,
-                'semester' => $semester,
-                'listening' => $listening,
-                'reading' => $reading,
-                'speaking' => $speaking,
-                'writing' => $writing,
-                'describe_vocab' => $describe_vocab,
-                'link' => substr($nis, 13) . '-' . uniqid(),
-                'timestamp' => time()
+                'bulan' => $bulan
             ];
-
-            $nilai = $this->nilaiEci_model->get_nilai($data);
-            if (!$nilai) {
+            $check_value = $this->nilaiEci_model->get_nilai($data_check);
+            if (!$check_value) {
+                // jalankan saat tidak ada data dalam db
+                $data = [
+                    'nis' => $nis,
+                    'kelas' => $kelas,
+                    'tahun_ajaran' => $tahun_ajaran,
+                    'semester' => $semester,
+                    'bulan' => $bulan,
+                    'listening' => $listening,
+                    'reading' => $reading,
+                    'speaking' => $speaking,
+                    'writing' => $writing,
+                    'describe_vocab' => $describe_vocab,
+                    'link' => substr($nis, 13) . '-' . uniqid(),
+                    'timestamp' => time()
+                ];
                 $this->nilaiEci_model->insert_nilai($data);
             } else {
-                $this->nilaiEci_model->set_nilai($data);
+                // jalankan saat ada data dalam db
+                $arr_master = [
+                    'nis' => $nis,
+                    'tahun_ajaran' => $tahun_ajaran,
+                    'semester' => $semester,
+                    'bulan' => $bulan,
+                ];
+
+                // set listening
+                if ($listening != '') {
+                    $arr_master['listening'] = $listening;
+                    $this->nilaiEci_model->set_listening($arr_master);
+                }
+                // set reading
+                if ($reading != '') {
+                    $arr_master['reading'] = $reading;
+                    $this->nilaiEci_model->set_reading($arr_master);
+                }
+                // set speaking
+                if ($speaking != '') {
+                    $arr_master['speaking'] = $speaking;
+                    $this->nilaiEci_model->set_speaking($arr_master);
+                }
+                // set writing
+                if ($writing != '') {
+                    $arr_master['writing'] = $writing;
+                    $this->nilaiEci_model->set_writing($arr_master);
+                }
+                // set describe_vocab
+                if ($describe_vocab != '') {
+                    $arr_master['describe_vocab'] = $describe_vocab;
+                    $this->nilaiEci_model->set_describe_vocab($arr_master);
+                }
             }
+
+
+            // $nilai = $this->nilaiEci_model->get_nilai($data);
+            // if (!$nilai) {
+            //     $this->nilaiEci_model->insert_nilai($data);
+            // } else {
+            //     $this->nilaiEci_model->set_nilai($data);
+            // }
+
+
         }
 
         echo json_encode([

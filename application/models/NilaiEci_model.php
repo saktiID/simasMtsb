@@ -81,4 +81,99 @@ class NilaiEci_model extends CI_Model
             return FALSE;
         }
     }
+
+    /**
+     * method model untuk merubah nilai listening
+     */
+    public function set_listening($arr)
+    {
+        $this->db->set('listening', $arr['listening']);
+
+        $this->db->where('nis', $arr['nis']);
+        $this->db->where('tahun_ajaran', $arr['tahun_ajaran']);
+        $this->db->where('semester', $arr['semester']);
+        $this->db->where('bulan', $arr['bulan']);
+        $query = $this->db->update('nilai_eci');
+        if ($query) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    /**
+     * method model untuk merubah nilai reading
+     */
+    public function set_reading($arr)
+    {
+        $this->db->set('reading', $arr['reading']);
+
+        $this->db->where('nis', $arr['nis']);
+        $this->db->where('tahun_ajaran', $arr['tahun_ajaran']);
+        $this->db->where('semester', $arr['semester']);
+        $this->db->where('bulan', $arr['bulan']);
+        $query = $this->db->update('nilai_eci');
+        if ($query) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    /**
+     * method model untuk merubah nilai speaking
+     */
+    public function set_speaking($arr)
+    {
+        $this->db->set('speaking', $arr['speaking']);
+
+        $this->db->where('nis', $arr['nis']);
+        $this->db->where('tahun_ajaran', $arr['tahun_ajaran']);
+        $this->db->where('semester', $arr['semester']);
+        $this->db->where('bulan', $arr['bulan']);
+        $query = $this->db->update('nilai_eci');
+        if ($query) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    /**
+     * method model untuk merubah nilai writing
+     */
+    public function set_writing($arr)
+    {
+        $this->db->set('writing', $arr['writing']);
+
+        $this->db->where('nis', $arr['nis']);
+        $this->db->where('tahun_ajaran', $arr['tahun_ajaran']);
+        $this->db->where('semester', $arr['semester']);
+        $this->db->where('bulan', $arr['bulan']);
+        $query = $this->db->update('nilai_eci');
+        if ($query) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    /**
+     * method model untuk merubah nilai describe_vocab
+     */
+    public function set_describe_vocab($arr)
+    {
+        $this->db->set('describe_vocab', $arr['describe_vocab']);
+
+        $this->db->where('nis', $arr['nis']);
+        $this->db->where('tahun_ajaran', $arr['tahun_ajaran']);
+        $this->db->where('semester', $arr['semester']);
+        $this->db->where('bulan', $arr['bulan']);
+        $query = $this->db->update('nilai_eci');
+        if ($query) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
 }

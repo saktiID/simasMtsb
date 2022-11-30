@@ -189,7 +189,10 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title" id="nilai">Nilai ECI siswa</h4>
-                    <p class="card-description desc">Belum ada kelas yang dipilih!</p>
+                    <div class="d-flex justify-content-between align-items-baseline">
+                        <p class="card-description desc">Belum ada kelas yang dipilih!</p>
+                        <span class="btn btn-warning" id="kunci_nilai" style="display: none;"><i class="mdi mdi-lock-open"></i> Kunci nilai</span>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-hover" style="width: 100%;" id="tableEci">
                             <thead>
@@ -340,6 +343,7 @@
                     }, 500)
                     let i = 0
                     let n = 1
+                    let z = 0
                     res.data.forEach(() => {
                         result.push({
                             no: n,
@@ -351,12 +355,21 @@
                             describe_vocab: res.data[i].describe_vocab,
                             print: res.data[i].link != '' ? '<a class="btn btn-success" target="_blank" href="' + pURL + res.data[i].link + '"><i class="mdi mdi-cloud-print-outline" title="Cetak nilai"></i></a>' : '<button class="btn btn-secondary" disabled><i class="mdi mdi-printer-alert"></i></button',
                         })
+                        if (res.data[i].listening == '' || res.data[i].reading == '' || res.data[i].speaking == '' || res.data[i].writing == '' || res.data[i].describe_vocab == '') {
+                            z++
+                        }
                         i++
                         n++
+
                     })
                     tableEci.rows.add(result).draw();
 
                     $('.desc').html(`Kelas ${res.identity[0].kelas} | ${data.bulan} Semester ${data.semester} Tahun Ajaran ${data.tahun_ajaran}`);
+                    if (z <= 0) {
+                        $('#kunci_nilai').show()
+                    } else {
+                        $('#kunci_nilai').hide()
+                    }
                     let el = document.getElementById('nilai')
                     let elPos = el.getBoundingClientRect().top - 90
                     window.scrollTo(0, elPos)
@@ -422,7 +435,7 @@
             e.preventDefault()
             Swal.fire({
                 title: 'Upload nilai?',
-                html: "Anda akan mengupload nilai ini? <br/> jika sudah pernah upload maka nilai lama akan terganti dengan nilai baru.",
+                html: "Anda akan mengupload nilai ini? <br/> data lama akan digabungkan dengan data baru dan akan diupdate jika ada perbedaan.",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
