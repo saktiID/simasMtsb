@@ -66,7 +66,7 @@
                         <td>Class</td>
                         <td>: <strong><?= $kelas; ?></strong></td>
                     </tr>
-                    <tr>
+                    <tr hidden>
                         <td>Month</td>
                         <td>: <strong><?= $bulan; ?></strong></td>
                     </tr>
