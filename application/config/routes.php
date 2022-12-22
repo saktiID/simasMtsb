@@ -92,10 +92,15 @@ $route['nilai_eci/download'] = 'nilaiEci/download_template';
 $route['nilai_eci/upload'] = 'nilaiEci/upload_nilai';
 $route['nilai_eci/print'] = 'nilaiEci/print_nilai_eci';
 $route['eci'] = 'qNilaiEci';
+$route['eci/set_level_eci'] = 'nilaiEci/set_level_eci';
 $route['eci/download'] = 'qNilaiEci/download';
 $route['eci_walas'] = 'nilaiEci/eci_walas';
+$route['tahfidz'] = 'tahfidz';
 
 $route['api/siswa'] = 'API_Raport/siswa';
 $route['api/guru'] = 'API_Raport/guru';
 $route['api/kelas'] = 'API_Raport/kelas';
 $route['api/eci'] = 'API_nilai_eci/nilai_eci';
+$route['api/listlevel'] = 'API_nilai_eci/list_level';
+$route['api/levelkelas'] = 'API_nilai_eci/level_in_kelas';
+$route['api/tahfidz'] = 'API_tahfidz/surah_siswa';

@@ -23,6 +23,60 @@ class NilaiEci_model extends CI_Model
     }
 
     /**
+     * method model untuk mencari siswa berdasarkan level eci dalam satu kelas yang sama
+     */
+    public function get_level_in_kelas($kelas_id)
+    {
+        $this->db->select('id, nama, nis, level_eci');
+        $this->db->order_by('nama', 'ASC');
+        $expert = $this->db->get_where('siswa', [
+            'kelas_id' => $kelas_id,
+            'is_active' => 1,
+            'level_eci' => 'expert'
+        ])->result_array();
+
+        $this->db->select('id, nama, nis, level_eci');
+        $this->db->order_by('nama', 'ASC');
+        $advance = $this->db->get_where('siswa', [
+            'kelas_id' => $kelas_id,
+            'is_active' => 1,
+            'level_eci' => 'advance'
+        ])->result_array();
+
+        $this->db->select('id, nama, nis, level_eci');
+        $this->db->order_by('nama', 'ASC');
+        $intermediate = $this->db->get_where('siswa', [
+            'kelas_id' => $kelas_id,
+            'is_active' => 1,
+            'level_eci' => 'intermediate'
+        ])->result_array();
+
+        $this->db->select('id, nama, nis, level_eci');
+        $this->db->order_by('nama', 'ASC');
+        $basic = $this->db->get_where('siswa', [
+            'kelas_id' => $kelas_id,
+            'is_active' => 1,
+            'level_eci' => 'basic'
+        ])->result_array();
+
+        $this->db->select('id, nama, nis, level_eci');
+        $this->db->order_by('nama', 'ASC');
+        $nolevel = $this->db->get_where('siswa', [
+            'kelas_id' => $kelas_id,
+            'is_active' => 1,
+            'level_eci' => ''
+        ])->result_array();
+
+        return [
+            'expert' => $expert,
+            'advance' => $advance,
+            'intermediate' => $intermediate,
+            'basic' => $basic,
+            'nolevel' => $nolevel,
+        ];
+    }
+
+    /**
      * method model untuk mengambil nilai siswa (nilai ganda)
      */
     public function get_nilai($arr)
@@ -53,6 +107,21 @@ class NilaiEci_model extends CI_Model
     {
         $insert = $this->db->insert('nilai_eci', $arr);
         if ($insert) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    /**
+     * method model untuk set level ECI siswa
+     */
+    public function set_level($nis, $level)
+    {
+        $this->db->set('level_eci', $level);
+        $this->db->where('nis', $nis);
+        $query = $this->db->update('siswa');
+        if ($query) {
             return TRUE;
         } else {
             return FALSE;

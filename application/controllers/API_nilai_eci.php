@@ -61,4 +61,43 @@ class API_nilai_eci extends RestController
             ], 404);
         }
     }
+
+    /**
+     *  method controller API untuk mengambil data list level
+     */
+    public function list_level_get()
+    {
+        $level = $this->get('level');
+        $jenjang = $this->get('jenjang');
+
+        $this->response([
+            'status' => true,
+            'data' => [
+                'level' => $level,
+                'jenjang' => $jenjang
+            ]
+        ], 200);
+    }
+
+    /**
+     *  method controller API untuk mengambil data level per kelas
+     */
+    public function level_in_kelas_get()
+    {
+        $kelas_id = $this->get('kelas_id');
+
+        $identitas_kelas = $this->nilaiEci_model->get_identitas_kelas($kelas_id);
+        $siswa = $this->nilaiEci_model->get_level_in_kelas($kelas_id);
+        $this->response([
+            'status' => true,
+            'data' => [
+                'kelas' => $identitas_kelas[0]['kelas'],
+                'expert' => $siswa['expert'],
+                'advance' => $siswa['advance'],
+                'intermediate' => $siswa['intermediate'],
+                'basic' => $siswa['basic'],
+                'nolevel' => $siswa['nolevel']
+            ]
+        ], 200);
+    }
 }

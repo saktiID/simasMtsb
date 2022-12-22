@@ -63,6 +63,29 @@ class NilaiEci extends CI_Controller
     }
 
     /**
+     * method controller setting level ECI siswa
+     */
+    public function set_level_eci()
+    {
+        $nis = $_POST['nis'];
+        $level_baru = $_POST['level_baru'];
+        $level_lama = $_POST['level_lama'];
+
+        //set level ECI di db
+        $set_query = $this->nilaiEci_model->set_level($nis, $level_baru);
+
+        //buat log riwayat
+
+
+        // return response
+        if ($set_query) {
+            echo TRUE;
+        } else {
+            echo FALSE;
+        }
+    }
+
+    /**
      * method controller download template
      */
     public function download_template()
