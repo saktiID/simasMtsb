@@ -40,7 +40,7 @@
                 <h2>MTs BILINGUAL MUSLIMAT NU PUCANG SIDOARJO</h2>
             </div>
             <div class="box-brand-subtitle">
-                <h3>INTEGRATED CURRICULLUM OF KEMENAG, KEMENDIKBUD AND CAMBRIDGE</h3>
+                <h3>INTEGRATED CURRICULLUM OF KEMENAG, KEMENDIKBUD, AND CAMBRIDGE</h3>
             </div>
             <div class="box-stripped hr"></div>
         </div>
