@@ -36,7 +36,7 @@
                 <img src="<?= base_url(); ?>assets/images/printECI/logo_brand.png" alt="logo">
             </div>
             <div class="box-brand-title">
-                <h2>ENGLISH COMPETENCE IMPROVMENT</h2>
+                <h2>ENGLISH COMPETENCE IMPROVEMENT</h2>
                 <h2>MTs BILINGUAL MUSLIMAT NU PUCANG SIDOARJO</h2>
             </div>
             <div class="box-brand-subtitle">
