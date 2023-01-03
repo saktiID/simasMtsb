@@ -50,7 +50,7 @@
                     <span>Report Number: <?= date('d/m/y/', $timestamp) . $link; ?></span>
                 </div>
                 <div class="box-title text-center">
-                    <p class="text-title"><u><b>TO WHOM MAY CONCERN</b></u></p>
+                    <p class="text-title"><u><b>TO WHOM IT MAY CONCERN</b></u></p>
                 </div>
                 <p class="text-content text-start">This to report that :</p>
                 <table class="text-start mt-3">
