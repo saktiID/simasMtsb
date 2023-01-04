@@ -44,6 +44,13 @@
                                         </tr>
                                         <?php $i++ ?>
                                     <?php endforeach; ?>
+                                    <tr>
+                                        <td class="text-center" width="5%"><?= $i; ?></td>
+                                        <td>NULL</td>
+                                        <td>NULL</td>
+                                        <td>NULL</td>
+                                        <td>NULL</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
