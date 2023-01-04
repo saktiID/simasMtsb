@@ -33,7 +33,6 @@
                                 </thead>
 
                                 <tbody>
-                                    <?php var_dump($siswa) ?>
                                     <?php $i = 1; ?>
                                     <?php foreach ($siswa as $s) : ?>
                                         <tr>
