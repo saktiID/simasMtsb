@@ -3,14 +3,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class WebExcel extends CI_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('nilaiEci_model');
     }
     public function index()
     {
+
+        $this->load->model('nilaiEci_model');
 
         if (!isset($_GET['key'])) {
             echo ('key not found');
@@ -30,7 +30,7 @@ class WebExcel extends CI_Controller
                     // $siswa = $this->nilaiEci_model->get_level_in_grade($level, $jenjang);
 
                     $data = [
-                        'siswa' => $this->nilaiEci_model->get_id_kelas_by_name('VIII'),
+                        'siswa' => $this->nilaiEci_model->get_id_kelas_by_name('VII'),
                         'level' => $level,
                     ];
                     $this->load->view('webexcel/fetchExcel', $data);
