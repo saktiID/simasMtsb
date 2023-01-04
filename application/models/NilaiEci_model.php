@@ -23,6 +23,15 @@ class NilaiEci_model extends CI_Model
     }
 
     /**
+     * method model untuk ambil id kelas dari nama kelas
+     */
+    public function get_id_kelas_by_name($kelas)
+    {
+        $this->db->select('id');
+        return $this->db->get_where('kelas', ['kelas' => $kelas])->result_array();
+    }
+
+    /**
      * method model untuk mencari siswa berdasarkan level eci dalam satu kelas yang sama
      */
     public function get_level_in_kelas($kelas_id)
@@ -74,6 +83,34 @@ class NilaiEci_model extends CI_Model
             'basic' => $basic,
             'nolevel' => $nolevel,
         ];
+    }
+
+    /**
+     * method model untuk mengambil level ECI per jenjang / grade
+     */
+    public function get_level_in_grade($level_eci, $kelas_id)           # $kelas_id adalah id dari jenjang / grade
+    {
+        // cari item sub kelas berdasarkan id parent
+        $this->db->select('id, kelas');
+        $sub_kelas_id = $this->db->get_where('kelas', ['child' => $kelas_id])->result_array();
+
+        $siswa = [];
+        foreach ($sub_kelas_id as $sub) {
+            $this->db->select('nama, nis, kelas_id, level_eci');
+            $siswa_per_kelas = $this->db->get_where('siswa', [
+                'kelas_id' => $sub['id'],
+                'level_eci' => $level_eci,
+                'is_active' => 1
+            ])->result_array();
+
+            foreach ($siswa_per_kelas as $spk) {
+                $this->db->select('kelas');
+                $spk['kelas_name'] =  $this->db->get_where('kelas', ['id' => $spk['kelas_id']])->result_array()[0]['kelas'];
+                $siswa[] = $spk;
+            }
+        }
+
+        return $siswa;
     }
 
     /**
