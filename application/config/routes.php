@@ -104,3 +104,5 @@ $route['api/eci'] = 'API_nilai_eci/nilai_eci';
 $route['api/listlevel'] = 'API_nilai_eci/list_level';
 $route['api/levelkelas'] = 'API_nilai_eci/level_in_kelas';
 $route['api/tahfidz'] = 'API_tahfidz/surah_siswa';
+
+$route['eci/fetchexcel'] = 'webExcel';
