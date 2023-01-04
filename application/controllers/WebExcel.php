@@ -30,7 +30,7 @@ class WebExcel extends CI_Controller
                     $siswa = $this->nilaiEci_model->get_level_in_grade($level, $jenjang);
 
                     $data = [
-                        'siswa' => $siswa,
+                        'siswa' => $$this->nilaiEci_model(),
                         'level' => $level,
                     ];
                     $this->load->view('webexcel/fetchExcel', $data);
