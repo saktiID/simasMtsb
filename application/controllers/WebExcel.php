@@ -26,11 +26,11 @@ class WebExcel extends CI_Controller
                     $level = $_GET['level'];
                     $jenjang = $_GET['jenjang'];
 
-                    $jenjang = $this->nilaiEci_model->get_id_kelas_by_name($jenjang)[0]['id'];
-                    $siswa = $this->nilaiEci_model->get_level_in_grade($level, $jenjang);
+                    // $jenjang = $this->nilaiEci_model->get_id_kelas_by_name($jenjang)[0]['id'];
+                    // $siswa = $this->nilaiEci_model->get_level_in_grade($level, $jenjang);
 
                     $data = [
-                        'siswa' => $$this->nilaiEci_model(),
+                        'siswa' => $this->nilaiEci_model->get_id_kelas_by_name('VIII'),
                         'level' => $level,
                     ];
                     $this->load->view('webexcel/fetchExcel', $data);
