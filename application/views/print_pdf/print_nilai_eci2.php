@@ -40,7 +40,7 @@
                 <h2>MTs BILINGUAL MUSLIMAT NU PUCANG SIDOARJO</h2>
             </div>
             <div class="box-brand-subtitle">
-                <h3>INTEGRATED CURRICULLUM OF KEMENAG, KEMENDIKBUD, AND CAMBRIDGE</h3>
+                <h3>INTEGRATED CURRICULUM OF KEMENAG, KEMENDIKBUD, AND CAMBRIDGE</h3>
             </div>
             <div class="box-stripped hr"></div>
         </div>
@@ -65,6 +65,10 @@
                     <tr>
                         <td>Class</td>
                         <td>: <strong><?= $kelas; ?></strong></td>
+                    </tr>
+                    <tr>
+                        <td>Level</td>
+                        <td>: <strong><?= $level; ?></strong></td>
                     </tr>
                     <tr hidden>
                         <td>Month</td>
@@ -99,7 +103,8 @@
 
                 <div class="box-sign-row d-flex justify-content-end">
                     <div class=" box-sign text-center">
-                        <div class="date"><?= date('l, d F Y', $timestamp); ?></div>
+                        <!-- <div class="date"><?= date('l, d F Y', $timestamp); ?></div> -->
+                        <div class="date">Saturday, 10 June 2023</div>
                         <div class="sign">(electronically signed)</div>
                         <div class="box-qr d-flex justify-content-center py-2">
                             <div id="qrcode"></div>
