@@ -68,7 +68,7 @@
                     </tr>
                     <tr>
                         <td>Level</td>
-                        <td>: <strong><?= $level; ?></strong></td>
+                        <td>: <strong><?= strtoupper($level); ?></strong></td>
                     </tr>
                     <tr hidden>
                         <td>Month</td>
