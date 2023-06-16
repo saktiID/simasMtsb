@@ -104,7 +104,13 @@
                 <div class="box-sign-row d-flex justify-content-end">
                     <div class=" box-sign text-center">
                         <!-- <div class="date"><?= date('l, d F Y', $timestamp); ?></div> -->
-                        <div class="date">Saturday, 10 June 2023</div>
+                        <?php $jenjang = explode(' ', $kelas) ?>
+                        <?php $jenjang = $jenjang[0] ?>
+                        <?php if ($jenjang == 'IX') : ?>
+                            <div class="date">Thursday, 08 June 2023</div>
+                        <?php elseif ($jenjang == "VII" || $jenjang == "VIII") : ?>
+                            <div class="date">Friday, 23 June 2023</div>
+                        <?php endif; ?>
                         <div class="sign">(electronically signed)</div>
                         <div class="box-qr d-flex justify-content-center py-2">
                             <div id="qrcode"></div>
