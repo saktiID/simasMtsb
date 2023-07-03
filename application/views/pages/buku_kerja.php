@@ -129,7 +129,7 @@
                                 <option value="2021-2022">2021 - 2022</option>
                                 <option value="2022-2023">2022 - 2023</option>
                                 <option value="2023-2024">2023 - 2024</option>
-                                <option value="2024-2025">2023 - 2024</option>
+                                <option value="2024-2025">2024 - 2025</option>
                             </select>
                         </div>
                         <!-- input semester -->
@@ -202,10 +202,10 @@
                 <div>
                     <label for="tahun">Pilih tahun ajaran:</label>
                     <select name="tahun" id="tahun" onchange="slideTahun()">
-                        <option value="2021-2022" <?php if ($tahun == '2021-2022') : ?> selected <?php endif; ?>>2021-2020</option>
-                        <option value="2022-2023" <?php if ($tahun == '2022-2023') : ?> selected <?php endif; ?>>2022-2023</option>
-                        <option value="2023-2024" <?php if ($tahun == '2023-2024') : ?> selected <?php endif; ?>>2023-2024</option>
-                        <option value="2024-2025" <?php if ($tahun == '2024-2025') : ?> selected <?php endif; ?>>2024-2025</option>
+                        <option value="2021-2022" <?= ($tahun == '2021-2022') ? "selected" : ""; ?>>2021-2020</option>
+                        <option value="2022-2023" <?= ($tahun == '2022-2023') ? "selected" : ""; ?>>2022-2023</option>
+                        <option value="2023-2024" <?= ($tahun == '2023-2024') ? "selected" : ""; ?>>2023-2024</option>
+                        <option value="2024-2025" <?= ($tahun == '2024-2025') ? "selected" : ""; ?>>2024-2025</option>
                     </select>
                 </div>
                 <h4 class="card-title mt-5">Buku Kerja Semester 1 <br> Tahun Ajaran <?= $tahun; ?></h4>
