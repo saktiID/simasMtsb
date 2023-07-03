@@ -121,6 +121,7 @@ class QNilaiEci extends CI_Controller
             'describe_vocab' => $data_eci[0]['describe_vocab'],
             'timestamp' => $data_eci[0]['timestamp'],
             'link' => $data_eci[0]['link'],
+            'level' => $data_siswa[0]['level_eci'],
         ];
         $this->load->view('print_pdf/print_nilai_eci2', $data);
     }
